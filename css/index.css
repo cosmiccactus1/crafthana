@@ -15,74 +15,95 @@ body {
   width: 100%;
 }
 
-/* Prvi Hero Section */
+/* Jednostavan slider koji prati postojeći dizajn */
 .hero-section {
-  background-color: #fff;
-  margin: 0;
-  overflow: hidden;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-  position: relative;
-  width: 100%;
+    background-color: #fff;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    position: relative;
+    width: 100%;
+}
+
+.slider-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.slider-slide.active {
+    display: block;
 }
 
 .hero-image {
-  height: 100%;
-  left: 0;
-  object-fit: contain;
-  position: absolute;
-  top: 0;
-  width: 100%;
+    height: 100%;
+    left: 0;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .hero-content {
-  left: 50%;
-  max-width: 1200px;
-  padding: 20px;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  z-index: 2;
+    left: 50%;
+    max-width: 1200px;
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    z-index: 2;
 }
 
 .hero-content .title-small {
-  animation: typing 1s steps(40, end) forwards;
-  color: #daa520;
-  font-family: 'Raleway', sans-serif;
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  font-weight: 200;
-  letter-spacing: 0.2em;
-  margin-bottom: 1rem;
+    color: #daa520;
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
 }
 
 .hero-content .title-large {
-  animation: typing 1.5s steps(40, end) forwards 1s;
-  color: #fff;
-  font-family: 'Raleway', sans-serif;  
-  font-size: clamp(3rem, 10vw, 5rem);
-  font-weight: 200;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;  
+    font-size: clamp(3rem, 10vw, 5rem);
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
 }
 
 .hero-content .subtitle {
-  animation: typing 1s steps(40, end) forwards 2.5s;
-  color: #fff;
-  font-family: 'Raleway', sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2rem);  
-  font-weight: 200;
-  letter-spacing: 0.1em;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);  
+    font-weight: 200;
+    letter-spacing: 0.1em;
 }
 
-/* Typewriter Text Animation */
-.typewriter-text {
-  margin: 0 auto;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0;
+/* Media query za mobilne uređaje */
+@media screen and (max-width: 768px) {
+    .hero-section {
+        height: 100vh;
+        padding-top: 0;
+    }
+    
+    .hero-image {
+        object-fit: cover;
+    }
 }
-
 /* Nature Text */
 .nature-text {
   position: absolute;
