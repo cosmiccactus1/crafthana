@@ -1,8 +1,64 @@
-<!-- Hero sekcija -->
-<div class="hero-section">
-    <div class="slider-container">
-        <!-- Prvi slajd -->
-        <div class="slider-slide">
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRAFTANA</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="discount-banner">
+        <div class="banner-content">
+            <div class="social-icons">
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <a href="popusti.html" class="discount-text">Prijavite se na naš newsletter i ostvarite 10% popusta na svoju prvu kupovinu!</a>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="nav-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Otvori menu">
+                   <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="o-nama.html">O nama</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+            </div>
+            <div class="nav-center">
+                <img src="images/logojez.png" alt="crafthana logo" class="nav-logo">
+                <a href="index.html" class="logo">Crafthana</a>
+            </div>
+            <div class="nav-right">
+                <div class="icon-wrapper">
+                    <a href="favoriti.html" class="icon-link" aria-label="Favoriti">
+                        <i class="fas fa-heart"></i>
+                        <span class="count-badge" id="favorite-count">0</span>
+                    </a>
+                </div>
+                <div class="icon-wrapper">
+                    <a href="kosarica.html" class="icon-link" aria-label="Košarica">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="count-badge cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Prva hero sekcija -->
+        <div class="hero-section">
             <img src="images/6.png" alt="Zeleno žuta pozadina s biljnim motivima" class="hero-image">
             <div class="hero-content">
                 <div class="typewriter-text title-small">CRAFTHANA</div>
@@ -11,16 +67,243 @@
                 <div class="typewriter-text subtitle">Roll on essential oil blend</div>
             </div>
         </div>
+
+   <!-- Essential Oils Roll on Section -->
+<section class="essential-oils">
+    <div class="section-container">
+        <h2 class="section-title">Eterična Ulja Roll On Blend</h2>
+        <p class="section-description">Pogledajte našu kolekciju prirodnih blendova. CLASSIC s hladno presanim jojobom. SILK s japanskim tsubaki uljem. ULTIMATE s najboljim od oba. Plus čista esencijalna ulja.</p>
         
-        <!-- Drugi slajd -->
-        <div class="slider-slide active">
-            <img src="images/7.png" alt="Pozadina s biljnim motivima" class="hero-image">
-            <div class="hero-content">
-                <div class="typewriter-text title-small">CRAFTHANA</div>
-                <div class="typewriter-text title-large">FRANKINCENSE</div>
-                <div class="typewriter-text title-large">MYRRH</div>
-                <div class="typewriter-text subtitle">Roll on essential oil blend</div>
+        <div class="oils-grid">
+            <div class="oil-item">
+                <a href="link-ka-drugoj-stranici">
+                    <img src="images/blend-placeholder.png" alt="Jasmine • Bergamot • Sandalwood blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Jasmine • Bergamot • Sandalwood</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">6.99-9.99 KM</p>
+                        <p class="blend-character">Cvjetna orijentalska harmonija</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="oil-item">
+                <a href="link-ka-drugoj-stranici">
+                    <img src="images/blend-placeholder.png" alt="Pine • Cedarwood • Bergamot • Vanilla blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Pine • Cedarwood • Bergamot • Vanilla</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">8.99-11.99 KM</p>
+                        <p class="blend-character">Šumsko-slatka harmonija</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="oil-item">
+                <a href="link-ka-drugoj-stranici">
+                    <img src="images/blend-placeholder.png" alt="Vanilla • Jasmine blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Vanilla • Jasmine</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">5.99-8.99 KM</p>
+                        <p class="blend-character">Slatka, cvjetna harmonija</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="oil-item">
+                <a href="link-ka-drugoj-stranici">
+                    <img src="images/blend-placeholder.png" alt="Frankincense • Myrrh • Vanilla blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Frankincense • Myrrh • Vanilla</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">6.99-9.99 KM</p>
+                        <p class="blend-character">Luksuzna tropska kompozicija</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="oil-item">
+                <a href="link-ka-drugoj-stranici">
+                    <img src="images/blend-placeholder.png" alt="Patchouli • Cedarwood • Jasmine blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Patchouli • Cedarwood • Jasmine</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">6.99-9.99 KM</p>
+                        <p class="blend-character">Šumska zemljana meditacija</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="oil-item">
+                <a href="link-ka-drugoj-stranici">
+                    <img src="images/blend-placeholder.png" alt="Jasmine • Ylang Ylang • Bergamot • Cedarwood blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Jasmine • Ylang Ylang • Bergamot • Cedarwood</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">8.99-11.99 KM</p>
+                        <p class="blend-character">Luksuzna cvjetno-drvenasta kompozicija</p>
+                    </div>
+                </a>
             </div>
         </div>
+        
+        <div class="view-all-container">
+            <a href="rollon-eo.html" class="view-all-link">Pogledaj cijelu ponudu</a>
+        </div>
+    </div>
+</section>
+
+        <!-- Essential Oils Blend Section -->
+<section class="essential-oils">
+    <div class="section-container">
+        <h2 class="section-title">Eterična Ulja Blend</h2>
+        <p class="section-description">Naši ekskluzivni blendovi eteričnih ulja su pažljivo kreirani kombinacijom najkvalitetnijih esencija za postizanje savršene aromatične harmonije.</p>
+        
+        <div class="oils-grid">
+            <div class="oil-item">
+                <a href="link-ka-novoj-stranici">
+                    <img src="images/EOtest.jpg" alt="Pine • Cedarwood • Bergamot • Vanilla blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Pine • Cedarwood • Bergamot • Vanilla</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">8.99-11.99 KM</p>
+                        <p class="blend-character">Šumsko-slatka harmonija</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="oil-item">
+                <a href="link-ka-novoj-stranici">
+                    <img src="images/EOtest.jpg" alt="Vanilla • Jasmine blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Vanilla • Jasmine</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">5.99-8.99 KM</p>
+                        <p class="blend-character">Slatka, cvjetna harmonija</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="oil-item">
+                <a href="link-ka-novoj-stranici">
+                    <img src="images/EOtest.jpg" alt="Frankincense • Myrrh • Vanilla blend" class="oil-image">
+                    <div class="oil-details">
+                        <h3>Frankincense • Myrrh • Vanilla</h3>
+                        <p class="volume">10 ml</p>
+                        <p class="price">6.99-9.99 KM</p>
+                        <p class="blend-character">Luksuzna tropska kompozicija</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="usage-suggestions">
+            <h3>Primjena eteričnih ulja</h3>
+            <p>Naši blendovi su savršeni za:</p>
+            <ul>
+                <li>Električne i ultrazvučne difuzere - za opuštajuću atmosferu u vašem domu</li>
+                <li>Štapićne difuzere - za dugotrajnu aromaterapiju</li>
+                <li>Mirisne svijeće - dodajte nekoliko kapi u vosak za intenzivniji miris</li>
+                <li>Osvježivače prostora - pomiješajte s vodom za prirodni sprej</li>
+                <li>Aromaterapijske kupke - za potpuni spa doživljaj</li>
+            </ul>
+        </div>
+        
+        <div class="view-all-container">
+            <a href="essential-oils.html" class="view-all-link">Pogledaj cijelu ponudu</a>
+        </div>
+    </div>
+</section>
+      <!-- Druga hero sekcija -->
+<div class="hero-section nature-hero">
+    <img src="images/4.png" alt="Planinski pejzaž" class="hero-image">
+    <div class="hero-content nature-content">
+        <div class="typewriter-text question-text">Naša inspiracija?</div>
+        <div class="typewriter-text nature-text">P R I R O D A</div>
+    </div>
+    <!-- Dodajemo interview sekciju -->
+    <div class="interview-content">
+        <span class="interview-tag">INTERVIEW</span>
+        <a href="#" class="view-full-text">PROČITAJ VIŠE</a>
     </div>
 </div>
+
+        <section class="delivery-section">
+    <div class="section-container">
+        <h2 class="delivery-title">Opcije dostave</h2>
+        <div class="delivery-content">
+            <p>Opcije dostave unutar Bosne i Hercegovine su putem <strong>BH Pošte (isporuka 2-5 dana)</strong> cijena 5,00 KM, uz narudžbu preko 50,00 KM poštarina je besplatna ili opcija <strong>brzom poštom u roku od 24-48 sati</strong>, cijena 10,00 KM, za <strong>narudžbe preko 100,00 KM dostava brzom poštom je besplatna</strong>.</p>
+        </div>
+    </div>
+</section>
+        
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="section-container">
+                <div class="newsletter-content">
+                    <i class="fas fa-gift newsletter-icon"></i>
+                    <h2>Newsletter</h2>
+                    <p>Ostvarite 10% popusta na prvu kupovinu</p>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <div class="form-wrapper">
+                            <input type="email" id="newsletterEmail" placeholder="Vaša email adresa" required>
+                            <button type="submit" class="newsletter-btn">
+                                <span>Pretplatite se</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <p>Email: info@crafthana.xyz</p>
+                <p>Online narudžbe 24/7</p>
+                <p>Crafted with love in Bosnia and Herzegovina</p>
+            </div>
+            <div class="footer-section">
+                <h3>Brze poveznice</h3>
+                <ul>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="o-nama.html">O nama</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="uvjeti-koristenja.html">Uvjeti korištenja</a></li>
+                    <li><a href="politika-privatnosti.html">Politika privatnosti</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Načini plaćanja</h3>
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                    <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                    <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CRAFTHANA. Sva prava pridržana.</p>
+        </div>
+    </footer>
+
+    <!-- Newsletter Modal -->
+    <div id="newsletter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Hvala na prijavi!</h2>
+            <p>Vaš kod za popust je:</p>
+            <div class="discount-code"></div>
+            <p class="modal-info">Sačuvajte ovaj kod i iskoristite ga prilikom sljedeće kupovine za 10% popusta.</p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/newsletter.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/indextekst.js"></script>
+</body>
+</html>
