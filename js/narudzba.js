@@ -1,77 +1,125 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const cartItemsContainer = document.getElementById('cartItems');
+    // Configuration for EmailJS
+    const EMAIL_CONFIG = {
+        publicKey: 'UmDvCPqSLQJ-W2tn4',
+        serviceId: 'service_6v5pha9',
+        templateId: 'template_skhct09'
+    };
 
-    function renderOrderSummary() {
-        if (!cartItemsContainer) return;
-        cartItemsContainer.innerHTML = '';
+    // Cart Management
+    const CartManager = {
+        // Get cart items from local storage
+        getCartItems() {
+            return JSON.parse(localStorage.getItem('cartItems')) || [];
+        },
 
-        let total = 0;
+        // Render cart items in the summary
+        renderOrderSummary() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            if (!cartItemsContainer) return;
 
-        cartItems.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.classList.add('cart-item');
-            itemElement.innerHTML = `<p>${item.name} x ${item.quantity} - ${item.price} KM</p>`;
-            cartItemsContainer.appendChild(itemElement);
-            total += item.quantity * parseFloat(item.price);
-        });
+            cartItemsContainer.innerHTML = '';
+            const cartItems = this.getCartItems();
+            let total = 0;
 
-        const totalElement = document.querySelector('.summary-row.total span:last-child');
-        if (totalElement) {
-            totalElement.textContent = `${total.toFixed(2)} KM`;
+            cartItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `<p>${item.name} x ${item.quantity} - ${item.price} KM</p>`;
+                cartItemsContainer.appendChild(itemElement);
+                total += item.quantity * parseFloat(item.price);
+            });
+
+            const totalElement = document.querySelector('.summary-row.total span:last-child');
+            if (totalElement) {
+                totalElement.textContent = `${total.toFixed(2)} KM`;
+            }
         }
-    }
+    };
 
-    const orderForm = document.getElementById('orderForm');
-    if (orderForm) {
-        orderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+    // Order Processing
+    const OrderProcessor = {
+        // Validate form inputs
+        validateForm(form) {
+            const requiredFields = [
+                'firstName', 'lastName', 'email', 
+                'phone', 'address', 'city', 'postalCode'
+            ];
 
-            if (!cartItems.length) {
-                alert('Vaša košarica je prazna');
-                return;
-            }
+            return requiredFields.every(fieldName => {
+                const field = form[fieldName];
+                return field && field.value.trim() !== '';
+            });
+        },
 
-            if (this.checkValidity()) {
-                const totalElement = document.querySelector('.summary-row.total span:last-child');
-                const total = totalElement ? totalElement.textContent : '0 KM';
+        // Prepare order data for submission
+        prepareOrderData(form, cartItems) {
+            const totalElement = document.querySelector('.summary-row.total span:last-child');
+            const total = totalElement ? totalElement.textContent : '0 KM';
 
-                const orderData = {
-                    customerInfo: {
-                        firstName: this.firstName.value,
-                        lastName: this.lastName.value,
-                        email: this.email.value,
-                        phone: this.phone.value,
-                        address: this.address.value,
-                        city: this.city.value,
-                        postalCode: this.postalCode.value
-                    },
-                    items: cartItems.map(item => `${item.name} x ${item.quantity} - ${item.price} KM`).join(', '),
-                    total: total
-                };
+            return {
+                customerInfo: {
+                    firstName: form.firstName.value,
+                    lastName: form.lastName.value,
+                    email: form.email.value,
+                    phone: form.phone.value,
+                    address: form.address.value,
+                    city: form.city.value,
+                    postalCode: form.postalCode.value
+                },
+                items: cartItems.map(item => `${item.name} x ${item.quantity} - ${item.price} KM`).join(', '),
+                total: total
+            };
+        },
 
-                // Inicijalizacija EmailJS-a
-                emailjs.init(import.meta.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+        // Send order via EmailJS
+        async sendOrder(orderData) {
+            try {
+                // Initialize EmailJS with the public key
+                emailjs.init(EMAIL_CONFIG.publicKey);
 
-                // Slanje emaila putem EmailJS-a
-                emailjs.send(
-                    import.meta.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-                    import.meta.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+                // Send email
+                const response = await emailjs.send(
+                    EMAIL_CONFIG.serviceId,
+                    EMAIL_CONFIG.templateId,
                     orderData
-                ).then(response => {
-                    console.log('Narudžba uspješno poslana', response.status, response.text);
-                    localStorage.removeItem('cartItems');
-                    alert('Hvala na narudžbi! Vaš email je poslan.');
-                    window.location.href = 'index.html';
-                }).catch(error => {
-                    console.error('Greška pri slanju narudžbe', error);
-                    alert('Došlo je do greške pri obradi narudžbe.');
-                });
-            } else {
-                alert('Molimo popunite sva obavezna polja.');
-            }
-        });
-    }
+                );
 
-    renderOrderSummary();
+                console.log('Order successfully sent', response.status, response.text);
+                localStorage.removeItem('cartItems');
+                alert('Hvala na narudžbi! Vaš email je poslan.');
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error sending order', error);
+                alert('Došlo je do greške pri obradi narudžbe.');
+            }
+        },
+
+        // Setup order form submission handler
+        setupOrderFormSubmission() {
+            const orderForm = document.getElementById('orderForm');
+            if (!orderForm) return;
+
+            orderForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const cartItems = CartManager.getCartItems();
+                if (!cartItems.length) {
+                    alert('Vaša košarica je prazna');
+                    return;
+                }
+
+                if (this.validateForm(orderForm)) {
+                    const orderData = this.prepareOrderData(orderForm, cartItems);
+                    await this.sendOrder(orderData);
+                } else {
+                    alert('Molimo popunite sva obavezna polja.');
+                }
+            });
+        }
+    };
+
+    // Initialize components
+    CartManager.renderOrderSummary();
+    OrderProcessor.setupOrderFormSubmission();
 });
