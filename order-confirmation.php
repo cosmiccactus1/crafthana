@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require 'phpmailer/PHPMailer.php';
 require 'phpmailer/SMTP.php';
 require 'phpmailer/Exception.php';
@@ -19,10 +19,10 @@ function sendMail($to, $subject, $body) {
         $mail->isSMTP();
         $mail->Host = 'smtp.zoho.eu';
         $mail->SMTPAuth = true;
-        $mail->Username = 'info@crafthana.xyz';
-        $mail->Password = 'PAss';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port = port;
+        $mail->Username = getenv('SMTP_USER');  // Dohvata varijablu okruženja za korisničko ime
+        $mail->Password = getenv('SMTP_PASS');  // Dohvata varijablu okruženja za lozinku
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587; // ili 465 za SSL
         $mail->CharSet = 'UTF-8';
 
         // Dodajemo ove postavke za bolje izbjegavanje spam filtera
@@ -87,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             "Vaša narudžba #" . $orderNumber . " - Crafthana", 
                             $customerBody);
                             
+
     $adminEmail = sendMail('info@crafthana.xyz', 
                           "Nova narudžba #" . $orderNumber, 
                           $adminBody);
