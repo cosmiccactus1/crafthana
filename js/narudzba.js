@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     total: total
                 };
 
-                fetch('order-confirmation.php', {
+                fetch('/api/order-confirmation.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
