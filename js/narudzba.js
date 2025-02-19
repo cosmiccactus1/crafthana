@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configuration for EmailJS
     const EMAIL_CONFIG = {
         serviceId: 'service_6v5pha9',
-        templateId: 'template_skhct09',
+        templateId: 'template_skcht09',
         userId: 'UmDvCPqSLQJ-W2tn4'
     };
 
@@ -67,16 +67,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 template_id: EMAIL_CONFIG.templateId,
                 user_id: EMAIL_CONFIG.userId,
                 template_params: {
-                    first_name: form.firstName.value,
-                    last_name: form.lastName.value,
+                    to_email: form.email.value,
                     from_name: 'Vaša Online Trgovina',
-                    customer_email: form.email.value,
-                    phone: form.phone.value,
-                    address: form.address.value,
-                    city: form.city.value,
-                    postal_code: form.postalCode.value,
-                    order_items: itemsList,
-                    total_price: total
+                    from_email: 'noreply@vasaonlinetrovina.com', // Replace with your actual email
+                    subject: 'Potvrda Vaše Narudžbe',
+                    full_name: `${form.firstName.value} ${form.lastName.value}`,
+                    ime: form.firstName.value,
+                    prezime: form.lastName.value,
+                    email: form.email.value,
+                    telefon: form.phone.value,
+                    adresa: form.address.value,
+                    grad: form.city.value,
+                    postanski_broj: form.postalCode.value,
+                    artikli: itemsList,
+                    ukupno: total
                 }
             };
         },
@@ -84,6 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Send order via EmailJS REST API
         async sendOrder(orderData) {
             try {
+                console.log('Sending order data:', orderData);
+
                 const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
                     method: 'POST',
                     headers: {
