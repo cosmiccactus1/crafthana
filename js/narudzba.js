@@ -63,9 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
             ).join('\n');
 
             return {
+                from_name: 'Vaša Online Trgovina',
+                to_name: `${form.firstName.value} ${form.lastName.value}`,
                 first_name: form.firstName.value,
                 last_name: form.lastName.value,
-                email: form.email.value,
+                customer_email: form.email.value,
                 phone: form.phone.value,
                 address: form.address.value,
                 city: form.city.value,
@@ -78,20 +80,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Send order via EmailJS
         async sendOrder(orderData) {
             try {
-                // Validate email data keys match the template
-                console.log('Sending order data:', orderData);
+                // Validate email data
+                console.log('Preparing to send order data:', orderData);
 
-                // Initialize EmailJS with the public key
-                emailjs.init(EMAIL_CONFIG.publicKey);
+                // Ensure EmailJS is properly initialized
+                if (typeof emailjs === 'undefined') {
+                    throw new Error('EmailJS is not loaded');
+                }
 
-                // Send email
+                // Use the latest EmailJS send method
                 const response = await emailjs.send(
-                    EMAIL_CONFIG.serviceId,
-                    EMAIL_CONFIG.templateId,
-                    orderData
+                    EMAIL_CONFIG.serviceId, 
+                    EMAIL_CONFIG.templateId, 
+                    orderData,
+                    {
+                        publicKey: EMAIL_CONFIG.publicKey
+                    }
                 );
 
-                console.log('Order successfully sent', response.status, response.text);
+                console.log('Order successfully sent', response);
                 localStorage.removeItem('cartItems');
                 alert('Hvala na narudžbi! Vaš email je poslan.');
                 window.location.href = 'index.html';
@@ -99,9 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Detailed error sending order:', {
                     message: error.message,
                     name: error.name,
-                    stack: error.stack,
-                    responseText: error.responseText,
-                    status: error.status
+                    stack: error.stack
                 });
                 
                 // More detailed error alert
@@ -137,6 +142,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     };
+
+    // Initialize EmailJS
+    try {
+        emailjs.init({
+            publicKey: EMAIL_CONFIG.publicKey
+        });
+    } catch (error) {
+        console.error('Error initializing EmailJS:', error);
+    }
 
     // Initialize components
     CartManager.renderOrderSummary();
