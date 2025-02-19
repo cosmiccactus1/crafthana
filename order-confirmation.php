@@ -1,4 +1,9 @@
 <?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
+
 require 'phpmailer/PHPMailer.php';
 require 'phpmailer/SMTP.php';
 require 'phpmailer/Exception.php';
@@ -6,58 +11,17 @@ require 'phpmailer/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Postavke za SMTP
-define('SMTP_HOST', 'smtp.zoho.eu');
-define('SMTP_PORT', '587');
-define('SMTP_USER', getenv('ZOHO_EMAIL'));    // Umjesto SMTP_USER
-define('SMTP_PASS', getenv('ZOHO_PASSWORD'));
-
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
-
-function formatPrice($price) {
-    // Uklanja "KM" i razmake, zatim pretvara u float
-    return (float) preg_replace('/[^0-9.]/', '', $price);
-}
-
-function generateItemsList($items) {
-    $html = '<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">';
-    $html .= '<tr style="background-color: #f8f9fa;">
-                <th style="padding: 10px; text-align: left; border-bottom: 1px solid #dee2e6;">Proizvod</th>
-                <th style="padding: 10px; text-align: right; border-bottom: 1px solid #dee2e6;">Količina</th>
-                <th style="padding: 10px; text-align: right; border-bottom: 1px solid #dee2e6;">Cijena</th>
-              </tr>';
-    
-    foreach ($items as $item) {
-        $html .= '<tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #dee2e6;">' . 
-                        htmlspecialchars($item['name']) . '<br>
-                        <small>Bazno ulje: ' . htmlspecialchars($item['baseOil']) . '</small>
-                    </td>
-                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #dee2e6;">' . 
-                        htmlspecialchars($item['quantity']) . 
-                    '</td>
-                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #dee2e6;">' . 
-                        formatPrice($item['price']) . ' KM
-                    </td>
-                  </tr>';
-    }
-    
-    return $html . '</table>';
-}
-
 function sendMail($to, $subject, $body) {
     $mail = new PHPMailer(true);
     try {
+        // Server settings
         $mail->isSMTP();
-        $mail->Host = SMTP_HOST;
+        $mail->Host = 'smtp.zoho.eu';
         $mail->SMTPAuth = true;
-        $mail->Username = SMTP_USER;
-        $mail->Password = SMTP_PASS;
+        $mail->Username = getenv('ZOHO_EMAIL');
+        $mail->Password = getenv('ZOHO_PASSWORD');
         $mail->SMTPSecure = 'tls';
-        $mail->Port = SMTP_PORT;
+        $mail->Port = 587;
         $mail->CharSet = 'UTF-8';
         
         // Anti-spam postavke
@@ -66,8 +30,11 @@ function sendMail($to, $subject, $body) {
         $mail->Sender = 'info@crafthana.xyz';
         $mail->addReplyTo('info@crafthana.xyz', 'Crafthana Support');
         
+        // Recipients
         $mail->setFrom('info@crafthana.xyz', 'Crafthana', false);
         $mail->addAddress($to);
+        
+        // Content
         $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->Body = $body;
@@ -90,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         $orderNumber = 'CRA' . date('Ymd') . rand(1000, 9999);
-        $total = formatPrice($data['total']);
         
         // Email za kupca
         $customerBody = "
@@ -105,8 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <strong>Broj narudžbe:</strong> " . htmlspecialchars($orderNumber) . "<br>
                     <strong>Datum:</strong> " . date('d.m.Y.') . "
                 </div>
-                
-                " . generateItemsList($data['items']) . "
                 
                 <div style='margin-top: 20px; text-align: right;'>
                     <strong>Ukupno za platiti:</strong> " . htmlspecialchars($data['total']) . "
@@ -146,12 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     htmlspecialchars($data['customerInfo']['city']) . "
                 </p>
                 
-                <h3>Detalji narudžbe:</h3>
-                " . generateItemsList($data['items']) . "
-                
-                <div style='margin-top: 20px; text-align: right;'>
-                    <strong>Ukupno:</strong> " . htmlspecialchars($data['total']) . "
-                </div>
+                <h3>Ukupno: " . htmlspecialchars($data['total']) . "</h3>
             </div>
         </body>
         </html>";
