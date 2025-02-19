@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Configuration for EmailJS
     const EMAIL_CONFIG = {
-        publicKey: 'UmDvCPqSLQJ-W2tn4',
         serviceId: 'service_6v5pha9',
-        templateId: 'template_skhct09'
+        templateId: 'template_skhct09',
+        userId: 'UmDvCPqSLQJ-W2tn4'
     };
 
     // Cart Management
@@ -63,42 +63,41 @@ document.addEventListener('DOMContentLoaded', function() {
             ).join('\n');
 
             return {
-                from_name: 'Vaša Online Trgovina',
-                to_name: `${form.firstName.value} ${form.lastName.value}`,
-                first_name: form.firstName.value,
-                last_name: form.lastName.value,
-                customer_email: form.email.value,
-                phone: form.phone.value,
-                address: form.address.value,
-                city: form.city.value,
-                postal_code: form.postalCode.value,
-                order_items: itemsList,
-                total_price: total
+                service_id: EMAIL_CONFIG.serviceId,
+                template_id: EMAIL_CONFIG.templateId,
+                user_id: EMAIL_CONFIG.userId,
+                template_params: {
+                    first_name: form.firstName.value,
+                    last_name: form.lastName.value,
+                    from_name: 'Vaša Online Trgovina',
+                    customer_email: form.email.value,
+                    phone: form.phone.value,
+                    address: form.address.value,
+                    city: form.city.value,
+                    postal_code: form.postalCode.value,
+                    order_items: itemsList,
+                    total_price: total
+                }
             };
         },
 
-        // Send order via EmailJS
+        // Send order via EmailJS REST API
         async sendOrder(orderData) {
             try {
-                // Validate email data
-                console.log('Preparing to send order data:', orderData);
+                const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(orderData)
+                });
 
-                // Ensure EmailJS is properly initialized
-                if (typeof emailjs === 'undefined') {
-                    throw new Error('EmailJS is not loaded');
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
                 }
 
-                // Use the latest EmailJS send method
-                const response = await emailjs.send(
-                    EMAIL_CONFIG.serviceId, 
-                    EMAIL_CONFIG.templateId, 
-                    orderData,
-                    {
-                        publicKey: EMAIL_CONFIG.publicKey
-                    }
-                );
-
-                console.log('Order successfully sent', response);
+                console.log('Order successfully sent');
                 localStorage.removeItem('cartItems');
                 alert('Hvala na narudžbi! Vaš email je poslan.');
                 window.location.href = 'index.html';
@@ -142,15 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     };
-
-    // Initialize EmailJS
-    try {
-        emailjs.init({
-            publicKey: EMAIL_CONFIG.publicKey
-        });
-    } catch (error) {
-        console.error('Error initializing EmailJS:', error);
-    }
 
     // Initialize components
     CartManager.renderOrderSummary();
