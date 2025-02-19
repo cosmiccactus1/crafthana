@@ -89,13 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     total: total
                 };
 
-                fetch('/api/order-confirmation.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(orderData)
-                })
+                fetch('order-confirmation.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(orderData)
+})
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
