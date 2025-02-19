@@ -57,24 +57,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const totalElement = document.querySelector('.summary-row.total span:last-child');
             const total = totalElement ? totalElement.textContent : '0 KM';
 
+            // Detailed cart items list
+            const itemsList = cartItems.map(item => 
+                `${item.name} (Količina: ${item.quantity}, Cijena: ${item.price} KM)`
+            ).join('\n');
+
             return {
-                customerInfo: {
-                    firstName: form.firstName.value,
-                    lastName: form.lastName.value,
-                    email: form.email.value,
-                    phone: form.phone.value,
-                    address: form.address.value,
-                    city: form.city.value,
-                    postalCode: form.postalCode.value
-                },
-                items: cartItems.map(item => `${item.name} x ${item.quantity} - ${item.price} KM`).join(', '),
-                total: total
+                first_name: form.firstName.value,
+                last_name: form.lastName.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                address: form.address.value,
+                city: form.city.value,
+                postal_code: form.postalCode.value,
+                order_items: itemsList,
+                total_price: total
             };
         },
 
         // Send order via EmailJS
         async sendOrder(orderData) {
             try {
+                // Validate email data keys match the template
+                console.log('Sending order data:', orderData);
+
                 // Initialize EmailJS with the public key
                 emailjs.init(EMAIL_CONFIG.publicKey);
 
@@ -90,8 +96,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Hvala na narudžbi! Vaš email je poslan.');
                 window.location.href = 'index.html';
             } catch (error) {
-                console.error('Error sending order', error);
-                alert('Došlo je do greške pri obradi narudžbe.');
+                console.error('Detailed error sending order:', {
+                    message: error.message,
+                    name: error.name,
+                    stack: error.stack,
+                    responseText: error.responseText,
+                    status: error.status
+                });
+                
+                // More detailed error alert
+                alert(`Greška pri slanju narudžbe: ${error.message}`);
             }
         },
 
@@ -110,8 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (this.validateForm(orderForm)) {
-                    const orderData = this.prepareOrderData(orderForm, cartItems);
-                    await this.sendOrder(orderData);
+                    try {
+                        const orderData = this.prepareOrderData(orderForm, cartItems);
+                        await this.sendOrder(orderData);
+                    } catch (error) {
+                        console.error('Order submission error:', error);
+                        alert('Došlo je do greške pri pripremi narudžbe.');
+                    }
                 } else {
                     alert('Molimo popunite sva obavezna polja.');
                 }
