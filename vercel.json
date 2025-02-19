@@ -1,7 +1,17 @@
 {
   "functions": {
     "api/*.php": {
-      "runtime": "@vercel/php@0.6.0"
+      "runtime": "vercel-php@0.6.0"
     }
-  }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
+    }
+  ]
 }
