@@ -1,0 +1,650 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+/* Jednostavan slider koji prati postojeći dizajn */
+.hero-section {
+    background-color: #fff;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    position: relative;
+    width: 100%;
+}
+
+.slider-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.slider-slide.active {
+    display: block;
+}
+
+.hero-image {
+    height: 100%;
+    left: 0;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.hero-content {
+    left: 50%;
+    max-width: 1200px;
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    z-index: 2;
+}
+
+.hero-content .title-small {
+    color: #daa520;
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.hero-content .title-large {
+    color: #fff;
+    font-family: 'Raleway', sans-serif;  
+    font-size: clamp(3rem, 10vw, 5rem);
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content .subtitle {
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);  
+    font-weight: 200;
+    letter-spacing: 0.1em;
+}
+
+/* Media query za mobilne uređaje */
+@media screen and (max-width: 768px) {
+    .hero-section {
+        height: 100vh;
+        padding-top: 0;
+    }
+    
+    .hero-image {
+        object-fit: cover;
+    }
+}
+/* Nature Text */
+.nature-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 200;
+  text-align: center;
+  letter-spacing: 0.1em;
+  z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3.5s steps(40, end) forwards;
+}
+.typewriter-text.question-text {
+    color: white;
+    font-size: 80px;         /* povećali smo sa 30px na 50px */
+    letter-spacing: 25px;    /* povećali smo sa 5px na 15px za veći razmak između slova */
+    margin-top: 80px;
+    padding-top: 20px;
+    word-spacing: 30px;      /* povećali smo sa 10px na 20px */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    
+    /* Dodajemo transformaciju za izduženi izgled */
+    transform: scaleY(1.2);  /* ovo će izdužiti tekst vertikalno za 20% */
+    
+    /* Dodajemo i manju težinu fonta za elegantniji izgled */
+    font-weight: 200;        /* tanji font */
+}
+.interview-content {
+    position: absolute;
+    bottom: 30px;     /* smanjili smo sa 50px da bi ga spustili niže */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    color: white;    /* dodali smo bijelu boju za tekst */
+}
+
+.interview-tag {
+    color: white;
+    font-size: 20px;
+    letter-spacing: 5px;
+    margin-right: 20px;
+}
+
+.view-full-text {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    letter-spacing: 5px;
+}
+/* Media Queries za tablete */
+@media screen and (max-width: 768px) {
+    .typewriter-text.question-text {
+        font-size: 50px;
+        letter-spacing: 15px;
+        margin-top: 40px;
+        word-spacing: 20px;
+    }
+    
+    .interview-tag,
+    .view-full-text {
+        font-size: 16px;
+        letter-spacing: 3px;
+    }
+    
+    .interview-content {
+        bottom: 20px;
+    }
+}
+
+/* Media Queries za mobile */
+@media screen and (max-width: 480px) {
+    .typewriter-text.question-text {
+        font-size: 20px;         /* smanjeno sa 30px na 20px */
+        letter-spacing: 5px;     /* smanjeno sa 10px na 5px */
+        margin-top: 20px;        /* smanjeno sa 30px na 20px */
+        word-spacing: 8px;       /* smanjeno sa 15px na 8px */
+    }
+    
+    .interview-tag,
+    .view-full-text {
+        font-size: 12px;         /* smanjeno sa 14px na 12px */
+        letter-spacing: 1px;     /* smanjeno sa 2px na 1px */
+        margin-right: 8px;       /* smanjeno sa 10px na 8px */
+    }
+    
+    .interview-content {
+        bottom: 10px;           /* smanjeno sa 15px na 10px */
+        width: 95%;             /* povećano sa 90% na 95% za bolju vidljivost */
+    }
+}
+/* Essential Oils Section */
+.essential-oils {
+  background: #ffffff;
+  padding: 4rem 2rem;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #000000;
+  margin: 1rem auto;
+  opacity: 0.5;
+}
+
+.section-description {
+  text-align: center;
+  color: #333333;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.oils-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.oil-item {
+  background: white;
+  border-radius: 2px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  border: none;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.oil-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+}
+
+.oil-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.oil-image {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+}
+
+.oil-details {
+  padding: 1.5rem;
+}
+
+.oil-details h3 {
+  font-size: 1.1rem;
+  color: #000000;
+  margin: 0 0 0.5rem;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+}
+
+.volume {
+  color: #666666;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  font-weight: 300;
+}
+
+.price {
+  font-size: 1rem;
+  color: #000000;
+  font-weight: 300;
+  margin: 0.5rem 0;
+}
+
+.blend-character {
+  color: #444444;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Usage Suggestions Section */
+.usage-suggestions {
+  background: #ffffff;
+  padding: 3rem 0;
+  margin: 4rem 0;
+  position: relative;
+  border-top: 1px solid rgba(0,0,0,0.03);
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.usage-suggestions h3 {
+  color: #000000;
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+.usage-suggestions p {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.usage-suggestions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.usage-suggestions li {
+  color: #333333;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+}
+
+.usage-suggestions li::before {
+  content: '—';
+  margin-right: 1rem;
+  color: #000000;
+  opacity: 0.3;
+}
+
+/* View All Link */
+.view-all-container {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.view-all-link {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.view-all-link:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.delivery-section {
+    background-color: #e6f0ff;  /* svijetlo plava pozadina */
+    padding: 40px 0;
+    margin: 0 auto;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.delivery-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #333;
+    font-weight: 200;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.delivery-content {
+    background: white;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.delivery-content p {
+    color: #666;
+    line-height: 1.6;
+    font-weight: 200;
+    text-align: center;
+    margin: 0;
+}
+
+.delivery-content strong {
+    color: #333;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+    .delivery-section {
+        padding: 30px 15px;
+    }
+    
+    .delivery-content {
+        padding: 20px;
+    }
+    
+    .delivery-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Newsletter Section */
+.newsletter-section {
+  background: #fff;
+  border-top: none;
+  margin-top: 60px;
+  padding: 60px 0;
+}
+
+.newsletter-content {
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.newsletter-icon {
+  color: #2d4f2d;
+  font-size: 24px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.newsletter-content h2 {
+  color: #333;
+  font-size: 22px;
+  font-weight: 200;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.newsletter-content p {
+  color: #666;
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 1.5px;
+  margin-bottom: 30px;
+}
+
+.newsletter-form {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.form-wrapper {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  display: flex;
+  gap: 5px;
+  padding: 3px;
+}
+
+.form-wrapper input {
+  border: none;
+  flex: 1;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 12px 15px;
+}
+
+.form-wrapper input::placeholder {
+  color: #999;
+  font-weight: 200;
+}
+
+.form-wrapper input:focus {
+  outline: none;
+}
+
+.newsletter-btn {
+  background: #fff;
+  border: 1px solid #000000;    /* Promijenjeno u crno */
+  border-radius: 3px;
+  color: #000000;              /* Promijenjeno u crno */
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 200;
+  letter-spacing: 1.5px;
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+}
+
+.newsletter-btn:hover {
+  background: #000000;         /* Promijenjeno u crno */
+  color: #fff;
+}
+/* Animations */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.1);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.2);
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+  .oils-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .essential-oils {
+    padding: 2rem 1rem;
+  }
+  
+  .hero-section {
+    height: 100vh;
+    padding-top: 0;
+  }
+  
+  .hero-image {
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-content {
+    width: 90%;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .oils-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .oil-image {
+    height: 240px;
+  }
+
+  .usage-suggestions {
+    padding: 2rem 0;
+    margin: 2rem 0;
+  }
+
+  .usage-suggestions ul {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .newsletter-btn {
+    padding: 12px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-content .title-small {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+
+  .hero-content .title-large {
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
+  }
+
+  .hero-content .subtitle {
+    font-size: clamp(1rem, 3vw, 1.8rem);
+  }
+
+  .oils-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletter-section {
+    padding: 40px 20px;
+  }
+}
