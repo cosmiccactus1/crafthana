@@ -80,6 +80,49 @@
     font-size: 14px;
     font-family: inherit;
 }
+/* Stil za opcije dostave */
+.delivery-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.delivery-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.delivery-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    accent-color: #2D4F2D; /* Promjena boje kružića */
+}
+
+.delivery-option label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 300;
+}
+
+.delivery-option input[type="radio"]:checked + label {
+    font-weight: 600; /* Povećava debljinu fonta za odabranu opciju */
+}
+
+/* Dodajte malo prostora između opcija */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #333;
+}
 
 .order-summary {
     background: #fff;
