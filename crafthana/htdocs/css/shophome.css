@@ -1,0 +1,91 @@
+.shop-main {
+    padding: 2rem;
+    max-width: 1400px;  /* Povećao širinu za bolje razmještanje kartica */
+    margin: 0 auto;
+}
+
+.shop-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.shop-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.categories-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;  /* Povećao razmak između kartica */
+    flex-wrap: wrap;
+}
+
+.category-card {
+    width: 380px;  /* Povećao širinu kartice */
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: inherit;
+}
+
+.category-image {
+    width: 100%;
+    height: 380px;  /* Povećao visinu slike da bude kvadratna */
+    position: relative;
+    background: white;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* Promijenio u contain za prikaz cijele slike */
+    padding: 1rem;  /* Dodao padding za malo prostora oko slike */
+}
+
+.category-card h2 {
+    padding: 1.2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Za sakrivanje brojača kada je 0 */
+.count-badge {
+    display: none;
+}
+
+.count-badge:not(:empty) {
+    display: flex;
+}
+
+@media (max-width: 1440px) {
+    .shop-main {
+        padding: 2rem 1.5rem;
+    }
+    
+    .category-card {
+        width: 340px;  /* Malo manja kartica na manjim ekranima */
+    }
+    
+    .category-image {
+        height: 340px;
+    }
+}
+
+@media (max-width: 768px) {
+    .categories-grid {
+        gap: 2rem;
+    }
+    
+    .category-card {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .category-image {
+        height: 400px;
+    }
+}

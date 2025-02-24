@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRAFTHANA</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="discount-banner">
+        <div class="banner-content">
+            <div class="social-icons">
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <a href="popusti.html" class="discount-text">Prijavite se na naš newsletter i ostvarite 10% popusta na svoju prvu kupovinu!</a>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="nav-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Otvori menu">
+                   <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="o-nama.html">O nama</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+            </div>
+            <div class="nav-center">
+                <img src="images/logojez.png" alt="crafthana logo" class="nav-logo">
+                <a href="index.html" class="logo">Crafthana</a>
+            </div>
+            <div class="nav-right">
+                <div class="icon-wrapper">
+                    <a href="favoriti.html" class="icon-link" aria-label="Favoriti">
+                        <i class="fas fa-heart"></i>
+                        <span class="count-badge" id="favorite-count">0</span>
+                    </a>
+                </div>
+                <div class="icon-wrapper">
+                    <a href="kosarica.html" class="icon-link" aria-label="Košarica">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="count-badge cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    
+        <section class="delivery-section">
+    <div class="section-container">
+        <h2 class="delivery-title">Opcije dostave</h2>
+        <div class="delivery-content">
+            <p>Opcije dostave unutar Bosne i Hercegovine su putem <strong>BH Pošte (isporuka 2-5 dana)</strong> cijena 5,00 KM, uz narudžbu preko 50,00 KM poštarina je besplatna ili opcija <strong>brzom poštom u roku od 24-48 sati</strong>, cijena 10,00 KM, za <strong>narudžbe preko 100,00 KM dostava brzom poštom je besplatna</strong>.</p>
+        </div>
+    </div>
+</section>
+        
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="section-container">
+                <div class="newsletter-content">
+                    <i class="fas fa-gift newsletter-icon"></i>
+                    <h2>Newsletter</h2>
+                    <p>Ostvarite 10% popusta na prvu kupovinu</p>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <div class="form-wrapper">
+                            <input type="email" id="newsletterEmail" placeholder="Vaša email adresa" required>
+                            <button type="submit" class="newsletter-btn">
+                                <span>Pretplatite se</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <p>Email: info@crafthana.xyz</p>
+                <p>Online narudžbe 24/7</p>
+                <p>Crafted with love in Bosnia and Herzegovina</p>
+            </div>
+            <div class="footer-section">
+                <h3>Brze poveznice</h3>
+                <ul>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="o-nama.html">O nama</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="uvjeti-koristenja.html">Uvjeti korištenja</a></li>
+                    <li><a href="politika-privatnosti.html">Politika privatnosti</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Načini plaćanja</h3>
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                    <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                    <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CRAFTHANA. Sva prava pridržana.</p>
+        </div>
+    </footer>
+
+    <!-- Newsletter Modal -->
+    <div id="newsletter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Hvala na prijavi!</h2>
+            <p>Vaš kod za popust je:</p>
+            <div class="discount-code"></div>
+            <p class="modal-info">Sačuvajte ovaj kod i iskoristite ga prilikom sljedeće kupovine za 10% popusta.</p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/newsletter.js"></script>
+    <script src="js/indextekst.js"></script>
+</body>
+</html>
+ 
