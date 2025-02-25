@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/$1" }
+  ],
+  "env": {
+    "ZOHO_MAIL_USER": "@zoho-mail-user",
+    "ZOHO_MAIL_PASSWORD": "@zoho-mail-password",
+    "ZOHO_MAIL_HOST": "smtp.zoho.com",
+    "ZOHO_MAIL_PORT": "465"
+  }
+}
