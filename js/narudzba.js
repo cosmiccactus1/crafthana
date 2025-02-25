@@ -192,24 +192,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const total = subtotal - discountAmount + shipping;
 
-                // Kreirajmo detaljni HTML za proizvode koji će se koristiti u emailu
-                let itemsHtml = '';
-                cartItems.forEach(item => {
-                    const price = parseFloat(item.price.match(/(\d+\.?\d*)/)[1]);
-                    const quantity = parseInt(item.quantity) || 1;
-                    const itemTotal = price * quantity;
-                    
-                    itemsHtml += `
-                        <tr>
-                            <td style="padding: 10px; border-bottom: 1px solid #eee;">${item.name}</td>
-                            <td style="padding: 10px; border-bottom: 1px solid #eee;">${item.baseOil || 'N/A'}</td>
-                            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">${quantity}</td>
-                            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">${price.toFixed(2)} KM</td>
-                            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">${itemTotal.toFixed(2)} KM</td>
-                        </tr>
-                    `;
-                });
-
                 // Generirajmo jedinstveni ID narudžbe
                 const timestamp = new Date().getTime();
                 const randomDigits = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
@@ -231,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         ...item,
                         itemTotal: (parseFloat(item.price.match(/(\d+\.?\d*)/)[1]) * (parseInt(item.quantity) || 1)).toFixed(2)
                     })),
-                    itemsHtml: itemsHtml,
                     subtotal: subtotal.toFixed(2),
                     hasDiscount: hasDiscount,
                     discountAmount: discountAmount.toFixed(2),
@@ -244,43 +225,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     orderDate: new Date().toLocaleDateString('hr-BA')
                 };
 
-                // Pošaljimo narudžbu na server
-                fetch('/api/send-mail', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(orderData)
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Greška u mreži');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        // Prikaži modal s potvrdom narudžbe
-                        showOrderConfirmation(orderId, orderData.customerInfo.email);
-                        
-                        // Očisti košaricu i popuste
-                        localStorage.removeItem('cartItems');
-                        localStorage.removeItem('newsletterDiscount');
-                        
-                        // Nakon 5 sekundi, preusmjeri korisnika na početnu stranicu
-                        setTimeout(() => {
-                            window.location.href = 'index.html';
-                        }, 5000);
-                    } else {
-                        throw new Error(data.message || 'Došlo je do greške pri obradi narudžbe');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert(`Došlo je do greške pri obradi narudžbe: ${error.message}`);
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalBtnText;
-                });
+                // Prikaži modal s potvrdom narudžbe
+                showOrderConfirmation(orderId, orderData.customerInfo.email);
+                
+                // Očisti košaricu i popuste
+                localStorage.removeItem('cartItems');
+                localStorage.removeItem('newsletterDiscount');
+                
+                // Nakon 5 sekundi, preusmjeri korisnika na početnu stranicu
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 5000);
             } else {
                 alert('Molimo popunite sva obavezna polja');
             }
