@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartItemsContainer = document.getElementById('cartItems');
     
+    // Inicijalizacija EmailJS
+    emailjs.init('YOUR_USER_ID'); // Zamijenite s vašim User ID-om
+
     // Dodajemo event listenere za opcije dostave
     const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
     deliveryOptions.forEach(option => {
@@ -225,17 +228,46 @@ document.addEventListener('DOMContentLoaded', function() {
                     orderDate: new Date().toLocaleDateString('hr-BA')
                 };
 
-                // Prikaži modal s potvrdom narudžbe
-                showOrderConfirmation(orderId, orderData.customerInfo.email);
-                
-                // Očisti košaricu i popuste
-                localStorage.removeItem('cartItems');
-                localStorage.removeItem('newsletterDiscount');
-                
-                // Nakon 5 sekundi, preusmjeri korisnika na početnu stranicu
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 5000);
+                // Pošalji email koristeći EmailJS
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                    order_id: orderData.orderId,
+                    customer_name: `${orderData.customerInfo.firstName} ${orderData.customerInfo.lastName}`,
+                    email: orderData.customerInfo.email,
+                    items: orderData.items.map(item => `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td>${item.baseOil || 'N/A'}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.price}</td>
+                            <td>${item.itemTotal} KM</td>
+                        </tr>
+                    `).join(''),
+                    subtotal: orderData.subtotal,
+                    discount: orderData.discountAmount,
+                    shipping: orderData.shipping,
+                    total: orderData.total,
+                    shipping_method: orderData.shippingMethod
+                })
+                .then(() => {
+                    console.log('Email uspješno poslan!');
+                    // Prikaži modal s potvrdom narudžbe
+                    showOrderConfirmation(orderId, orderData.customerInfo.email);
+                    
+                    // Očisti košaricu i popuste
+                    localStorage.removeItem('cartItems');
+                    localStorage.removeItem('newsletterDiscount');
+                    
+                    // Nakon 5 sekundi, preusmjeri korisnika na početnu stranicu
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 5000);
+                })
+                .catch((error) => {
+                    console.error('Greška pri slanju emaila:', error);
+                    alert('Došlo je do greške pri slanju potvrde narudžbe. Molimo pokušajte ponovno.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                });
             } else {
                 alert('Molimo popunite sva obavezna polja');
             }
