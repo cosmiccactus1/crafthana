@@ -166,6 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             if (this.checkValidity()) {
+                // Prikaz loading indikatora
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalBtnText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Obrađujemo vašu narudžbu...';
+                
                 const hasDiscount = localStorage.getItem('newsletterDiscount') === 'true';
                 const subtotal = cartItems.reduce((sum, item) => {
                     const price = parseFloat(item.price.match(/(\d+\.?\d*)/)[1]);
@@ -186,7 +192,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const total = subtotal - discountAmount + shipping;
 
+                // Kreirajmo detaljni HTML za proizvode koji će se koristiti u emailu
+                let itemsHtml = '';
+                cartItems.forEach(item => {
+                    const price = parseFloat(item.price.match(/(\d+\.?\d*)/)[1]);
+                    const quantity = parseInt(item.quantity) || 1;
+                    const itemTotal = price * quantity;
+                    
+                    itemsHtml += `
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee;">${item.name}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee;">${item.baseOil || 'N/A'}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">${quantity}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">${price.toFixed(2)} KM</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">${itemTotal.toFixed(2)} KM</td>
+                        </tr>
+                    `;
+                });
+
+                // Generirajmo jedinstveni ID narudžbe
+                const timestamp = new Date().getTime();
+                const randomDigits = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+                const orderId = `CR-${timestamp.toString().slice(-6)}${randomDigits}`;
+                
                 const orderData = {
+                    orderId: orderId,
                     customerInfo: {
                         firstName: this.firstName.value,
                         lastName: this.lastName.value,
@@ -201,6 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         ...item,
                         itemTotal: (parseFloat(item.price.match(/(\d+\.?\d*)/)[1]) * (parseInt(item.quantity) || 1)).toFixed(2)
                     })),
+                    itemsHtml: itemsHtml,
                     subtotal: subtotal.toFixed(2),
                     hasDiscount: hasDiscount,
                     discountAmount: discountAmount.toFixed(2),
@@ -209,32 +240,128 @@ document.addEventListener('DOMContentLoaded', function() {
                         (selectedDelivery.value.includes('10km') ? 'BH Express' : 'BH Pošta') : 
                         'BH Pošta'),
                     isFreeShipping: isFreeShipping,
-                    total: total.toFixed(2)
+                    total: total.toFixed(2),
+                    orderDate: new Date().toLocaleDateString('hr-BA')
                 };
 
-                fetch('https://crafthana.store/order-confirmation.php', {
+                // Pošaljimo narudžbu na server
+                fetch('https://crafthana.store/api/process-order.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(orderData)
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Greška u mreži');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     if (data.success) {
+                        // Prikaži modal s potvrdom narudžbe
+                        showOrderConfirmation(orderId, orderData.customerInfo.email);
+                        
+                        // Očisti košaricu i popuste
                         localStorage.removeItem('cartItems');
                         localStorage.removeItem('newsletterDiscount');
-                        alert(`Hvala na narudžbi! Provjerite svoj email.`);
-                        window.location.href = 'index.html';
+                        
+                        // Nakon 5 sekundi, preusmjeri korisnika na početnu stranicu
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 5000);
+                    } else {
+                        throw new Error(data.message || 'Došlo je do greške pri obradi narudžbe');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Došlo je do greške pri obradi narudžbe');
+                    alert(`Došlo je do greške pri obradi narudžbe: ${error.message}`);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
                 });
             } else {
                 alert('Molimo popunite sva obavezna polja');
             }
+        });
+    }
+
+    // Funkcija za prikazivanje potvrde narudžbe
+    function showOrderConfirmation(orderId, email) {
+        // Kreirajmo modal element
+        const modal = document.createElement('div');
+        modal.className = 'order-confirmation-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <div class="modal-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Hvala na vašoj narudžbi!</h2>
+                <p>Vaša narudžba je uspješno primljena.</p>
+                <p>Broj narudžbe: <strong>${orderId}</strong></p>
+                <p>Poslali smo potvrdu na vašu e-mail adresu: <strong>${email}</strong></p>
+                <p>Kontaktirat ćemo vas uskoro radi potvrde narudžbe.</p>
+                <p>Preusmjerit ćemo vas na početnu stranicu za nekoliko sekundi...</p>
+            </div>
+        `;
+
+        // Dodajmo modal u body
+        document.body.appendChild(modal);
+
+        // Stilovi za modal
+        const style = document.createElement('style');
+        style.textContent = `
+            .order-confirmation-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+            .modal-content {
+                background-color: white;
+                padding: 40px;
+                border-radius: 10px;
+                text-align: center;
+                max-width: 500px;
+                position: relative;
+            }
+            .modal-close {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                cursor: pointer;
+                color: #999;
+            }
+            .modal-icon {
+                font-size: 60px;
+                color: #2D4F2D;
+                margin-bottom: 20px;
+            }
+            .modal-content h2 {
+                color: #2D4F2D;
+                margin-bottom: 20px;
+            }
+            .modal-content p {
+                margin-bottom: 10px;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Dodajmo event listener za zatvaranje
+        const closeBtn = modal.querySelector('.modal-close');
+        closeBtn.addEventListener('click', function() {
+            modal.remove();
+            style.remove();
+            window.location.href = 'index.html';
         });
     }
 
