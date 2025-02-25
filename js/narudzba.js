@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 // Koristite fetch za poziv API-ja
-                fetch('/api/send-order-email', {
+                fetch('/api/send-order-mail', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
