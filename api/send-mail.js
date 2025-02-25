@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
 
   // Konfiguriraj transporter
   let transporter = nodemailer.createTransport({
-    host: "smtp.zoho.com",
+    host: "smtp.zoho.eu",
     port: 587,
     secure: false, // TLS
     auth: {
