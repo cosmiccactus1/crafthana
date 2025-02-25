@@ -49,23 +49,31 @@ document.addEventListener('DOMContentLoaded', function() {
         const hasDiscount = localStorage.getItem('newsletterDiscount') === 'true';
         const discountAmount = hasDiscount ? subtotal * 0.1 : 0;
         
+        // Provjera za besplatnu dostavu
+        const isFreeShipping = subtotal > 50;
+        
+        // Onemogućimo opcije dostave ako je dostava besplatna
+        toggleDeliveryOptions(!isFreeShipping);
+        
         // Dohvatimo odabranu opciju dostave
         const selectedDelivery = document.querySelector('input[name="delivery"]:checked');
         
         // Određivanje cijene dostave ovisno o odabranoj opciji
         let shippingCost = 4; // Default za BH Poštu
         
-        if (selectedDelivery) {
-            // Postavimo cijenu dostave ovisno o odabranoj opciji
-            shippingCost = selectedDelivery.value.includes('10km') ? 10 : 4;
-        } else {
-            // Postavimo defaultnu opciju ako korisnik nije ništa odabrao
-            const defaultDelivery = document.getElementById('delivery4km');
-            if (defaultDelivery) defaultDelivery.checked = true;
+        if (!isFreeShipping) {
+            if (selectedDelivery) {
+                // Postavimo cijenu dostave ovisno o odabranoj opciji
+                shippingCost = selectedDelivery.value.includes('10km') ? 10 : 4;
+            } else {
+                // Postavimo defaultnu opciju ako korisnik nije ništa odabrao
+                const defaultDelivery = document.getElementById('delivery4km');
+                if (defaultDelivery) defaultDelivery.checked = true;
+            }
         }
         
         // Besplatna dostava ako je cijena iznad 50 KM
-        const shipping = subtotal > 50 ? 0 : shippingCost;
+        const shipping = isFreeShipping ? 0 : shippingCost;
         
         const total = subtotal - discountAmount + shipping;
 
@@ -89,6 +97,63 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
     }
+    
+    // Funkcija za omogućavanje/onemogućavanje opcija dostave
+    function toggleDeliveryOptions(enable) {
+        const deliverySection = document.querySelector('.form-section:nth-of-type(2)');
+        const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
+        const deliveryLabels = document.querySelectorAll('.delivery-option label');
+        
+        if (deliverySection) {
+            if (enable) {
+                // Omogući opcije dostave
+                deliverySection.style.opacity = '1';
+                deliverySection.style.pointerEvents = 'auto';
+                deliveryOptions.forEach(option => {
+                    option.disabled = false;
+                });
+                deliveryLabels.forEach(label => {
+                    label.style.textDecoration = 'none';
+                    label.style.color = '#333';
+                });
+                
+                // Ukloni poruku ako postoji
+                const freeShippingMessage = deliverySection.querySelector('.free-shipping-message');
+                if (freeShippingMessage) {
+                    freeShippingMessage.remove();
+                }
+            } else {
+                // Onemogući opcije dostave
+                deliverySection.style.opacity = '0.7';
+                deliverySection.style.pointerEvents = 'none';
+                deliveryOptions.forEach(option => {
+                    option.disabled = true;
+                });
+                deliveryLabels.forEach(label => {
+                    label.style.textDecoration = 'line-through';
+                    label.style.color = '#999';
+                });
+                
+                // Dodaj poruku o besplatnoj dostavi ako već ne postoji
+                if (!deliverySection.querySelector('.free-shipping-message')) {
+                    const message = document.createElement('p');
+                    message.className = 'free-shipping-message';
+                    message.style.color = '#2D4F2D';
+                    message.style.fontWeight = 'bold';
+                    message.style.marginTop = '10px';
+                    message.innerHTML = '<i class="fas fa-check-circle"></i> Čestitamo! Vaša narudžba ispunjava uvjete za besplatnu dostavu!';
+                    
+                    // Dodaj poruku nakon opcija dostave
+                    const deliveryOptions = deliverySection.querySelector('.delivery-options');
+                    if (deliveryOptions) {
+                        deliveryOptions.after(message);
+                    } else {
+                        deliverySection.appendChild(message);
+                    }
+                }
+            }
+        }
+    }
 
     const orderForm = document.getElementById('orderForm');
     if (orderForm) {
@@ -109,12 +174,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const discountAmount = hasDiscount ? subtotal * 0.1 : 0;
                 
+                // Provjera za besplatnu dostavu
+                const isFreeShipping = subtotal > 50;
+                
                 // Dohvatimo odabranu opciju dostave za izračun finalne cijene
                 const selectedDelivery = document.querySelector('input[name="delivery"]:checked');
                 const shippingCost = selectedDelivery && selectedDelivery.value.includes('10km') ? 10 : 4;
                 
                 // Besplatna dostava iznad 50 KM
-                const shipping = subtotal > 50 ? 0 : shippingCost;
+                const shipping = isFreeShipping ? 0 : shippingCost;
                 
                 const total = subtotal - discountAmount + shipping;
 
@@ -127,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         address: this.address.value,
                         city: this.city.value,
                         postalCode: this.postalCode.value,
-                        delivery: selectedDelivery ? selectedDelivery.value : '4km-bh-posta' // Dodajemo odabranu opciju dostave
+                        delivery: isFreeShipping ? 'free-shipping' : (selectedDelivery ? selectedDelivery.value : '4km-bh-posta')
                     },
                     items: cartItems.map(item => ({
                         ...item,
@@ -137,10 +205,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     hasDiscount: hasDiscount,
                     discountAmount: discountAmount.toFixed(2),
                     shipping: shipping.toFixed(2),
-                    shippingMethod: selectedDelivery ? 
+                    shippingMethod: isFreeShipping ? 'Besplatna dostava' : (selectedDelivery ? 
                         (selectedDelivery.value.includes('10km') ? 'BH Express' : 'BH Pošta') : 
-                        'BH Pošta',
-                    isFreeShipping: subtotal > 50,
+                        'BH Pošta'),
+                    isFreeShipping: isFreeShipping,
                     total: total.toFixed(2)
                 };
 
