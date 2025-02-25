@@ -12,12 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     function renderOrderSummary() {
+        if (!cartItemsContainer) return;
+
         cartItemsContainer.innerHTML = '';
         let subtotal = 0;
         
         if (cartItems.length === 0) {
             cartItemsContainer.innerHTML = '<p class="empty-cart">Vaša košarica je prazna</p>';
-            document.querySelector('.summary-details').innerHTML = '';
+            const summaryDetails = document.querySelector('.summary-details');
+            if (summaryDetails) summaryDetails.innerHTML = '';
             return;
         }
         
@@ -58,25 +61,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const shipping = isFreeShipping ? 0 : shippingCost;
         const total = subtotal - discountAmount + shipping;
 
-        document.querySelector('.summary-details').innerHTML = `
-            <div class="summary-row">
-                <span>Međuzbroj:</span>
-                <span>${subtotal.toFixed(2)} KM</span>
-            </div>
-            ${hasDiscount ? `
-            <div class="summary-row discount">
-                <span>Popust (10%):</span>
-                <span>-${discountAmount.toFixed(2)} KM</span>
-            </div>` : ''}
-            <div class="summary-row">
-                <span>Dostava:</span>
-                <span>${shipping === 0 ? 'Besplatno' : shipping.toFixed(2) + ' KM'}</span>
-            </div>
-            <div class="summary-row total">
-                <span>Ukupno:</span>
-                <span>${total.toFixed(2)} KM</span>
-            </div>
-        `;
+        const summaryDetailsElement = document.querySelector('.summary-details');
+        if (summaryDetailsElement) {
+            summaryDetailsElement.innerHTML = `
+                <div class="summary-row">
+                    <span>Međuzbroj:</span>
+                    <span>${subtotal.toFixed(2)} KM</span>
+                </div>
+                ${hasDiscount ? `
+                <div class="summary-row discount">
+                    <span>Popust (10%):</span>
+                    <span>-${discountAmount.toFixed(2)} KM</span>
+                </div>` : ''}
+                <div class="summary-row">
+                    <span>Dostava:</span>
+                    <span>${shipping === 0 ? 'Besplatno' : shipping.toFixed(2) + ' KM'}</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Ukupno:</span>
+                    <span id="total">${total.toFixed(2)} KM</span>
+                </div>
+            `;
+        }
+
+        return { subtotal, total, shipping };
     }
 
     function toggleDeliveryOptions(enable) {
@@ -109,24 +117,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (this.checkValidity()) {
                 const submitBtn = this.querySelector('.submit-btn');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Slanje...';
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Slanje...';
+                }
 
                 // Priprema podataka za EmailJS
                 const orderId = `CR-${Date.now().toString().slice(-6)}${Math.floor(Math.random() * 1000)}`;
                 const formData = new FormData(this);
                 
+                // Izračunaj totale
+                const orderSummary = renderOrderSummary();
+                if (!orderSummary) {
+                    alert('Greška pri izračunu narudžbe');
+                    return;
+                }
+
                 const templateParams = {
                     order_id: orderId,
                     customer_name: `${formData.get('firstName')} ${formData.get('lastName')}`,
                     email: formData.get('email'),
                     phone: formData.get('phone'),
                     address: `${formData.get('address')}, ${formData.get('city')} ${formData.get('postalCode')}`,
-                    delivery_method: document.querySelector('input[name="delivery"]:checked').value,
+                    delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'Nije odabrano',
                     items: cartItems.map(item => 
                         `${item.name} (${item.quantity}x ${item.price})`
                     ).join(', '),
-                    total: document.getElementById('total').textContent
+                    subtotal: `${orderSummary.subtotal.toFixed(2)} KM`,
+                    total: `${orderSummary.total.toFixed(2)} KM`,
+                    shipping: `${orderSummary.shipping === 0 ? 'Besplatno' : `${orderSummary.shipping.toFixed(2)} KM`}`
                 };
 
                 // Slanje emaila preko EmailJS
@@ -139,8 +158,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, (error) => {
                         console.error('Greška:', error);
                         alert('Greška pri slanju narudžbe');
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Pošalji narudžbu';
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Pošalji narudžbu';
+                        }
                     });
             }
         });
@@ -166,5 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
         cartCount.style.display = cartItems.length > 0 ? 'flex' : 'none';
     }
 
+    // Inicijalno renderovanje sumarnog pregleda
     renderOrderSummary();
 });
