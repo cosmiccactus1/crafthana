@@ -1,6 +1,14 @@
-﻿document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartItemsContainer = document.getElementById('cartItems');
+    
+    // Dodajemo event listenere za opcije dostave
+    const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
+    deliveryOptions.forEach(option => {
+        option.addEventListener('change', function() {
+            renderOrderSummary(); // Ponovno renderiramo summary kada se promijeni opcija dostave
+        });
+    });
     
     function renderOrderSummary() {
         cartItemsContainer.innerHTML = '';
@@ -8,6 +16,7 @@
         
         if (cartItems.length === 0) {
             cartItemsContainer.innerHTML = '<p class="empty-cart">Vaša košarica je prazna</p>';
+            document.querySelector('.summary-details').innerHTML = '';
             return;
         }
         
@@ -39,7 +48,25 @@
         // Provjera i kalkulacija popusta
         const hasDiscount = localStorage.getItem('newsletterDiscount') === 'true';
         const discountAmount = hasDiscount ? subtotal * 0.1 : 0;
-        const shipping = subtotal > 100 ? 0 : 5;
+        
+        // Dohvatimo odabranu opciju dostave
+        const selectedDelivery = document.querySelector('input[name="delivery"]:checked');
+        
+        // Određivanje cijene dostave ovisno o odabranoj opciji
+        let shippingCost = 4; // Default za BH Poštu
+        
+        if (selectedDelivery) {
+            // Postavimo cijenu dostave ovisno o odabranoj opciji
+            shippingCost = selectedDelivery.value.includes('10km') ? 10 : 4;
+        } else {
+            // Postavimo defaultnu opciju ako korisnik nije ništa odabrao
+            const defaultDelivery = document.getElementById('delivery4km');
+            if (defaultDelivery) defaultDelivery.checked = true;
+        }
+        
+        // Besplatna dostava ako je cijena iznad 50 KM
+        const shipping = subtotal > 50 ? 0 : shippingCost;
+        
         const total = subtotal - discountAmount + shipping;
 
         document.querySelector('.summary-details').innerHTML = `
@@ -81,7 +108,14 @@
                 }, 0);
                 
                 const discountAmount = hasDiscount ? subtotal * 0.1 : 0;
-                const shipping = subtotal > 100 ? 0 : 5;
+                
+                // Dohvatimo odabranu opciju dostave za izračun finalne cijene
+                const selectedDelivery = document.querySelector('input[name="delivery"]:checked');
+                const shippingCost = selectedDelivery && selectedDelivery.value.includes('10km') ? 10 : 4;
+                
+                // Besplatna dostava iznad 50 KM
+                const shipping = subtotal > 50 ? 0 : shippingCost;
+                
                 const total = subtotal - discountAmount + shipping;
 
                 const orderData = {
@@ -92,7 +126,8 @@
                         phone: this.phone.value,
                         address: this.address.value,
                         city: this.city.value,
-                        postalCode: this.postalCode.value
+                        postalCode: this.postalCode.value,
+                        delivery: selectedDelivery ? selectedDelivery.value : '4km-bh-posta' // Dodajemo odabranu opciju dostave
                     },
                     items: cartItems.map(item => ({
                         ...item,
@@ -102,6 +137,10 @@
                     hasDiscount: hasDiscount,
                     discountAmount: discountAmount.toFixed(2),
                     shipping: shipping.toFixed(2),
+                    shippingMethod: selectedDelivery ? 
+                        (selectedDelivery.value.includes('10km') ? 'BH Express' : 'BH Pošta') : 
+                        'BH Pošta',
+                    isFreeShipping: subtotal > 50,
                     total: total.toFixed(2)
                 };
 
