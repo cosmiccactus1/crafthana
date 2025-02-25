@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 // Pošaljimo narudžbu na server
-                fetch('https://crafthana.store/api/process-order.php', {
+                fetch('/api/send-mail', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
