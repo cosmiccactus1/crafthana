@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const itemElement = document.createElement('div');
             itemElement.className = 'cart-item';
-            itemElement.innerHTML = `
+            itemElement.innerHTML = ` 
                 <img src="${item.image}" alt="${item.name}" class="cart-item-image">
                 <div class="cart-item-details">
                     <h3>${item.name}</h3>
