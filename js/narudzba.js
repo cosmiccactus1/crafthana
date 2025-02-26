@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cartItemsContainer.appendChild(itemElement);
         });
 
-        const hasDiscount = localStorage.getItem('newsletterDiscount') === 'true';
+    const hasDiscount = !!localStorage.getItem('discountCode');
         const discountAmount = hasDiscount ? subtotal * 0.1 : 0;
         const isFreeShipping = subtotal > 50;
         
