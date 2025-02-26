@@ -1,7 +1,7 @@
 // Inicijalizacija Supabase klijenta
 const supabaseUrl = 'https://quydipftbewilamjsska.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1eWRpcGZ0YmV3aWxhbWpzc2thIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1NTg2OTMsImV4cCI6MjA1NjEzNDY5M30.zZXIrEObmx1P_mep8uzCPvhM1wCoA8Cc7Go3fvmkfW0';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 // Newsletter form handling
 document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
@@ -11,7 +11,7 @@ document.getElementById('newsletterForm').addEventListener('submit', async funct
     
     try {
         // Dodavanje pretplatnika u Supabase
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('newsletter_subscribers')
             .insert([{ email: email }]);
             
