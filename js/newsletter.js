@@ -12,22 +12,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('newsletterEmail').value;
         
         try {
+            // Prvo provjerimo postoji li korisnik s tim emailom
+            const { data: existingEmails, error: checkError } = await supabaseClient
+                .from('newsletter_subscribers')
+                .select('email')
+                .eq('email', email)
+                .limit(1);
+                
+            if (checkError) {
+                console.error('Greška pri provjeri emaila:', checkError);
+                alert('Došlo je do greške pri provjeri emaila');
+                return;
+            }
+            
+            // Ako email već postoji, ne nastavljamo
+            if (existingEmails && existingEmails.length > 0) {
+                alert('Ovaj email je već pretplaćen na naš newsletter!');
+                return;
+            }
+            
             // Dodavanje pretplatnika u Supabase
             const { data, error } = await supabaseClient
                 .from('newsletter_subscribers')
                 .insert([{ email: email }]);
                 
             if (error) {
-                // Provjera je li greška zbog već postojećeg email-a
-                if (error.code === '23505') {
-                    alert('Ovaj email je već pretplaćen na naš newsletter!');
-                    // Izlazimo iz funkcije bez generiranja koda
-                    return;
-                } else {
-                    console.error('Greška:', error);
-                    alert('Došlo je do greške pri prijavi na newsletter');
-                    return;
-                }
+                console.error('Greška pri dodavanju emaila:', error);
+                alert('Došlo je do greške pri prijavi na newsletter');
+                return;
             }
             
             // Generiranje koda za popust
