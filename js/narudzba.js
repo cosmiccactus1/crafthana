@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log('Email uspješno poslan:', response);
                         showCelebrationModal(orderId, formData.get('email'));
                         localStorage.removeItem('cartItems');
-                        localStorage.removeItem('newsletterDiscount');
+                        localStorage.removeItem('discountCode');;
                         // Preusmjeravanje na početnu stranicu nakon 7 sekundi (dovoljno za uživanje u animaciji)
                         setTimeout(() => window.location.href = 'index.html', 7000);
                     })
