@@ -176,10 +176,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 emailjs.send('service_g39f1h3', 'template_za_kupca', templateParams)
                     .then((response) => {
                         console.log('Email uspješno poslan:', response);
-                        showOrderConfirmation(orderId, formData.get('email'));
+                        showCelebrationModal(orderId, formData.get('email'));
                         localStorage.removeItem('cartItems');
                         localStorage.removeItem('newsletterDiscount');
-                        setTimeout(() => window.location.href = 'index.html', 5000);
+                        // Preusmjeravanje na početnu stranicu nakon 7 sekundi (dovoljno za uživanje u animaciji)
+                        setTimeout(() => window.location.href = 'index.html', 7000);
                     })
                     .catch((error) => {
                         console.error('Greška:', error);
@@ -193,18 +194,163 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function showOrderConfirmation(orderId, email) {
+    // Funkcija za prikazivanje animiranog pop-up prozora s vatromet efektom
+    function showCelebrationModal(orderId, email) {
+        // Dodajemo CSS ako već ne postoji
+        if (!document.getElementById('celebration-styles')) {
+            const styleElement = document.createElement('style');
+            styleElement.id = 'celebration-styles';
+            styleElement.innerHTML = `
+                .celebration-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1000;
+                    overflow: hidden;
+                }
+                .celebration-content {
+                    background-color: white;
+                    padding: 30px;
+                    border-radius: 10px;
+                    text-align: center;
+                    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+                    max-width: 500px;
+                    width: 90%;
+                    position: relative;
+                    z-index: 10;
+                    animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                @keyframes pop-in {
+                    0% { opacity: 0; transform: scale(0.8); }
+                    100% { opacity: 1; transform: scale(1); }
+                }
+                .celebration-content h2 {
+                    color: #34495e;
+                    font-size: 28px;
+                    margin-bottom: 20px;
+                    animation: colorChange 3s infinite;
+                }
+                @keyframes colorChange {
+                    0% { color: #34495e; }
+                    25% { color: #16a085; }
+                    50% { color: #2980b9; }
+                    75% { color: #8e44ad; }
+                    100% { color: #34495e; }
+                }
+                .celebration-content p {
+                    margin: 10px 0;
+                    font-size: 16px;
+                    color: #333;
+                }
+                .celebration-content .highlight {
+                    font-weight: bold;
+                    color: #34495e;
+                }
+                .celebration-icon {
+                    font-size: 60px;
+                    margin-bottom: 20px;
+                    color: #16a085;
+                    animation: bounce 2s infinite;
+                }
+                @keyframes bounce {
+                    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                    40% { transform: translateY(-30px); }
+                    60% { transform: translateY(-15px); }
+                }
+                .firework {
+                    position: absolute;
+                    width: 5px;
+                    height: 5px;
+                    border-radius: 50%;
+                    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8);
+                    animation: explosion 1s ease-out forwards;
+                    opacity: 0;
+                }
+                @keyframes explosion {
+                    0% { transform: scale(0); opacity: 0; }
+                    20% { opacity: 1; }
+                    80% { opacity: 1; }
+                    100% { transform: scale(20); opacity: 0; }
+                }
+                .countdown {
+                    margin-top: 20px;
+                    font-size: 14px;
+                    color: #7f8c8d;
+                }
+                .order-details {
+                    background-color: #f8f8f8;
+                    border-radius: 5px;
+                    padding: 15px;
+                    margin: 15px 0;
+                    text-align: left;
+                }
+            `;
+            document.head.appendChild(styleElement);
+        }
+        
+        // Kreiramo modalni prozor
         const modal = document.createElement('div');
-        modal.className = 'order-confirmation-modal';
+        modal.className = 'celebration-modal';
         modal.innerHTML = `
-            <div class="modal-content">
+            <div class="celebration-content">
+                <div class="celebration-icon">🎉</div>
                 <h2>Hvala na narudžbi!</h2>
-                <p>Broj narudžbe: ${orderId}</p>
-                <p>Potvrda je poslana na: ${email}</p>
-                <p>Preusmjeravamo vas na početnu stranicu...</p>
+                <div class="order-details">
+                    <p><strong>Broj narudžbe:</strong> <span class="highlight">${orderId}</span></p>
+                    <p><strong>Potvrda je poslana na:</strong> ${email}</p>
+                </div>
+                <p>Vaša narudžba je uspješno zaprimljena!</p>
+                <p>Vaši proizvodi će uskoro biti spremni za isporuku.</p>
+                <div class="countdown">Preusmjeravanje na početnu stranicu za <span id="countdown">7</span> sekundi...</div>
             </div>
         `;
         document.body.appendChild(modal);
+        
+        // Dodajemo vatromet efekt
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = Math.random() * 100 + '%';
+            firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            modal.appendChild(firework);
+            
+            // Uklanjamo vatromet nakon animacije
+            setTimeout(() => {
+                if (firework && firework.parentNode) {
+                    firework.parentNode.removeChild(firework);
+                }
+            }, 1000);
+        }
+        
+        // Kreiramo vatromet na različitim mjestima
+        let fireworkInterval = setInterval(createFirework, 300);
+        
+        // Zaustavimo vatromet nakon 5 sekundi
+        setTimeout(() => {
+            clearInterval(fireworkInterval);
+        }, 5000);
+        
+        // Odbrojavanje
+        let seconds = 7;
+        const countdownElement = document.getElementById('countdown');
+        const countdownInterval = setInterval(() => {
+            seconds--;
+            if (countdownElement) {
+                countdownElement.textContent = seconds;
+            }
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
     }
 
     // Ažuriranje košarice
