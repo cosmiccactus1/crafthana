@@ -9,15 +9,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        const email = document.getElementById('newsletterEmail').value;
+        const email = document.getElementById('newsletterEmail').value.trim();
         
         try {
             // Prvo provjerimo postoji li korisnik s tim emailom
             const { data: existingEmails, error: checkError } = await supabaseClient
                 .from('newsletter_subscribers')
                 .select('email')
-                .eq('email', email)
-                .limit(1);
+                .eq('email', email);
                 
             if (checkError) {
                 console.error('Greška pri provjeri emaila:', checkError);
