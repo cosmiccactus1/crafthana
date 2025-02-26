@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Ako email već postoji, ne dodajemo ga ponovo
+            // Ako email već postoji, ne dodajemo ga ponovo i ne generiramo kod
             if (existing) {
                 alert('Ovaj email je već pretplaćen na naš newsletter!');
                 return;
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Generiranje koda za popust
+            // Generiranje koda za popust samo za nove pretplatnike
             const discountCode = 'WELCOME' + Math.floor(1000 + Math.random() * 9000);
             
             // Spremanje koda u localStorage za kasnije korištenje u košarici
