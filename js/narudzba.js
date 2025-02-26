@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Inicijalizacija EmailJS
-    emailjs.init('Crafthana'); // Zamijenite sa vašim User ID
+    emailjs.init('UmDvCPqSLQJ-W2tn4');
 
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartItemsContainer = document.getElementById('cartItems');
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
-        return { subtotal, total, shipping };
+        return { subtotal, total, shipping, discountAmount };
     }
 
     function toggleDeliveryOptions(enable) {
@@ -96,7 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
             deliverySection.style.pointerEvents = enable ? 'auto' : 'none';
             deliveryOptions.forEach(option => option.disabled = !enable);
             
-            if (!enable && !deliverySection.querySelector('.free-shipping-message')) {
+            // Ukloni postojeću poruku ako postoji
+            const existingMessage = deliverySection.querySelector('.free-shipping-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            if (!enable) {
                 const message = document.createElement('p');
                 message.className = 'free-shipping-message';
                 message.innerHTML = '<i class="fas fa-check-circle"></i> Besplatna dostava!';
@@ -133,6 +139,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
+                // Formatiranje trenutnog datuma
+                const today = new Date();
+                const dateStr = `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}`;
+                
+                // Priprema proizvoda za ljepši prikaz u emailu
+                const formattedItems = cartItems.map(item => {
+                    const price = parseFloat(item.price.match(/(\d+\.?\d*)/)[1]);
+                    const quantity = parseInt(item.quantity) || 1;
+                    return `${item.name} - ${item.baseOil} (${quantity}x ${price.toFixed(2)} KM)`;
+                }).join('<br>');
+                
                 const templateParams = {
                     order_id: orderId,
                     customer_name: `${formData.get('firstName')} ${formData.get('lastName')}`,
@@ -140,22 +157,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     phone: formData.get('phone'),
                     address: `${formData.get('address')}, ${formData.get('city')} ${formData.get('postalCode')}`,
                     delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'Nije odabrano',
-                    items: cartItems.map(item => 
-                        `${item.name} (${item.quantity}x ${item.price})`
-                    ).join(', '),
+                    items: formattedItems,
                     subtotal: `${orderSummary.subtotal.toFixed(2)} KM`,
                     total: `${orderSummary.total.toFixed(2)} KM`,
-                    shipping: `${orderSummary.shipping === 0 ? 'Besplatno' : `${orderSummary.shipping.toFixed(2)} KM`}`
+                    shipping: `${orderSummary.shipping === 0 ? 'Besplatno' : `${orderSummary.shipping.toFixed(2)} KM`}`,
+                    date: dateStr,
+                    // Parametri za dynamičko slanje emaila
+                    to_email: formData.get('email'),
+                    bcc_email: 'info@crafthana.store'
                 };
+                
+                // Dodaj popust u parametre ako postoji
+                if (orderSummary.discountAmount > 0) {
+                    templateParams.discount = `${orderSummary.discountAmount.toFixed(2)} KM`;
+                }
 
-                // Slanje emaila preko EmailJS
-                emailjs.send('service_4v7sweg', 'template_kmo6h5i', templateParams)
-                    .then(() => {
+                // Slanje emaila preko EmailJS (jedan email s BCC opcijom)
+                emailjs.send('service_g39f1h3', 'template_za_kupca', templateParams)
+                    .then((response) => {
+                        console.log('Email uspješno poslan:', response);
                         showOrderConfirmation(orderId, formData.get('email'));
                         localStorage.removeItem('cartItems');
                         localStorage.removeItem('newsletterDiscount');
                         setTimeout(() => window.location.href = 'index.html', 5000);
-                    }, (error) => {
+                    })
+                    .catch((error) => {
                         console.error('Greška:', error);
                         alert('Greška pri slanju narudžbe');
                         if (submitBtn) {
@@ -175,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h2>Hvala na narudžbi!</h2>
                 <p>Broj narudžbe: ${orderId}</p>
                 <p>Potvrda je poslana na: ${email}</p>
+                <p>Preusmjeravamo vas na početnu stranicu...</p>
             </div>
         `;
         document.body.appendChild(modal);
