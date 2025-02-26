@@ -12,35 +12,36 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('newsletterEmail').value.trim();
         
         try {
-            // Prvo provjerimo postoji li korisnik s tim emailom
-            const { data: existingEmails, error: checkError } = await supabaseClient
+            // Provjera da li email već postoji u bazi
+            const { data: existing, error: checkError } = await supabaseClient
                 .from('newsletter_subscribers')
                 .select('email')
-                .eq('email', email);
-                
+                .eq('email', email)
+                .maybeSingle(); // Koristimo maybeSingle() za sigurnu provjeru
+
             if (checkError) {
                 console.error('Greška pri provjeri emaila:', checkError);
                 alert('Došlo je do greške pri provjeri emaila');
                 return;
             }
-            
-            // Ako email već postoji, ne nastavljamo
-            if (existingEmails && existingEmails.length > 0) {
+
+            // Ako email već postoji, ne dodajemo ga ponovo
+            if (existing) {
                 alert('Ovaj email je već pretplaćen na naš newsletter!');
                 return;
             }
-            
-            // Dodavanje pretplatnika u Supabase
-            const { data, error } = await supabaseClient
+
+            // Ako email ne postoji, dodajemo ga u bazu
+            const { error: insertError } = await supabaseClient
                 .from('newsletter_subscribers')
                 .insert([{ email: email }]);
-                
-            if (error) {
-                console.error('Greška pri dodavanju emaila:', error);
+
+            if (insertError) {
+                console.error('Greška pri dodavanju emaila:', insertError);
                 alert('Došlo je do greške pri prijavi na newsletter');
                 return;
             }
-            
+
             // Generiranje koda za popust
             const discountCode = 'WELCOME' + Math.floor(1000 + Math.random() * 9000);
             
