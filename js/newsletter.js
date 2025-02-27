@@ -11,37 +11,41 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const email = document.getElementById('newsletterEmail').value.trim();
         
+        if (!email) {
+            alert('Molimo unesite valjanu email adresu');
+            return;
+        }
+        
         try {
-            // Provjera da li email već postoji u bazi
-            const { data: existing, error: checkError } = await supabaseClient
+            // Provjera da li email već postoji u bazi - poboljšana provjera
+            const { data, error: checkError } = await supabaseClient
                 .from('newsletter_subscribers')
                 .select('email')
-                .eq('email', email)
-                .maybeSingle(); // Koristimo maybeSingle() za sigurnu provjeru
-
+                .eq('email', email);
+                
             if (checkError) {
                 console.error('Greška pri provjeri emaila:', checkError);
                 alert('Došlo je do greške pri provjeri emaila');
                 return;
             }
-
-            // Ako email već postoji, ne dodajemo ga ponovo i ne generiramo kod
-            if (existing) {
+            
+            // Ako postoji barem jedan rezultat, email već postoji
+            if (data && data.length > 0) {
                 alert('Ovaj email je već pretplaćen na naš newsletter!');
                 return;
             }
-
+            
             // Ako email ne postoji, dodajemo ga u bazu
             const { error: insertError } = await supabaseClient
                 .from('newsletter_subscribers')
                 .insert([{ email: email }]);
-
+                
             if (insertError) {
                 console.error('Greška pri dodavanju emaila:', insertError);
                 alert('Došlo je do greške pri prijavi na newsletter');
                 return;
             }
-
+            
             // Generiranje koda za popust samo za nove pretplatnike
             const discountCode = 'WELCOME' + Math.floor(1000 + Math.random() * 9000);
             
