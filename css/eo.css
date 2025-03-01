@@ -85,7 +85,7 @@
 
 .image-container {
     position: relative;
-    padding-top: 100%;
+    padding-top: 130%;
     background: white;
 }
 
@@ -96,7 +96,7 @@
     transform: translate(-50%, -50%);
     width: auto;
     height: auto;
-    max-width: 90%;
+    max-width: 70%;
     max-height: 90%;
     object-fit: contain;
     transition: transform 0.3s ease;
@@ -104,6 +104,8 @@
 }
 
 .oil-item:hover .oil-image {
+    max-height: 95%;
+    max-width: 75%;
     transform: translate(-50%, -50%) scale(1.05);
 }
 
@@ -322,6 +324,14 @@
 .notification.show {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
+}
+
+/* Cart Item Image Styles */
+.cart-item-image {
+    width: auto;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 15px;
 }
 
 /* Responsive Adjustments */
