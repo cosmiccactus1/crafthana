@@ -92,7 +92,7 @@
 
 .oil-image {
     position: absolute;
-    top: 35%;
+    top: 42%; /* Vraćeno niže sa 35% na 42% */
     left: 50%;
     transform: translate(-50%, -50%);
     width: auto;
