@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Vanilla • Jasmine',
             prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
             priceRange: '5.99-8.99 KM',
-            image: 'images/blend-placeholder.png',
+            image: 'images/2blend1.png',
             volume: '10 ml',
             description: 'Slatka, cvjetna harmonija',
             category: '2-blend'
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Patchouli • Cedarwood',
             prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
             priceRange: '5.99-8.99 KM',
-            image: 'images/test.png',
+            image: 'images/2blend2.png',
             volume: '10 ml',
             description: 'Zemljana nota sa drvenastim prizvukom',
             category: '2-blend'
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Bergamot • Ylang Ylang',
             prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
             priceRange: '5.99-8.99 KM',
-            image: 'images/blend-placeholder.png',
+            image: 'images/2blend3.png',
             volume: '10 ml',
             description: 'Slatka, cvjetna harmonija',
             category: '2-blend'
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     name: 'Sandalwood • Jasmine',
     prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
     priceRange: '5.99-8.99 KM',
-    image: 'images/blend-placeholder.png',
+    image: 'images/2blend5.png',
     volume: '10 ml',
     description: 'Slatka, cvjetna harmonija',
     category: '2-blend'
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     name: 'Patchouli • Bergamot',
     prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
     priceRange: '5.99-8.99 KM',
-    image: 'images/blend-placeholder.png',
+    image: 'images/2blend6.png',
     volume: '10 ml',
     description: 'Zemljana svježina citrus nota',
     category: '2-blend'
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     name: 'Frankincense • Myrrh',
     prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
     priceRange: '5.99-8.99 KM',
-    image: 'images/blend-placeholder.png',
+    image: 'images/2blend7.png',
     volume: '10 ml',
     description: 'Drevna mistična harmonija',
     category: '2-blend'
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     name: 'Bergamot • Vanilla',
     prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
     priceRange: '5.99-8.99 KM',
-    image: 'images/blend-placeholder.png',
+    image: 'images/2blend8.png',
     volume: '10 ml',
     description: 'Slatka citrusna elegancija',
     category: '2-blend'
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     name: 'Ylang • Frankincense',
     prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
     priceRange: '5.99-8.99 KM',
-    image: 'images/blend-placeholder.png',
+    image: 'images/2blend9.png',
     volume: '10 ml',
     description: 'Egzotična drevna čarolija',
     category: '2-blend'
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
     name: 'Myrrh • Vanilla',
     prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
     priceRange: '5.99-8.99 KM',
-    image: 'images/blend-placeholder.png',
+    image: 'images/2blend10.png',
     volume: '10 ml',
     description: 'Topla orijentalna slatkoća',
     category: '2-blend'
