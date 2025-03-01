@@ -13,40 +13,43 @@
 .section-title {
     font-family: 'Raleway', sans-serif;
     font-size: 2.25rem;
-    font-weight: 300;
+    font-weight: 200; /* Tanji font za elegantniji izgled */
     color: #2c2c2c;
     text-align: center;
     margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em; /* Povećan razmak između slova */
+    text-transform: uppercase; /* Velika slova za sofisticiraniji izgled */
 }
 
 .section-description {
     font-family: 'Raleway', sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 300;
     color: #666;
     text-align: center;
     max-width: 700px;
     margin: 0 auto 3rem;
-    line-height: 1.6;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
 }
 
 /* Blend Category Styles */
 .blend-category {
-    margin-bottom: 4rem;
+    margin-bottom: 3.5rem;
 }
 
 .blend-category-title {
     font-family: 'Raleway', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 300;
+    font-size: 1.4rem;
+    font-weight: 200; /* Tanji font */
     color: #2c2c2c;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
+    letter-spacing: 0.05em;
 }
 
 .droplet-container {
@@ -63,23 +66,23 @@
 /* Product Grid Styles */
 .oils-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 2rem;
     margin: 0 auto;
     max-width: 1280px;
 }
 
-/* Optimizacija za laptope - tri proizvoda u redu */
+/* Optimizacija za laptope - četiri proizvoda u redu */
 @media (min-width: 992px) and (max-width: 1280px) {
     .oils-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* Optimizacija za tablete - dva proizvoda u redu */
+/* Optimizacija za tablete - tri proizvoda u redu */
 @media (min-width: 768px) and (max-width: 991px) {
     .oils-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -98,22 +101,23 @@
     transform: translateY(-3px);
 }
 
+/* Kontejner za sliku */
 .image-container {
     position: relative;
-    padding-top: 130%;
+    padding-top: 180%;
     background: white;
     overflow: hidden;
 }
 
 .oil-image {
     position: absolute;
-    top: 42%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.05);
     width: auto;
     height: auto;
-    max-width: 70%;
-    max-height: 85%;
+    max-width: 75%;
+    max-height: 92%;
     object-fit: contain;
     transition: transform 0.3s ease;
     image-rendering: -webkit-optimize-contrast;
@@ -124,39 +128,44 @@
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Product Details Styles */
+/* Product Details Styles - modificirano za elegantniji izgled */
 .oil-details {
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem; /* Malo manji padding na vrhu */
 }
 
 .oil-details h4 {
     font-family: 'Raleway', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #2c2c2c;
-    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 300; /* Tanji font */
+    color: #333;
+    margin: 0 0 0.3rem 0; /* Manji razmak */
+    letter-spacing: 0.05em; /* Povećan razmak između slova */
+    text-transform: uppercase; /* Velika slova */
 }
 
 .volume {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     font-weight: 300;
     color: #666;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.3rem 0; /* Manji razmak */
+    letter-spacing: 0.02em;
 }
 
 .price {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #2c2c2c;
-    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+    font-weight: 300; /* Tanji font */
+    color: #333;
+    margin: 0 0 0.5rem 0; /* Manji razmak */
+    letter-spacing: 0.02em;
 }
 
 .blend-character {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     font-weight: 300;
     color: #666;
     margin: 0;
     font-style: italic;
+    letter-spacing: 0.02em;
 }
 
 /* Button Styles */
@@ -212,12 +221,14 @@
     gap: 0.5rem;
     cursor: pointer;
     font-family: 'Raleway', sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: 300;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     opacity: 0;
     transform: translateY(60px);
     z-index: 3;
+    letter-spacing: 0.05em; /* Povećan razmak za eleganciju */
+    text-transform: uppercase; /* Velika slova */
 }
 
 .oil-item:hover .add-to-cart {
@@ -227,7 +238,7 @@
 
 .add-to-cart:hover {
     background: #444;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.07em; /* Još veći razmak na hover */
 }
 
 /* Touch device optimization */
@@ -309,6 +320,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: 300;
+    letter-spacing: 0.02em;
 }
 
 .modal label:hover {
@@ -326,10 +338,12 @@
     padding: 1rem;
     border-radius: 8px;
     font-family: 'Raleway', sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 300;
     cursor: pointer;
     transition: all 0.2s ease;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .modal input[type="submit"]:hover {
@@ -348,12 +362,13 @@
     padding: 1rem 2rem;
     border-radius: 50px;
     font-family: 'Raleway', sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: 300;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     opacity: 0;
     transition: all 0.3s ease;
+    letter-spacing: 0.03em;
 }
 
 .notification.show {
@@ -380,7 +395,7 @@
     }
 
     .oils-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 1.5rem;
     }
 
@@ -397,7 +412,7 @@
     }
     
     .oil-details h4 {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .price, .volume, .blend-character {
@@ -421,11 +436,11 @@
     }
     
     .section-description {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     .oil-image {
-        max-width: 65%;
+        max-width: 70%;
     }
     
     .modal-content {
@@ -448,9 +463,10 @@
     }
     
     .oil-details h4 {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
     
     .modal label {
         padding: 0.75rem;
     }
+}
