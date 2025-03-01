@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         name: 'Pine • Cedarwood • Bergamot • Vanilla',
         prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
         priceRange: '8.99-11.99 KM',
-        image: 'images/blend-placeholder.png',
+        image: 'images/pcbv.png',
         volume: '10 ml',
         description: 'Šumsko-slatka harmonija',
         category: '4-blend'
