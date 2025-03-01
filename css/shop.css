@@ -85,22 +85,25 @@
 
 .image-container {
     position: relative;
-    padding-top: 100%;
-    background: #f9f9f9;
+    padding-top: 130%; /* Promijenjen sa 100% na 130% za visoke bočice */
+    background: white;
 }
 
 .oil-image {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: 75%;
+    max-height: 90%;
+    object-fit: contain; /* Promijenjen sa cover na contain */
     transition: transform 0.3s ease;
 }
 
 .oil-item:hover .oil-image {
-    transform: scale(1.05);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* Product Details Styles */
@@ -317,6 +320,14 @@
 .notification.show {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
+}
+
+/* Cart Item Image Style */
+.cart-item-image {
+    width: auto;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 15px;
 }
 
 /* Responsive Adjustments */
