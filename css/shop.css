@@ -69,6 +69,20 @@
     max-width: 1280px;
 }
 
+/* Optimizacija za laptope - tri proizvoda u redu */
+@media (min-width: 992px) and (max-width: 1280px) {
+    .oils-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Optimizacija za tablete - dva proizvoda u redu */
+@media (min-width: 768px) and (max-width: 991px) {
+    .oils-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* Product Card Styles */
 .oil-item {
     background: white;
@@ -95,10 +109,10 @@
     position: absolute;
     top: 42%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.2); /* Povećano sa 1.05 na 1.2 */
+    transform: translate(-50%, -50%) scale(1.05);
     width: auto;
     height: auto;
-    max-width: 65%; /* Smanjeno sa 70% na 65% da ne izlazi iz okvira ali dopušta veći zoom */
+    max-width: 70%;
     max-height: 85%;
     object-fit: contain;
     transition: transform 0.3s ease;
@@ -107,7 +121,7 @@
 }
 
 .oil-item:hover .oil-image {
-    transform: translate(-50%, -50%) scale(1.3); /* Povećano sa 1.1 na 1.3 */
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* Product Details Styles */
@@ -214,6 +228,20 @@
 .add-to-cart:hover {
     background: #444;
     letter-spacing: 0.5px;
+}
+
+/* Touch device optimization */
+@media (hover: none) {
+    .favorite-icon {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .add-to-cart {
+        opacity: 1;
+        transform: none;
+        background: rgba(44, 44, 44, 0.9);
+    }
 }
 
 /* Modal Styles */
@@ -361,8 +389,68 @@
     }
 }
 
+/* Optimizacija za manje tablete i veće telefone */
+@media (max-width: 660px) {
+    .oils-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .oil-details h4 {
+        font-size: 1rem;
+    }
+    
+    .price, .volume, .blend-character {
+        font-size: 0.8rem;
+    }
+}
+
+/* Optimizacija za starije/manje telefone */
 @media (max-width: 480px) {
     .oils-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .essential-oils {
+        padding: 2rem 0.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-description {
+        font-size: 0.9rem;
+    }
+    
+    .oil-image {
+        max-width: 65%;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+    }
+    
+    .blend-category-title {
+        font-size: 1.3rem;
     }
 }
+
+/* Dodatna optimizacija za vrlo male ekrane */
+@media (max-width: 360px) {
+    .essential-oils {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .oil-details {
+        padding: 1rem;
+    }
+    
+    .oil-details h4 {
+        font-size: 0.95rem;
+    }
+    
+    .modal label {
+        padding: 0.75rem;
+    }
