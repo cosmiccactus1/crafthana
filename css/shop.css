@@ -88,23 +88,26 @@
     position: relative;
     padding-top: 130%;
     background: white;
+    overflow: hidden;
 }
 
 .oil-image {
     position: absolute;
-    top: 42%; /* Vraćeno niže sa 35% na 42% */
+    top: 42%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1.1); /* Malo povećana slika za veću oštrinu */
     width: auto;
     height: auto;
-    max-width: 75%;
+    max-width: 80%; /* Povećana maksimalna širina sa 75% na 80% */
     max-height: 85%;
     object-fit: contain;
     transition: transform 0.3s ease;
+    image-rendering: -webkit-optimize-contrast; /* Poboljšava oštrinu u Chromu */
+    image-rendering: crisp-edges; /* Za Firefox */
 }
 
 .oil-item:hover .oil-image {
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) scale(1.15); /* Malo veći zoom na hover */
 }
 
 /* Product Details Styles */
