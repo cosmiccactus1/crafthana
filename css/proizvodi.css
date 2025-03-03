@@ -7,7 +7,7 @@
     padding: 20px;
     font-family: 'Raleway', sans-serif;
     color: #333;
-    font-weight: 300; /* Vidljiviji font za cijelu stranicu */
+    font-weight: 300;
     letter-spacing: 0.2px;
 }
 
@@ -76,14 +76,12 @@
 
 .product-image {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 90%;
-    max-height: 90%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Prikazuje cijelu sliku bez odsijecanja */
+    padding: 15px; /* Dodaje malo prostora oko slike */
 }
 
 /* Stilizacija detalja proizvoda */
@@ -91,7 +89,7 @@
     font-size: 36px;
     margin: 0 0 8px 0;
     color: #222;
-    font-weight: 300; /* Vidljiviji font za naslov */
+    font-weight: 300;
     letter-spacing: -0.3px;
     line-height: 1.2;
 }
@@ -134,7 +132,7 @@
 .usage-info h3 {
     font-size: 18px;
     margin-bottom: 10px;
-    font-weight: 400; /* Jači font za naslov */
+    font-weight: 400;
     color: #333;
     letter-spacing: 0.2px;
 }
@@ -153,7 +151,7 @@
 .product-ingredients h3 {
     font-size: 18px;
     margin-bottom: 10px;
-    font-weight: 400; /* Jači font za naslov */
+    font-weight: 400;
     color: #333;
     letter-spacing: 0.2px;
 }
@@ -180,7 +178,7 @@
     margin-bottom: 20px;
     font-size: 18px;
     color: #333;
-    font-weight: 400; /* Jači font za naslov */
+    font-weight: 400;
     letter-spacing: 0.2px;
     border-bottom: 1px solid #f0f0f0;
     padding-bottom: 12px;
@@ -247,7 +245,7 @@
 }
 
 .option-name {
-    font-weight: 400; /* Jači font za naziv */
+    font-weight: 400;
     font-size: 16px;
     margin-bottom: 5px;
     color: #333;
@@ -264,16 +262,16 @@
 /* Kontrole za količinu i dodavanje u košaricu */
 .product-actions {
     display: flex;
-    align-items: stretch; /* Bolje poravnanje */
+    align-items: stretch;
     gap: 15px;
     margin: 30px 0;
-    height: 50px; /* Veća visina za bolju vidljivost */
+    height: 50px;
 }
 
 .quantity-controls {
     display: flex;
     align-items: stretch;
-    border: 1px solid #ddd; /* Jači rub */
+    border: 1px solid #ddd;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -286,7 +284,7 @@
     background-color: #f5f5f5;
     border: none;
     font-size: 16px;
-    font-weight: 400; /* Jači font za + i - */
+    font-weight: 400;
     cursor: pointer;
     transition: background-color 0.2s ease;
     display: flex;
@@ -306,7 +304,7 @@
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
     font-size: 16px;
-    font-weight: 400; /* Jači font za broj */
+    font-weight: 400;
 }
 
 /* Poboljšani stil za "Dodaj u ceger" dugme */
@@ -315,38 +313,41 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    min-width: 180px; /* Minimalna širina za bolju vidljivost */
+    min-width: 180px;
     padding: 0 24px;
-    background-color: #222; /* Malo tamnija boja za bolji kontrast */
+    background-color: #222;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
-    font-weight: 400; /* Jači font za bolju vidljivost */
+    font-weight: 400;
     letter-spacing: 0.5px;
     gap: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* Jača sjenka za više dimenzija */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    flex-grow: 1; /* Raste da ispuni prostor */
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
 }
 
 .product-actions .add-to-cart:hover {
-    background-color: #000; /* Crna na hover za bolji kontrast */
+    background-color: #000;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Stil za ikonu u dugmetu */
 .product-actions .add-to-cart i {
     font-size: 14px;
+    color: white;
 }
 
 /* Poboljšani stil za dugme favorita */
 .product-actions .favorite-button {
-    width: 50px; /* Veći gumb */
+    width: 50px;
     height: 100%;
     background-color: white;
-    border: 1px solid #ddd; /* Jači rub */
+    border: 1px solid #ddd;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -354,6 +355,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 2;
 }
 
 .product-actions .favorite-button:hover {
@@ -363,11 +366,11 @@
 
 .product-actions .favorite-button i {
     color: #222;
-    font-size: 18px; /* Veća ikona */
+    font-size: 18px;
 }
 
 .product-actions .favorite-button i.fas {
-    color: #ff385c; /* Jasnija crvena */
+    color: #ff385c;
 }
 
 /* Notifikacija za dodavanje u košaricu/favorite */
@@ -382,7 +385,7 @@
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.3s ease;
-    font-weight: 400; /* Jači font za notifikaciju */
+    font-weight: 400;
     letter-spacing: 0.3px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     z-index: 1000;
@@ -418,7 +421,7 @@
     
     .product-actions .add-to-cart {
         flex: 1;
-        min-width: 0; /* Omogućava smanjivanje na mobilnim uređajima */
+        min-width: 0;
         height: 50px;
     }
     
