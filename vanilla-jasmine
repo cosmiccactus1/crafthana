@@ -5,9 +5,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRAFTANA</title>
+    <title>Vanilla • Jasmine - Essential Oil Roll On | Crafthana</title>
     <link rel="stylesheet" href="css/style.css">
-     <link rel="stylesheet" href="css/proizvodi.css">
+    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/proizvodi.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -57,94 +58,98 @@
         </nav>
     </header>
 
-<main class="product-page">
-    <div class="breadcrumbs">
-        <a href="index.html">Home</a> &gt; 
-        <a href="shop.html">Shop</a> &gt; 
-        <a href="essential-oils.html">Essential Oils</a> &gt; 
-        <span>Vanilla • Jasmine</span>
-    </div>
+    <main class="product-page">
+        <div class="breadcrumbs">
+            <a href="index.html">Home</a> &gt; 
+            <a href="shop.html">Shop</a> &gt; 
+            <a href="essential-oils.html">Essential Oils</a> &gt; 
+            <span>Vanilla • Jasmine</span>
+        </div>
 
-    <div class="product-container">
-        <div class="product-images">
-            <div class="image-gallery">
-                <div class="gallery-image">
-                    <img src="images/2blend1.png" alt="Vanilla • Jasmine blend roll on" class="product-image">
+        <div class="product-container">
+            <div class="product-images">
+                <div class="image-gallery">
+                    <div class="gallery-image">
+                        <img src="images/2blend1.png" alt="Vanilla • Jasmine blend roll on" class="product-image">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/2blend1-detail1.png" alt="Vanilla • Jasmine detail 1" class="product-image">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/2blend1-detail2.png" alt="Vanilla • Jasmine detail 2" class="product-image">
+                    </div>
                 </div>
-                <div class="gallery-image">
-                    <img src="images/2blend1-detail1.png" alt="Vanilla • Jasmine detail 1" class="product-image">
+            </div>
+
+            <div class="product-details">
+                <h1 class="product-title">Vanilla • Jasmine</h1>
+                <p class="product-tagline">Slatka, cvjetna harmonija</p>
+                
+                <p class="product-volume">10 ml</p>
+                
+                <div class="product-description">
+                    <p>Luksuzni blend vanilije i jasmina stvara toplu, umirujuću aromu koja istovremeno opušta i podiže raspoloženje. Savršena ravnoteža zemljanih tonova vanilije i cvjetnih nota jasmina.</p>
                 </div>
-                <div class="gallery-image">
-                    <img src="images/2blend1-detail2.png" alt="Vanilla • Jasmine detail 2" class="product-image">
+                
+                <div class="usage-info">
+                    <h3>Način korištenja:</h3>
+                    <p>Nanesite na pulsne tacke - zapešća, vrat, iza ušiju za dugotrajni mirisni doživljaj. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.</p>
+                </div>
+                
+                <div class="product-ingredients">
+                    <h3>Sastojci:</h3>
+                    <p>Vanilija (Vanilla planifolia), Jasmin (Jasminum officinale) u baznom ulju po izboru.</p>
+                </div>
+                
+                <div class="oil-base-selection">
+                    <h3>Odaberite bazno ulje:</h3>
+                    <form class="oil-base-form">
+                        <label class="oil-option">
+                            <input type="radio" name="base-oil" value="classic" checked>
+                            <div class="oil-option-content">
+                                <span class="option-name">Classic</span>
+                                <span class="option-details">Ulje hladno prešane jojobe - 5.99 KM</span>
+                            </div>
+                        </label>
+                        <label class="oil-option">
+                            <input type="radio" name="base-oil" value="silk">
+                            <div class="oil-option-content">
+                                <span class="option-name">Silk</span>
+                                <span class="option-details">Ulje japanske kamelije - 6.99 KM</span>
+                            </div>
+                        </label>
+                        <label class="oil-option">
+                            <input type="radio" name="base-oil" value="ultimate">
+                            <div class="oil-option-content">
+                                <span class="option-name">Ultimate</span>
+                                <span class="option-details">Ulje jojobe i japanske kamelije - 8.99 KM</span>
+                            </div>
+                        </label>
+                    </form>
+                </div>
+                
+                <div class="product-actions">
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" onclick="decreaseQuantity()">-</button>
+                        <input type="number" id="quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn plus" onclick="increaseQuantity()">+</button>
+                    </div>
+                    <button class="add-to-cart" data-product-id="vanilla-jasmine">
+                        <i class="fas fa-shopping-bag"></i>
+                        Dodaj u ceger
+                    </button>
                 </div>
             </div>
         </div>
+    </main>
 
-        <div class="product-details">
-            <h1 class="product-title">Vanilla • Jasmine</h1>
-            <p class="product-tagline">Slatka, cvjetna harmonija</p>
-            
-            <p class="product-volume">10 ml</p>
-            
-            <div class="product-description">
-                <p>Luksuzni blend vanilije i jasmina stvara toplu, umirujuću aromu koja istovremeno opušta i podiže raspoloženje. Savršena ravnoteža zemljanih tonova vanilije i cvjetnih nota jasmina.</p>
-            </div>
-            
-            <div class="usage-info">
-                <h3>Način korištenja:</h3>
-                <p>Nanesite na pulsne tacke - zapešća, vrat, iza ušiju za dugotrajni mirisni doživljaj. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.</p>
-            </div>
-            
-            <div class="product-ingredients">
-                <h3>Sastojci:</h3>
-                <p>Vanilija (Vanilla planifolia), Jasmin (Jasminum officinale) u baznom ulju po izboru.</p>
-            </div>
-            
-            <div class="oil-base-selection">
-                <h3>Odaberite bazno ulje:</h3>
-                <form class="oil-base-form">
-                    <label class="oil-option">
-                        <input type="radio" name="base-oil" value="classic" checked>
-                        <div class="oil-option-content">
-                            <span class="option-name">Classic</span>
-                            <span class="option-details">Ulje hladno prešane jojobe - 5.99 KM</span>
-                        </div>
-                    </label>
-                    <label class="oil-option">
-                        <input type="radio" name="base-oil" value="silk">
-                        <div class="oil-option-content">
-                            <span class="option-name">Silk</span>
-                            <span class="option-details">Ulje japanske kamelije - 6.99 KM</span>
-                        </div>
-                    </label>
-                    <label class="oil-option">
-                        <input type="radio" name="base-oil" value="ultimate">
-                        <div class="oil-option-content">
-                            <span class="option-name">Ultimate</span>
-                            <span class="option-details">Ulje jojobe i japanske kamelije - 8.99 KM</span>
-                        </div>
-                    </label>
-                </form>
-            </div>
-            
-            <div class="product-actions">
-                <div class="quantity-controls">
-                    <button class="quantity-btn minus" onclick="decreaseQuantity()">-</button>
-                    <input type="number" id="quantity" value="1" min="1" max="10">
-                    <button class="quantity-btn plus" onclick="increaseQuantity()">+</button>
-                </div>
-                <button class="add-to-cart" data-product-id="vanilla-jasmine">
-                    <i class="fas fa-shopping-bag"></i>
-                    Dodaj u ceger
-                </button>
-            </div>
-<footer>
+    <footer>
         <div class="footer-content">
             <div class="footer-left">
                 <div class="footer-section">
                     <h3>Kontakt</h3>
                     <p>Email: info@crafthana.xyz</p>
-                   <p>Online narudžbe 24/7</p>
+                    <p>Online narudžbe 24/7</p>
                     <p>Crafted with love in Bosnia and Herzegovina</p>
                 </div>
                 <div class="footer-section">
@@ -177,6 +182,5 @@
             <p>&copy; 2025 CRAFTHANA. Sva prava pridržana.</p>
         </div>
     </footer>
-        </div>
-    </div>
-</main>
+
+   
