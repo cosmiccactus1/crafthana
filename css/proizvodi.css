@@ -1,184 +1,223 @@
-/* Patchouli-specific sophisticated styling */
-body {
+/* proizvodi.css - Stil za stranice proizvoda */
+
+/* Osnovni layout stranice proizvoda */
+.product-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
     font-family: 'Raleway', sans-serif;
-    font-weight: 200;
     color: #333;
-    background-color: #f9f7f5;
+    font-weight: 200; /* Još tanje pismo za cijelu stranicu */
 }
 
-/* Header styling */
-header {
-    background-color: #000;
-}
-
-nav {
-    padding: 15px 30px;
-}
-
-.nav-links a {
-    color: #fff;
-    font-weight: 200;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: #a67c52;
-}
-
-.logo {
-    color: #fff;
-    font-weight: 300;
-    letter-spacing: 2px;
-}
-
-.icon-link {
-    color: #fff;
-}
-
-.icon-link:hover {
-    color: #a67c52;
-}
-
-/* Breadcrumbs */
+/* Stilizacija breadcrumbs navigacije */
 .breadcrumbs {
-    font-size: 0.9em;
-    color: #888;
-    margin: 20px 0;
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #777;
     font-weight: 200;
 }
 
 .breadcrumbs a {
-    color: #666;
+    color: #777;
     text-decoration: none;
-    transition: color 0.3s;
 }
 
 .breadcrumbs a:hover {
-    color: #a67c52;
+    color: #333;
+    text-decoration: underline;
 }
 
-/* Product container */
+/* Glavni container proizvoda */
 .product-container {
     display: flex;
-    margin: 30px auto;
-    max-width: 1200px;
-    padding: 0 20px;
-    gap: 50px;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-bottom: 70px;
 }
 
-/* Product images */
 .product-images {
     flex: 1;
+    min-width: 300px;
+    max-width: 450px;
 }
 
+.product-details {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Galerija slika - jedna ispod druge */
 .image-gallery {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .gallery-image {
+    background-color: white;
+    border-radius: 12px;
     overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.gallery-image:hover {
-    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+    position: relative;
+    padding-top: 100%; /* Isti aspect ratio kao u shopu */
+    height: 0;
 }
 
 .product-image {
-    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
     height: auto;
-    display: block;
+    object-fit: contain;
 }
 
-/* Product details */
-.product-details {
-    flex: 1;
-    padding: 20px 0;
-}
-
+/* Stilizacija detalja proizvoda */
 .product-title {
-    font-size: 2.2em;
-    color: #000;
-    margin: 0 0 10px 0;
-    font-weight: 300;
-    letter-spacing: 1px;
+    font-size: 36px;
+    margin: 0 0 8px 0;
+    color: #222;
+    font-weight: 200; /* Još tanje za naslov */
+    letter-spacing: -0.5px;
 }
 
 .product-tagline {
-    color: #a67c52;
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    font-weight: 200;
+    font-size: 18px;
+    color: #666;
+    margin: 0 0 20px 0;
     font-style: italic;
+    font-weight: 200;
 }
 
 .product-volume {
-    display: inline-block;
-    padding: 4px 10px;
-    background-color: #f0ebe5;
-    border-radius: 3px;
-    margin: 10px 0 20px;
-    font-size: 0.9em;
-    color: #666;
-}
-
-.product-description p {
-    line-height: 1.7;
     margin-bottom: 25px;
-    font-weight: 300;
-}
-
-/* Section headings */
-.usage-info h3, 
-.product-ingredients h3, 
-.oil-base-selection h3 {
-    font-size: 1.1em;
-    color: #000;
-    margin: 30px 0 15px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-}
-
-/* Usage info and ingredients */
-.usage-info p,
-.product-ingredients p {
-    line-height: 1.6;
-    margin-bottom: 20px;
-    font-weight: 300;
+    font-size: 16px;
     color: #555;
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background: #f5f5f5;
+    font-weight: 200;
 }
 
-/* Oil base selection */
+.product-description {
+    margin-bottom: 25px;
+    line-height: 1.8;
+    color: #444;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.usage-info {
+    margin-bottom: 25px;
+}
+
+.usage-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 200;
+    color: #333;
+}
+
+.usage-info p {
+    line-height: 1.7;
+    color: #444;
+    font-weight: 200;
+}
+
+.product-ingredients {
+    margin-bottom: 30px;
+}
+
+.product-ingredients h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 200;
+    color: #333;
+}
+
+.product-ingredients p {
+    line-height: 1.7;
+    color: #444;
+    font-weight: 200;
+}
+
+/* Izbor baznog ulja - sofisticiraniji izgled */
+.oil-base-selection {
+    margin: 30px 0;
+    background-color: #fafafa;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.oil-base-selection h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+    font-weight: 200;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+}
+
 .oil-base-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin: 20px 0;
+    gap: 15px;
 }
 
 .oil-option {
-    position: relative;
     display: flex;
     align-items: center;
-    padding: 12px 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .oil-option:hover {
-    border-color: #a67c52;
-    background-color: #f9f5f0;
+    background-color: #f8f8f8;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
-.oil-option input {
-    margin-right: 12px;
+/* Stilizacija radio dugmeta */
+.oil-option input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    outline: none;
+    margin-right: 15px;
+    position: relative;
+}
+
+.oil-option input[type="radio"]:checked {
+    border-color: #2c2c2c;
+}
+
+.oil-option input[type="radio"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #2c2c2c;
 }
 
 .oil-option-content {
@@ -187,46 +226,47 @@ nav {
 }
 
 .option-name {
-    font-weight: 400;
-    color: #000;
-    margin-bottom: 3px;
+    font-weight: 300;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
 }
 
 .option-details {
-    font-size: 0.9em;
-    color: #777;
-    font-weight: 300;
+    color: #555;
+    font-size: 14px;
+    font-weight: 200;
 }
 
-/* Product actions */
+/* Kontrole za količinu i dodavanje u košaricu */
 .product-actions {
     display: flex;
     align-items: center;
-    margin-top: 35px;
     gap: 15px;
+    margin: 30px 0;
 }
 
 .quantity-controls {
     display: flex;
     align-items: center;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 4px;
     overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .quantity-btn {
-    background-color: #f5f5f5;
-    border: none;
     width: 40px;
     height: 40px;
-    font-size: 1.2em;
+    background-color: #f5f5f5;
+    border: none;
+    font-size: 16px;
     cursor: pointer;
-    color: #666;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s ease;
 }
 
 .quantity-btn:hover {
-    background-color: #e5e5e5;
+    background-color: #e8e8e8;
 }
 
 #quantity {
@@ -234,179 +274,110 @@ nav {
     height: 40px;
     text-align: center;
     border: none;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 300;
-}
-
-.add-to-cart {
-    flex: 1;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-}
-
-.add-to-cart:hover {
-    background-color: #333;
-}
-
-.favorite-button {
-    width: 44px;
-    height: 44px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background: transparent;
-    font-size: 1.2em;
-    color: #666;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.favorite-button:hover {
-    border-color: #a67c52;
-    color: #a67c52;
-}
-
-/* Footer */
-footer {
-    background-color: #000;
-    color: #888;
-    padding: 40px 0 20px;
-    margin-top: 60px;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    font-size: 16px;
     font-weight: 200;
 }
 
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+/* Stil za dugme 'Dodaj u ceger' - popravljeno treperenje */
+.product-actions .add-to-cart {
+    height: 40px;
     padding: 0 20px;
-}
-
-.footer-left {
+    background-color: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 200;
+    opacity: 1;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.footer-section h3 {
-    color: #fff;
-    font-size: 1em;
-    margin-bottom: 15px;
-    font-weight: 300;
-    letter-spacing: 1px;
+.product-actions .add-to-cart:hover {
+    background-color: #222;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-.footer-section p,
-.footer-section ul li {
-    margin-bottom: 8px;
-    font-size: 0.9em;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li a {
-    color: #888;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-section ul li a:hover {
-    color: #a67c52;
-}
-
-.payment-icons {
-    font-size: 1.5em;
-    margin-top: 10px;
-}
-
-.payment-icons i {
-    margin-right: 10px;
-    color: #666;
-}
-
-.footer-right .social-icons {
-    display: flex;
-    gap: 15px;
-}
-
-.footer-right .social-icons a {
-    display: block;
+/* Stil za dugme favorita - poravnato sa Dodaj u ceger */
+.product-actions .favorite-button {
     width: 40px;
     height: 40px;
-    background-color: #222;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #eee;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 1;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.footer-right .social-icons a:hover {
-    background-color: #a67c52;
-    transform: translateY(-3px);
+.product-actions .favorite-button:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    margin-top: 30px;
-    border-top: 1px solid #333;
-    font-size: 0.9em;
+.product-actions .favorite-button i {
+    color: #2c2c2c;
+    font-size: 16px;
+    line-height: 1;
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 900px) {
+.product-actions .favorite-button i.fas {
+    color: #ff4d6d;
+}
+
+/* Responzivnost */
+@media (max-width: 768px) {
     .product-container {
         flex-direction: column;
+        gap: 40px;
     }
     
-    .image-gallery {
-        margin-bottom: 30px;
+    .product-images {
+        max-width: 100%;
     }
     
-    .footer-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .footer-right {
-        align-self: center;
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 600px) {
     .product-actions {
         flex-wrap: wrap;
+        gap: 12px;
     }
     
     .quantity-controls {
-        width: 100%;
-        margin-bottom: 10px;
+        flex: 1;
+        min-width: 140px;
     }
     
-    .add-to-cart {
-        flex: auto;
-        width: calc(100% - 60px);
+    .product-actions .add-to-cart {
+        flex: 1;
+    }
+    
+    .oil-option input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+    }
+    
+    .oil-option input[type="radio"]:checked::before {
+        width: 8px;
+        height: 8px;
     }
 }
