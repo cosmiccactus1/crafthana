@@ -1,1 +1,286 @@
+/* product.css - Stil za stranice proizvoda */
 
+/* Osnovni layout stranice proizvoda */
+.product-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Raleway', sans-serif;
+    color: #333;
+    font-weight: 300; /* Tanko pismo za cijelu stranicu */
+}
+
+/* Stilizacija breadcrumbs navigacije */
+.breadcrumbs {
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #777;
+}
+
+.breadcrumbs a {
+    color: #777;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* Glavni container proizvoda */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-bottom: 70px;
+}
+
+.product-images {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+}
+
+.product-details {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Galerija slika - jedna ispod druge */
+.image-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gallery-image {
+    background-color: #fafafa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+    padding: 15px;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+/* Stilizacija detalja proizvoda */
+.product-title {
+    font-size: 36px;
+    margin: 0 0 8px 0;
+    color: #222;
+    font-weight: 200; /* Još tanje za naslov */
+    letter-spacing: -0.5px;
+}
+
+.product-tagline {
+    font-size: 18px;
+    color: #666;
+    margin: 0 0 20px 0;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.product-volume {
+    margin-bottom: 25px;
+    font-size: 16px;
+    color: #555;
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background: #f5f5f5;
+    font-weight: 300;
+}
+
+.product-description {
+    margin-bottom: 25px;
+    line-height: 1.8;
+    color: #444;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.usage-info {
+    margin-bottom: 25px;
+}
+
+.usage-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    color: #333;
+}
+
+.usage-info p {
+    line-height: 1.7;
+    color: #444;
+    font-weight: 300;
+}
+
+.product-ingredients {
+    margin-bottom: 30px;
+}
+
+.product-ingredients h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    color: #333;
+}
+
+.product-ingredients p {
+    line-height: 1.7;
+    color: #444;
+    font-weight: 300;
+}
+
+/* Izbor baznog ulja */
+.oil-base-selection {
+    margin: 30px 0;
+}
+
+.oil-base-selection h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+    font-weight: 300;
+}
+
+.oil-base-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.oil-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #eee;
+}
+
+.oil-option:hover {
+    background-color: #f0f0f0;
+}
+
+.oil-option input {
+    margin-right: 12px;
+}
+
+.oil-option-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.option-name {
+    font-weight: 400; /* Malo jače za naslov opcije */
+    font-size: 16px;
+    margin-bottom: 3px;
+    color: #333;
+}
+
+.option-details {
+    color: #555;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Kontrole za količinu i dodavanje u košaricu */
+.product-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.quantity-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quantity-btn:hover {
+    background-color: #e0e0e0;
+}
+
+#quantity {
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+/* Koristi postojeće stilove iz shop.css za add-to-cart */
+.product-actions .add-to-cart {
+    height: 40px;
+    padding: 0 20px;
+    background-color: #3a3a3a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.product-actions .add-to-cart:hover {
+    background-color: #222;
+}
+
+/* Responzivnost */
+@media (max-width: 768px) {
+    .product-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .product-images {
+        max-width: 100%;
+    }
+    
+    .product-actions {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .quantity-controls {
+        flex: 1;
+        min-width: 140px;
+    }
+    
+    .product-actions .add-to-cart {
+        flex: 1;
+    }
+}
