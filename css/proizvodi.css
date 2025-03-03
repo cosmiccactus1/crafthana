@@ -147,47 +147,77 @@
     font-weight: 200;
 }
 
-/* Izbor baznog ulja */
+/* Izbor baznog ulja - sofisticiraniji izgled */
 .oil-base-selection {
     margin: 30px 0;
+    background-color: #fafafa;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
 
 .oil-base-selection h3 {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 18px;
     color: #333;
     font-weight: 200;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
 }
 
 .oil-base-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 .oil-option {
     display: flex;
     align-items: center;
-    padding: 12px 15px;
-    background-color: #f8f8f8;
-    border-radius: 6px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
     border: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .oil-option:hover {
-    background-color: #f0f0f0;
+    background-color: #f8f8f8;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
-.oil-option input {
-    margin-right: 12px;
+/* Stilizacija radio dugmeta */
+.oil-option input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    outline: none;
+    margin-right: 15px;
+    position: relative;
 }
 
-.oil-option:checked {
+.oil-option input[type="radio"]:checked {
+    border-color: #2c2c2c;
+}
+
+.oil-option input[type="radio"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     background-color: #2c2c2c;
-    color: white;
 }
 
 .oil-option-content {
@@ -196,9 +226,9 @@
 }
 
 .option-name {
-    font-weight: 300; /* Umjereno jače za naslov opcije */
+    font-weight: 300;
     font-size: 16px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     color: #333;
 }
 
@@ -222,20 +252,21 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .quantity-btn {
     width: 40px;
     height: 40px;
-    background-color: #f0f0f0;
+    background-color: #f5f5f5;
     border: none;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 .quantity-btn:hover {
-    background-color: #e0e0e0;
+    background-color: #e8e8e8;
 }
 
 #quantity {
@@ -243,13 +274,13 @@
     height: 40px;
     text-align: center;
     border: none;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
     font-size: 16px;
     font-weight: 200;
 }
 
-/* Stil za dugme 'Dodaj u ceger' */
+/* Stil za dugme 'Dodaj u ceger' - popravljeno treperenje */
 .product-actions .add-to-cart {
     height: 40px;
     padding: 0 20px;
@@ -258,46 +289,56 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     font-size: 15px;
     font-weight: 200;
-    opacity: 1; /* Uvijek vidljivo */
-    position: relative; /* Fiksna pozicija */
-    z-index: 2; /* Iznad ostalih elemenata */
+    opacity: 1;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .product-actions .add-to-cart:hover {
-    background-color: #1a1a1a;
+    background-color: #222;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* Stil za dugme favorita */
+/* Stil za dugme favorita - poravnato sa Dodaj u ceger */
 .product-actions .favorite-button {
     width: 40px;
     height: 40px;
-    background-color: rgba(255, 255, 255, 0.7); /* Providno */
-    border: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #eee;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
-    opacity: 1; /* Uvijek vidljivo */
-    position: relative; /* Fiksna pozicija */
-    z-index: 2; /* Iznad ostalih elemenata */
+    opacity: 1;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .product-actions .favorite-button:hover {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #f9f9f9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .product-actions .favorite-button i {
     color: #2c2c2c;
     font-size: 16px;
+    line-height: 1;
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
 .product-actions .favorite-button i.fas {
@@ -327,5 +368,16 @@
     
     .product-actions .add-to-cart {
         flex: 1;
+    }
+    
+    .oil-option input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+    }
+    
+    .oil-option input[type="radio"]:checked::before {
+        width: 8px;
+        height: 8px;
     }
 }
