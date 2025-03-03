@@ -361,25 +361,100 @@
     color: #ff4d6d;
 }
 
-/* Responzivnost */
+/* Responzivnost - poboljšana verzija za mobilne uređaje */
 @media (max-width: 768px) {
-    .product-container {
-        flex-direction: column;
-        gap: 40px;
+    /* Poboljšanje prikaza naslova proizvoda */
+    .product-page .breadcrumbs {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+    
+    /* Naslov mora biti vidljiv i na manjim ekranima */
+    .product-page .product-title {
+        font-size: 24px;
+        line-height: 1.3;
+        margin-bottom: 10px;
+        font-weight: 300;
+        text-align: center;
+        display: block;
+        width: 100%;
         padding: 0 10px;
     }
     
-    .product-images {
-        max-width: 100%;
+    /* Container za proizvod - bolji razmak */
+    .product-container {
+        flex-direction: column;
+        gap: 25px;
+        padding: 0;
+        margin-bottom: 30px;
     }
     
-    /* Povećanje veličine fonta za glavni naslov */
-    .product-page .product-title {
-        font-size: 26px;
-        line-height: 1.3;
-        margin-bottom: 12px;
-        font-weight: 300;
-        text-align: center;
+    /* Slike proizvoda */
+    .product-images {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .gallery-image {
+        max-height: 300px;
+        padding-top: 80%; /* Smanjenje visine za bolji pregled */
+    }
+    
+    /* Detalji proizvoda */
+    .product-details {
+        padding: 0 15px;
+    }
+    
+    /* Poboljšani stil za količinu i dugmad */
+    .product-actions {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        gap: 10px;
+        margin: 20px 0 40px 0;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+    
+    /* Kontrole za količinu u prvom redu lijevo */
+    .quantity-controls {
+        grid-column: 1;
+        grid-row: 1;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    /* Dugme za favorite u prvom redu desno */
+    .product-actions .favorite-button {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: flex-end;
+        width: 44px;
+        height: 44px;
+        position: static;
+        margin: 0;
+    }
+    
+    /* Dugme za dodavanje u korpu uzima cijeli drugi red */
+    .product-page .product-actions .add-to-cart {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+        width: 100%;
+        height: 48px;
+        margin: 5px 0 0 0;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    
+    /* Poboljšanje kontrola za količinu */
+    .quantity-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    #quantity {
+        height: 44px;
+        width: 50px;
     }
     
     /* Bolje poravnanje opisa proizvoda */
@@ -396,7 +471,13 @@
         margin: 0 auto 20px;
     }
     
-    /* Popravka opisa za mobilne uređaje */
+    /* Poboljšanje opisa za mobilne uređaje */
+    .product-description,
+    .usage-info,
+    .product-ingredients {
+        margin-bottom: 20px;
+    }
+    
     .product-description p,
     .usage-info p,
     .product-ingredients p {
@@ -404,51 +485,14 @@
         line-height: 1.6;
     }
     
-    /* Veća dugmad u opcijama za bazno ulje */
+    /* Poboljšanje opcija za bazno ulje */
+    .oil-base-selection {
+        margin: 20px 0;
+        padding: 15px;
+    }
+    
     .oil-option {
-        padding: 15px 10px;
-    }
-    
-    /* Prilagođavanje količine i dugmeta */
-    .product-actions {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    /* Povećanje dodgmeta za dodir na mobilnim uređajima */
-    .product-page .product-actions .add-to-cart {
-        height: 48px;
-        font-size: 16px;
-        width: 100%;
-        margin-top: 10px;
-        padding: 0 15px;
-    }
-    
-    /* Prilagođavanje kontrola za količinu */
-    .quantity-controls {
-        width: 100%;
-        justify-content: center;
-        flex: 1;
-        min-width: 140px;
-    }
-    
-    .quantity-btn {
-        width: 48px;
-        height: 48px;
-    }
-    
-    #quantity {
-        height: 48px;
-        width: 60px;
-    }
-    
-    /* Bolje poravnanje FAV dugmeta */
-    .product-actions .favorite-button {
-        width: 48px;
-        height: 48px;
-        position: absolute;
-        right: 10px;
-        margin-top: 10px;
+        padding: 12px 10px;
     }
     
     .oil-option input[type="radio"] {
@@ -461,19 +505,33 @@
         width: 8px;
         height: 8px;
     }
+    
+    /* Veća margina na dnu cijele stranice */
+    .product-page {
+        padding-bottom: 70px;
+    }
 }
 
-/* Dodatne popravke za jako male ekrane */
+/* Dodatna poboljšanja za jako male ekrane */
 @media (max-width: 375px) {
     .product-page .product-title {
         font-size: 22px;
     }
     
-    .product-page .product-actions .add-to-cart {
-        font-size: 15px;
+    .product-tagline {
+        font-size: 14px;
+    }
+    
+    .product-actions {
+        margin-bottom: 30px;
     }
     
     .oil-option-content {
         font-size: 14px;
+    }
+    
+    /* Dodatni padding na dnu za male ekrane */
+    .product-page {
+        padding-bottom: 80px;
     }
 }
