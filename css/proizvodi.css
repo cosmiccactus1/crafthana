@@ -7,7 +7,8 @@
     padding: 20px;
     font-family: 'Raleway', sans-serif;
     color: #333;
-    font-weight: 200; /* Još tanje pismo za cijelu stranicu */
+    font-weight: 200; /* Tanji font za cijelu stranicu */
+    letter-spacing: 0.2px; /* Poboljšani razmak između slova */
 }
 
 /* Stilizacija breadcrumbs navigacije */
@@ -16,11 +17,13 @@
     font-size: 14px;
     color: #777;
     font-weight: 200;
+    letter-spacing: 0.3px;
 }
 
 .breadcrumbs a {
     color: #777;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .breadcrumbs a:hover {
@@ -58,11 +61,17 @@
     background-color: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* Suptilnija sjenka */
     text-align: center;
     position: relative;
     padding-top: 100%; /* Isti aspect ratio kao u shopu */
     height: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-image:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .product-image {
@@ -82,8 +91,9 @@
     font-size: 36px;
     margin: 0 0 8px 0;
     color: #222;
-    font-weight: 200; /* Još tanje za naslov */
-    letter-spacing: -0.5px;
+    font-weight: 200; /* Tanji font za naslov */
+    letter-spacing: -0.3px;
+    line-height: 1.2;
 }
 
 .product-tagline {
@@ -92,6 +102,7 @@
     margin: 0 0 20px 0;
     font-style: italic;
     font-weight: 200;
+    letter-spacing: 0.2px;
 }
 
 .product-volume {
@@ -100,9 +111,11 @@
     color: #555;
     display: inline-block;
     padding: 5px 12px;
-    border-radius: 4px;
-    background: #f5f5f5;
+    border-radius: 6px; /* Malo zaobljeniji */
+    background: #f9f9f9; /* Svjetlija pozadina */
     font-weight: 200;
+    letter-spacing: 0.2px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02); /* Suptilna sjenka */
 }
 
 .product-description {
@@ -111,6 +124,7 @@
     color: #444;
     font-size: 16px;
     font-weight: 200;
+    letter-spacing: 0.2px;
 }
 
 .usage-info {
@@ -122,12 +136,14 @@
     margin-bottom: 10px;
     font-weight: 200;
     color: #333;
+    letter-spacing: 0.2px;
 }
 
 .usage-info p {
     line-height: 1.7;
     color: #444;
     font-weight: 200;
+    letter-spacing: 0.2px;
 }
 
 .product-ingredients {
@@ -139,12 +155,14 @@
     margin-bottom: 10px;
     font-weight: 200;
     color: #333;
+    letter-spacing: 0.2px;
 }
 
 .product-ingredients p {
     line-height: 1.7;
     color: #444;
     font-weight: 200;
+    letter-spacing: 0.2px;
 }
 
 /* Izbor baznog ulja - sofisticiraniji izgled */
@@ -152,8 +170,9 @@
     margin: 30px 0;
     background-color: #fafafa;
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    border-radius: 12px; /* Zaobljeniji rubovi */
+    box-shadow: 0 2px 15px rgba(0,0,0,0.02); /* Suptilnija sjenka */
+    border: 1px solid rgba(0,0,0,0.02); /* Suptilni rub */
 }
 
 .oil-base-selection h3 {
@@ -162,7 +181,8 @@
     font-size: 18px;
     color: #333;
     font-weight: 200;
-    border-bottom: 1px solid #eee;
+    letter-spacing: 0.2px;
+    border-bottom: 1px solid #f0f0f0; /* Svjetliji rub */
     padding-bottom: 12px;
 }
 
@@ -177,17 +197,17 @@
     align-items: center;
     padding: 15px;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 10px; /* Zaobljeniji rubovi */
     cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid #eee;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+    border: 1px solid #f5f5f5; /* Svjetliji rub */
+    box-shadow: 0 1px 5px rgba(0,0,0,0.01); /* Suptilnija sjenka */
 }
 
 .oil-option:hover {
-    background-color: #f8f8f8;
+    background-color: #fcfcfc;
     transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.03);
 }
 
 /* Stilizacija radio dugmeta */
@@ -197,11 +217,12 @@
     appearance: none;
     width: 20px;
     height: 20px;
-    border: 2px solid #ddd;
+    border: 1.5px solid #ddd; /* Tanji rub */
     border-radius: 50%;
     outline: none;
     margin-right: 15px;
     position: relative;
+    transition: border-color 0.2s ease;
 }
 
 .oil-option input[type="radio"]:checked {
@@ -226,123 +247,163 @@
 }
 
 .option-name {
-    font-weight: 300;
+    font-weight: 200; /* Tanji font */
     font-size: 16px;
     margin-bottom: 5px;
     color: #333;
+    letter-spacing: 0.2px;
 }
 
 .option-details {
     color: #555;
     font-size: 14px;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
+    letter-spacing: 0.2px;
 }
 
 /* Kontrole za količinu i dodavanje u košaricu */
 .product-actions {
     display: flex;
-    align-items: center;
+    align-items: center; /* Bolje poravnanje */
     gap: 15px;
     margin: 30px 0;
+    height: 45px; /* Fiksna visina za sva dugmad */
 }
 
 .quantity-controls {
     display: flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    align-items: stretch; /* Poravnava sve elemente na istu visinu */
+    border: 1px solid #eee; /* Svjetliji rub */
+    border-radius: 6px; /* Zaobljeniji rubovi */
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.01); /* Suptilnija sjenka */
+    height: 100%; /* Puna visina kontejnera */
 }
 
 .quantity-btn {
     width: 40px;
-    height: 40px;
-    background-color: #f5f5f5;
+    height: 100%; /* Puna visina kontejnera */
+    background-color: #f8f8f8; /* Svjetlija pozadina */
     border: none;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .quantity-btn:hover {
-    background-color: #e8e8e8;
+    background-color: #f0f0f0;
 }
 
 #quantity {
     width: 50px;
-    height: 40px;
+    height: 100%; /* Puna visina kontejnera */
     text-align: center;
     border: none;
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
+    border-left: 1px solid #f0f0f0; /* Svjetliji rub */
+    border-right: 1px solid #f0f0f0; /* Svjetliji rub */
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
 }
 
-/* Stil za dugme 'Dodaj u ceger' - popravljeno treperenje */
+/* Posebna popravka za "Dodaj u ceger" dugme - rješava treperenje */
 .product-actions .add-to-cart {
-    height: 40px;
-    padding: 0 20px;
+    height: 100%; /* Puna visina kontejnera */
+    padding: 0 24px;
     background-color: #2c2c2c;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 15px;
+    font-weight: 200; /* Tanji font */
+    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 200;
-    opacity: 1;
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    gap: 10px;
+    
+    /* Fix za treperenje */
+    will-change: transform; /* Obavještava preglednik o animaciji */
+    transform: translate3d(0, 0, 0); /* Forsira GPU rendering */
+    backface-visibility: hidden; /* Dodatna pomoć za GPU rendering */
+    perspective: 1000; /* Još jedna pomoć za GPU rendering */
+    
+    /* Pojednostavljene tranzicije */
+    transition: background-color 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
 .product-actions .add-to-cart:hover {
     background-color: #222;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    /* Bez transform animacije koja uzrokuje treperenje */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.12);
 }
 
-/* Stil za dugme favorita - poravnato sa Dodaj u ceger */
+/* Stil za ikonu u dugmetu */
+.product-actions .add-to-cart i {
+    font-size: 14px;
+}
+
+/* Stil za dugme favorita - poravnato s drugim elementima */
 .product-actions .favorite-button {
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.9);
+    min-width: 45px; /* Fiksna širina */
+    height: 100%; /* Puna visina kontejnera */
+    background-color: white;
     border: 1px solid #eee;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
-    opacity: 1;
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    
+    /* Fix za treperenje */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000;
 }
 
 .product-actions .favorite-button:hover {
-    background-color: #f9f9f9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #fcfcfc;
+    /* Bez transform animacije koja uzrokuje treperenje */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
 }
 
 .product-actions .favorite-button i {
     color: #2c2c2c;
     font-size: 16px;
     line-height: 1;
-    position: relative;
-    top: 0;
-    left: 0;
 }
 
 .product-actions .favorite-button i.fas {
     color: #ff4d6d;
+}
+
+/* Notifikacija za dodavanje u košaricu/favorite */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2c2c2c;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    font-weight: 200; /* Tanji font */
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Responzivnost */
@@ -359,15 +420,23 @@
     .product-actions {
         flex-wrap: wrap;
         gap: 12px;
+        height: auto; /* Auto visina za mobilni prikaz */
     }
     
     .quantity-controls {
         flex: 1;
         min-width: 140px;
+        height: 45px; /* Fiksirana visina za mobilne uređaje */
     }
     
     .product-actions .add-to-cart {
         flex: 1;
+        height: 45px; /* Fiksirana visina za mobilne uređaje */
+    }
+    
+    .product-actions .favorite-button {
+        min-width: 45px;
+        height: 45px; /* Fiksirana visina za mobilne uređaje */
     }
     
     .oil-option input[type="radio"] {
