@@ -1,10 +1,12 @@
-/* Product page layout */
+/* General product page styles */
 .product-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    font-weight: 300;
 }
 
+/* Breadcrumbs navigation */
 .breadcrumbs {
     margin-bottom: 20px;
     font-size: 14px;
@@ -20,13 +22,14 @@
     text-decoration: underline;
 }
 
+/* Product layout container */
 .product-container {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
 }
 
-/* Product images */
+/* Product images section */
 .product-images {
     flex: 1;
     min-width: 300px;
@@ -42,9 +45,9 @@
     position: relative;
     width: 100%;
     text-align: center;
-    border-radius: 8px;
     overflow: hidden;
-    background-color: #f9f9f9;
+    background-color: transparent;
+    margin-bottom: 15px;
 }
 
 .main-image img {
@@ -53,27 +56,30 @@
     object-fit: contain;
     margin: 0 auto;
     display: block;
+    border: none;
 }
 
 .thumbnails {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
+    gap: 10px;
+    justify-content: flex-start;
 }
 
 .thumbnail {
     width: 70px;
     height: 70px;
-    border: 2px solid #e0e0e0;
+    border: 1px solid #e0e0e0;
     border-radius: 5px;
     overflow: hidden;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .thumbnail:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .thumbnail.active {
@@ -95,10 +101,9 @@
     background-color: #f8f8f8;
     color: #888;
     font-style: italic;
-    border-radius: 8px;
 }
 
-/* Product details */
+/* Product details section */
 .product-details {
     flex: 1;
     min-width: 300px;
@@ -107,7 +112,7 @@
 .product-title {
     font-size: 28px;
     margin-bottom: 5px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .product-tagline {
@@ -115,6 +120,7 @@
     color: #666;
     margin-bottom: 15px;
     font-style: italic;
+    font-weight: 300;
 }
 
 .product-volume {
@@ -125,11 +131,13 @@
     background-color: #f0f0f0;
     padding: 3px 10px;
     border-radius: 15px;
+    font-weight: 300;
 }
 
 .product-description {
     margin-bottom: 25px;
     line-height: 1.6;
+    font-weight: 300;
 }
 
 .usage-info, .product-ingredients {
@@ -141,9 +149,14 @@
 .usage-info h3, .product-ingredients h3, .oil-base-selection h3 {
     font-size: 16px;
     margin-bottom: 10px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
+.usage-info p, .product-ingredients p {
+    font-weight: 300;
+}
+
+/* Base oil selection */
 .oil-base-selection {
     margin-bottom: 25px;
 }
@@ -173,16 +186,17 @@
 }
 
 .option-name {
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 3px;
 }
 
 .option-details {
     font-size: 14px;
     color: #666;
+    font-weight: 300;
 }
 
-/* Product actions */
+/* Product actions section */
 .product-actions {
     margin-top: 30px;
 }
@@ -264,13 +278,14 @@
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     transition: all 0.3s ease;
+    letter-spacing: 0.5px;
 }
 
 .add-to-cart:hover {
@@ -295,6 +310,7 @@
     opacity: 0;
     transition: all 0.3s ease;
     z-index: 9999;
+    font-weight: 300;
 }
 
 .notification.show {
