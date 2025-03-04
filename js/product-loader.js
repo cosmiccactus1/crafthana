@@ -39,45 +39,59 @@ document.addEventListener('DOMContentLoaded', function() {
     // 6. Load product images
     const imageGallery = document.getElementById('image-gallery');
     imageGallery.innerHTML = '';
-    
-    // Create main image element
-    const mainImage = document.createElement('div');
-    mainImage.className = 'main-image';
-    const img = document.createElement('img');
-    img.src = product.images[0].src;
-    img.alt = product.images[0].alt;
-    mainImage.appendChild(img);
-    imageGallery.appendChild(mainImage);
-    
-    // Create thumbnails if there are multiple images
-    if (product.images.length > 1) {
-        const thumbnails = document.createElement('div');
-        thumbnails.className = 'thumbnails';
+
+    // Check if product has images
+    if (product.images && product.images.length > 0) {
+        // Create main image container
+        const mainImage = document.createElement('div');
+        mainImage.className = 'main-image';
         
-        product.images.forEach((image, index) => {
-            const thumb = document.createElement('div');
-            thumb.className = 'thumbnail';
-            if (index === 0) thumb.classList.add('active');
+        // Create and add the main image
+        const img = document.createElement('img');
+        img.src = product.images[0].src;
+        img.alt = product.images[0].alt;
+        img.id = 'main-product-image';
+        mainImage.appendChild(img);
+        imageGallery.appendChild(mainImage);
+        
+        // Create thumbnails only if there are multiple images
+        if (product.images.length > 1) {
+            const thumbnails = document.createElement('div');
+            thumbnails.className = 'thumbnails';
             
-            const thumbImg = document.createElement('img');
-            thumbImg.src = image.src;
-            thumbImg.alt = image.alt;
-            thumb.appendChild(thumbImg);
-            
-            // Add click event to change the main image
-            thumb.addEventListener('click', function() {
-                mainImage.querySelector('img').src = image.src;
-                mainImage.querySelector('img').alt = image.alt;
+            product.images.forEach((image, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'thumbnail';
+                if (index === 0) thumb.classList.add('active');
                 
-                // Update active thumbnail
-                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+                const thumbImg = document.createElement('img');
+                thumbImg.src = image.src;
+                thumbImg.alt = `Thumbnail ${index + 1}`;
+                thumb.appendChild(thumbImg);
+                
+                // Add click event to change the main image
+                thumb.addEventListener('click', function() {
+                    // Update main image
+                    const mainImg = document.getElementById('main-product-image');
+                    mainImg.src = image.src;
+                    mainImg.alt = image.alt;
+                    
+                    // Update active thumbnail
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+                
+                thumbnails.appendChild(thumb);
             });
             
-            thumbnails.appendChild(thumb);
-        });
-        
-        imageGallery.appendChild(thumbnails);
+            imageGallery.appendChild(thumbnails);
+        }
+    } else {
+        // Fallback if no images are available
+        const noImageDiv = document.createElement('div');
+        noImageDiv.className = 'no-image';
+        noImageDiv.textContent = 'Slika nije dostupna';
+        imageGallery.appendChild(noImageDiv);
     }
     
     // 7. Quantity controls
