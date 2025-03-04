@@ -258,17 +258,25 @@
     font-weight: 200;
 }
 
-/* Kontrole za količinu i dodavanje u košaricu */
+/* Kontrole za količinu i dodavanje u košaricu - novo poravnanje */
 .product-actions {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 16px;
     margin: 35px 0;
     position: relative;
     z-index: 3;
-    flex-wrap: nowrap;
 }
 
+/* Prvi red - količina i srce horizontalno poravnati */
+.product-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Kontrole količine */
 .quantity-controls {
     display: flex;
     align-items: center;
@@ -309,69 +317,7 @@
     color: #333;
 }
 
-/* Poboljšani stil za dugme 'Dodaj u ceger' */
-.product-page .product-actions .add-to-cart {
-    height: 44px;
-    padding: 0 24px;
-    background-color: #000;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 15px;
-    font-weight: 400;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    overflow: visible;
-    z-index: 5;
-    white-space: nowrap;
-    visibility: visible;
-    opacity: 1;
-    letter-spacing: 0.3px;
-    flex: 1; /* Dodano da dugme zauzme preostali prostor */
-}
-
-.product-page .product-actions .add-to-cart i {
-    font-size: 14px;
-    margin-right: 2px;
-}
-
-.product-page .product-actions .add-to-cart:hover {
-    background-color: #222;
-    /* Uklonili smo efekt podizanja prema gore */
-    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
-}
-
-.product-page .product-actions .add-to-cart:active {
-    /* Uklonili smo efekt podizanja i dodali scale efekat za pritisak */
-    transform: scale(0.98);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-}
-
-/* Povećanje efekta hovera */
-.product-page .product-actions .add-to-cart::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.product-page .product-actions .add-to-cart:hover::after {
-    opacity: 1;
-}
-
-/* Stil za dugme favorita - poravnato sa Dodaj u ceger */
+/* Stil za dugme favorita - poravnato sa kontrolama količine */
 .product-actions .favorite-button {
     width: 44px;
     height: 44px;
@@ -419,6 +365,66 @@
     color: #ff4d6d;
 }
 
+/* Poboljšani stil za dugme 'Dodaj u ceger' */
+.product-page .product-actions .add-to-cart {
+    height: 44px;
+    padding: 0 24px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    overflow: visible;
+    z-index: 5;
+    white-space: nowrap;
+    visibility: visible;
+    opacity: 1;
+    letter-spacing: 0.3px;
+    width: 100%;
+}
+
+.product-page .product-actions .add-to-cart i {
+    font-size: 14px;
+    margin-right: 2px;
+}
+
+.product-page .product-actions .add-to-cart:hover {
+    background-color: #222;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+.product-page .product-actions .add-to-cart:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Povećanje efekta hovera */
+.product-page .product-actions .add-to-cart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-page .product-actions .add-to-cart:hover::after {
+    opacity: 1;
+}
+
 /* Responzivnost - poboljšana verzija za mobilne uređaje */
 @media (max-width: 768px) {
     /* Poboljšanje prikaza naslova proizvoda */
@@ -463,61 +469,37 @@
     .product-details {
         padding: 0 15px;
     }
-
-    /* Na mobilnom uređaju koristimo isti raspored kao na desktopu */
+    
+    /* Isti raspored kao na desktopu ali s prilagođenim veličinama */
     .product-actions {
-        display: flex;
-        flex-wrap: wrap;
         gap: 12px;
         margin: 25px 0 45px 0;
         padding-bottom: 20px;
-        width: 100%;
     }
     
-    /* Kontrole za količinu u istoj liniji sa srcem */
-    .quantity-controls {
+    /* Kontrole količine i dalje lijevo, veće za mobilni */
+    .quantity-btn {
+        width: 48px;
         height: 48px;
-        margin-right: auto;
     }
     
-    /* Srce na desnoj strani */
+    #quantity {
+        height: 48px;
+        width: 55px;
+    }
+    
+    /* Veće dugme srca za mobilni */
     .product-actions .favorite-button {
         width: 48px;
         height: 48px;
-        order: 2;
     }
     
-    /* Dugme zauzima cijelu širinu ispod */
+    /* Veće dugme Dodaj u ceger za mobilni */
     .product-page .product-actions .add-to-cart {
         height: 52px;
-        margin: 8px 0 0 0;
         font-size: 16px;
         font-weight: 400;
         border-radius: 10px;
-        width: 100%;
-        order: 3;
-    }
-    
-    /* Poboljšanje kontrola za količinu */
-    .quantity-btn {
-        width: 48px;
-        height: 48px;
-    }
-    
-    #quantity {
-        height: 48px;
-        width: 55px;
-    }
-    
-    /* Poboljšanje kontrola za količinu */
-    .quantity-btn {
-        width: 48px;
-        height: 48px;
-    }
-    
-    #quantity {
-        height: 48px;
-        width: 55px;
     }
     
     /* Bolje poravnanje opisa proizvoda */
