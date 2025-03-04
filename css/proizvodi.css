@@ -4,7 +4,7 @@
     margin: 0 auto;
     padding: 20px;
     font-family: 'Raleway', sans-serif;
-    font-weight: 200; /* Još tanji font */
+    font-weight: 200; /* Tanji font */
 }
 
 /* Navigacija putanje (breadcrumbs) */
@@ -32,7 +32,7 @@
     gap: 30px;
 }
 
-/* Sekcija za slike proizvoda - IZMIJENJENO: manje slike */
+/* Sekcija za slike proizvoda */
 .product-images {
     flex: 1;
     min-width: 300px;
@@ -56,14 +56,13 @@
 
 .main-image img {
     max-width: 100%;
-    max-height: 400px; /* Smanjeno s 500px */
+    max-height: 400px; /* Smanjeno */
     object-fit: contain;
     margin: 0 auto;
     display: block;
     border: none;
 }
 
-/* Svaka dodatna slika se prikazuje ispod glavne - manje dimenzije */
 .additional-image {
     width: 100%;
     text-align: center;
@@ -100,7 +99,7 @@
 .product-title {
     font-size: 28px;
     margin-bottom: 5px;
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
 }
 
 .product-tagline {
@@ -108,7 +107,7 @@
     color: #666;
     margin-bottom: 15px;
     font-style: italic;
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
 }
 
 .product-volume {
@@ -119,13 +118,13 @@
     background-color: #f0f0f0;
     padding: 3px 10px;
     border-radius: 15px;
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
 }
 
 .product-description {
     margin-bottom: 25px;
     line-height: 1.6;
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
 }
 
 .usage-info, .product-ingredients {
@@ -137,11 +136,11 @@
 .usage-info h3, .product-ingredients h3, .oil-base-selection h3 {
     font-size: 16px;
     margin-bottom: 10px;
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
 }
 
 .usage-info p, .product-ingredients p {
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
 }
 
 /* Odabir baznog ulja */
@@ -196,14 +195,14 @@
 }
 
 .option-name {
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
     margin-bottom: 3px;
 }
 
 .option-details {
     font-size: 14px;
     color: #666;
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
 }
 
 /* Sekcija sa akcijama za proizvod */
@@ -256,7 +255,7 @@
     border-right: none;
     text-align: center;
     font-size: 16px;
-    font-weight: 200; /* Tanji font */
+    font-weight: 200;
 }
 
 .favorite-button {
@@ -278,95 +277,3 @@
 
 .favorite-button i {
     color: #ff4d6d;
-    font-size: 18px;
-}
-
-/* Tanji font za dodaj u ceger dugme */
-.add-to-cart {
-    width: 100%;
-    padding: 12px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 200; /* Tanji font */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    letter-spacing: 0.5px;
-}
-
-.add-to-cart:hover {
-    background-color: #222;
-}
-
-.add-to-cart i {
-    font-size: 18px;
-}
-
-/* Notifikacija */
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #333;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 5px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(100px);
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 9999;
-    font-weight: 200; /* Tanji font */
-}
-
-.notification.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* Responzivna prilagođenja */
-@media screen and (max-width: 768px) {
-    .product-container {
-        flex-direction: column;
-    }
-    
-    .product-images, .product-details {
-        width: 100%;
-    }
-    
-    .main-image img {
-        max-height: 300px;
-    }
-    
-    .product-title {
-        font-size: 24px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .product-page {
-        padding: 15px;
-    }
-    
-    .main-image img {
-        max-height: 250px;
-    }
-    
-    .product-title {
-        font-size: 22px;
-    }
-    
-    .product-actions-row {
-        flex-wrap: wrap;
-    }
-    
-    .quantity-controls {
-        margin-bottom: 10px;
-    }
-}
