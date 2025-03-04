@@ -266,6 +266,7 @@
     margin: 35px 0;
     position: relative;
     z-index: 3;
+    flex-wrap: nowrap;
 }
 
 .quantity-controls {
@@ -332,6 +333,7 @@
     visibility: visible;
     opacity: 1;
     letter-spacing: 0.3px;
+    flex: 1; /* Dodano da dugme zauzme preostali prostor */
 }
 
 .product-page .product-actions .add-to-cart i {
@@ -462,7 +464,7 @@
         padding: 0 15px;
     }
     
-    /* Poboljšani stil za količinu i dugmad */
+    /* Poboljšani stil za količinu i dugmad - NA TELEFONU OSTAJU JEDNO ISPOD DRUGOG */
     .product-actions {
         display: grid;
         grid-template-columns: auto auto;
