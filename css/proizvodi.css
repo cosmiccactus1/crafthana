@@ -341,12 +341,13 @@
 
 .product-page .product-actions .add-to-cart:hover {
     background-color: #222;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    /* Uklonili smo efekt podizanja prema gore */
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
 }
 
 .product-page .product-actions .add-to-cart:active {
-    transform: translateY(-1px);
+    /* Uklonili smo efekt podizanja i dodali scale efekat za pritisak */
+    transform: scale(0.98);
     box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
