@@ -90,6 +90,11 @@
     font-style: italic;
 }
 
+/* Sakrivanje thumbnailsa i dupliciranih slika */
+.thumbnails {
+    display: none !important;
+}
+
 /* Sekcija detalja proizvoda */
 .product-details {
     flex: 1;
@@ -277,3 +282,95 @@
 
 .favorite-button i {
     color: #ff4d6d;
+    font-size: 18px;
+}
+
+/* Tanji font za dodaj u ceger dugme */
+.add-to-cart {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 200;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.add-to-cart:hover {
+    background-color: #222;
+}
+
+.add-to-cart i {
+    font-size: 18px;
+}
+
+/* Notifikacija */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    font-weight: 200;
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Responzivna prilagođenja */
+@media screen and (max-width: 768px) {
+    .product-container {
+        flex-direction: column;
+    }
+    
+    .product-images, .product-details {
+        width: 100%;
+    }
+    
+    .main-image img {
+        max-height: 300px;
+    }
+    
+    .product-title {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .product-page {
+        padding: 15px;
+    }
+    
+    .main-image img {
+        max-height: 250px;
+    }
+    
+    .product-title {
+        font-size: 22px;
+    }
+    
+    .product-actions-row {
+        flex-wrap: wrap;
+    }
+    
+    .quantity-controls {
+        margin-bottom: 10px;
+    }
+}
