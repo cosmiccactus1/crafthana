@@ -1,12 +1,13 @@
-/* General product page styles */
+/* Opći stilovi za stranicu proizvoda */
 .product-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    font-family: 'Raleway', sans-serif;
     font-weight: 300;
 }
 
-/* Breadcrumbs navigation */
+/* Navigacija putanje (breadcrumbs) */
 .breadcrumbs {
     margin-bottom: 20px;
     font-size: 14px;
@@ -22,14 +23,14 @@
     text-decoration: underline;
 }
 
-/* Product layout container */
+/* Kontejner za raspored proizvoda */
 .product-container {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
 }
 
-/* Product images section */
+/* Sekcija za slike proizvoda - IZMIJENJENO: slike jedna ispod druge */
 .product-images {
     flex: 1;
     min-width: 300px;
@@ -38,7 +39,7 @@
 .image-gallery {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
 }
 
 .main-image {
@@ -47,7 +48,7 @@
     text-align: center;
     overflow: hidden;
     background-color: transparent;
-    margin-bottom: 15px;
+    margin-bottom: 0;
 }
 
 .main-image img {
@@ -59,37 +60,23 @@
     border: none;
 }
 
-.thumbnails {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-start;
+/* Uklonjena klasa thumbnails, sve slike idu jedna ispod druge */
+.image-gallery img {
+    max-width: 100%;
+    margin-bottom: 15px;
 }
 
-.thumbnail {
-    width: 70px;
-    height: 70px;
+/* Svaka dodatna slika se prikazuje ispod glavne */
+.additional-image {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.additional-image img {
+    max-width: 100%;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.thumbnail:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.thumbnail.active {
-    border-color: #333;
-}
-
-.thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .no-image {
@@ -103,7 +90,7 @@
     font-style: italic;
 }
 
-/* Product details section */
+/* Sekcija detalja proizvoda */
 .product-details {
     flex: 1;
     min-width: 300px;
@@ -112,7 +99,7 @@
 .product-title {
     font-size: 28px;
     margin-bottom: 5px;
-    font-weight: 400;
+    font-weight: 300; /* Tanja slova */
 }
 
 .product-tagline {
@@ -120,7 +107,7 @@
     color: #666;
     margin-bottom: 15px;
     font-style: italic;
-    font-weight: 300;
+    font-weight: 300; /* Tanja slova */
 }
 
 .product-volume {
@@ -131,13 +118,13 @@
     background-color: #f0f0f0;
     padding: 3px 10px;
     border-radius: 15px;
-    font-weight: 300;
+    font-weight: 300; /* Tanja slova */
 }
 
 .product-description {
     margin-bottom: 25px;
     line-height: 1.6;
-    font-weight: 300;
+    font-weight: 300; /* Tanja slova */
 }
 
 .usage-info, .product-ingredients {
@@ -149,14 +136,14 @@
 .usage-info h3, .product-ingredients h3, .oil-base-selection h3 {
     font-size: 16px;
     margin-bottom: 10px;
-    font-weight: 400;
+    font-weight: 300; /* Tanja slova */
 }
 
 .usage-info p, .product-ingredients p {
-    font-weight: 300;
+    font-weight: 300; /* Tanja slova */
 }
 
-/* Base oil selection */
+/* Odabir baznog ulja */
 .oil-base-selection {
     margin-bottom: 25px;
 }
@@ -176,8 +163,30 @@
     background-color: #f9f9f9;
 }
 
+/* IZMIJENJENO: crni kružići umjesto plavih za radio button */
 .oil-option input[type="radio"] {
     margin-right: 15px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #333; /* Crna boja okvira */
+    border-radius: 50%;
+    outline: none;
+    position: relative;
+}
+
+.oil-option input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #333; /* Crna boja za odabrani kružić */
+    border-radius: 50%;
 }
 
 .oil-option-content {
@@ -186,17 +195,17 @@
 }
 
 .option-name {
-    font-weight: 400;
+    font-weight: 300; /* Tanja slova */
     margin-bottom: 3px;
 }
 
 .option-details {
     font-size: 14px;
     color: #666;
-    font-weight: 300;
+    font-weight: 300; /* Tanja slova */
 }
 
-/* Product actions section */
+/* Sekcija sa akcijama za proizvod */
 .product-actions {
     margin-top: 30px;
 }
@@ -246,6 +255,7 @@
     border-right: none;
     text-align: center;
     font-size: 16px;
+    font-weight: 300; /* Tanja slova */
 }
 
 .favorite-button {
@@ -270,6 +280,7 @@
     font-size: 18px;
 }
 
+/* IZMIJENJENO: Tanja slova za dodaj u ceger dugme */
 .add-to-cart {
     width: 100%;
     padding: 12px 20px;
@@ -278,7 +289,7 @@
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300; /* Tanja slova */
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -296,7 +307,7 @@
     font-size: 18px;
 }
 
-/* Notification */
+/* Notifikacija */
 .notification {
     position: fixed;
     bottom: 20px;
@@ -310,7 +321,7 @@
     opacity: 0;
     transition: all 0.3s ease;
     z-index: 9999;
-    font-weight: 300;
+    font-weight: 300; /* Tanja slova */
 }
 
 .notification.show {
@@ -318,7 +329,7 @@
     opacity: 1;
 }
 
-/* Responsive adjustments */
+/* Responzivna prilagođenja */
 @media screen and (max-width: 768px) {
     .product-container {
         flex-direction: column;
@@ -330,11 +341,6 @@
     
     .main-image img {
         max-height: 350px;
-    }
-    
-    .thumbnail {
-        width: 60px;
-        height: 60px;
     }
     
     .product-title {
@@ -349,11 +355,6 @@
     
     .main-image img {
         max-height: 300px;
-    }
-    
-    .thumbnail {
-        width: 50px;
-        height: 50px;
     }
     
     .product-title {
