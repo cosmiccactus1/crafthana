@@ -476,6 +476,11 @@
         margin: 25px 0 45px 0;
         padding-bottom: 20px;
     }
+
+    /* Veći razmak između reda s kontrolama i dugmeta na mobilnom */
+    .product-actions-row {
+        margin-bottom: 20px; /* Povećan razmak između reda sa kontrolama i dugmeta */
+    }
     
     /* Kontrole količine i dalje lijevo, veće za mobilni */
     .quantity-btn {
@@ -500,6 +505,7 @@
         font-size: 16px;
         font-weight: 400;
         border-radius: 10px;
+        margin-top: 6px; /* Dodatni gornji razmak */
     }
     
     /* Bolje poravnanje opisa proizvoda */
@@ -572,6 +578,11 @@
         margin-bottom: 35px;
     }
     
+    /* Dodatni razmak između kontrola i dugmeta na malim ekranima */
+    .product-actions-row {
+        margin-bottom: 24px;
+    }
+    
     .oil-option-content {
         font-size: 14px;
     }
@@ -586,5 +597,6 @@
         height: 54px;
         font-size: 16px;
         font-weight: 400;
+        margin-top: 10px; /* Još veći razmak na malim ekranima */
     }
 }
