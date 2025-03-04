@@ -1,29 +1,29 @@
 // product-loader.js
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Get product ID from URL
+    // 1. Dohvaćanje ID-a proizvoda iz URL-a
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
     
-    // If no product ID found, redirect to shop page
+    // Ako proizvod nije pronađen, preusmjeri na stranicu trgovine
     if (!productId || !allProducts[productId]) {
-        console.error('Product not found');
-        // Optional: redirect to the shop page
+        console.error('Proizvod nije pronađen');
+        // Opcionalno: preusmjeri na shop stranicu
         // window.location.href = 'shop.html';
         return;
     }
     
-    // 2. Load product data
+    // 2. Učitavanje podataka o proizvodu
     const product = allProducts[productId];
     
-    // Update page title
+    // Ažuriranje naslova stranice
     document.getElementById('document-title').textContent = `${product.title} | Crafthana`;
     
-    // 3. Update breadcrumbs
+    // 3. Ažuriranje putanje (breadcrumbs)
     document.getElementById('category-link').textContent = product.category;
     document.getElementById('category-link').href = product.categoryLink;
     document.getElementById('product-breadcrumb').textContent = product.title;
     
-    // 4. Update product details
+    // 4. Ažuriranje detalja o proizvodu
     document.getElementById('product-title').textContent = product.title;
     document.getElementById('product-tagline').textContent = product.tagline;
     document.getElementById('product-volume').textContent = product.volume;
@@ -31,70 +31,44 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('product-usage').textContent = product.usage;
     document.getElementById('product-ingredients').textContent = product.ingredients;
     
-    // 5. Update price options
+    // 5. Ažuriranje opcija cijena
     document.getElementById('classic-price').textContent = `Ulje hladno prešane jojobe - ${product.prices.classic.toFixed(2)} KM`;
     document.getElementById('silk-price').textContent = `Ulje japanske kamelije - ${product.prices.silk.toFixed(2)} KM`;
     document.getElementById('ultimate-price').textContent = `Ulje jojobe i japanske kamelije - ${product.prices.ultimate.toFixed(2)} KM`;
     
-    // 6. Load product images
+    // 6. Učitavanje slika proizvoda - ISPRAVLJENO: samo jedna slika po kontejneru
     const imageGallery = document.getElementById('image-gallery');
-    imageGallery.innerHTML = '';
+    imageGallery.innerHTML = ''; // Očisti galeriju
 
-    // Check if product has images
+    // Provjera ima li proizvod slika
     if (product.images && product.images.length > 0) {
-        // Create main image container
-        const mainImage = document.createElement('div');
-        mainImage.className = 'main-image';
-        
-        // Create and add the main image
-        const img = document.createElement('img');
-        img.src = product.images[0].src;
-        img.alt = product.images[0].alt;
-        img.id = 'main-product-image';
-        mainImage.appendChild(img);
-        imageGallery.appendChild(mainImage);
-        
-        // Create thumbnails only if there are multiple images
-        if (product.images.length > 1) {
-            const thumbnails = document.createElement('div');
-            thumbnails.className = 'thumbnails';
+        // Za svaku sliku kreiramo zaseban kontejner
+        product.images.forEach((image, index) => {
+            const imageContainer = document.createElement('div');
             
-            product.images.forEach((image, index) => {
-                const thumb = document.createElement('div');
-                thumb.className = 'thumbnail';
-                if (index === 0) thumb.classList.add('active');
-                
-                const thumbImg = document.createElement('img');
-                thumbImg.src = image.src;
-                thumbImg.alt = `Thumbnail ${index + 1}`;
-                thumb.appendChild(thumbImg);
-                
-                // Add click event to change the main image
-                thumb.addEventListener('click', function() {
-                    // Update main image
-                    const mainImg = document.getElementById('main-product-image');
-                    mainImg.src = image.src;
-                    mainImg.alt = image.alt;
-                    
-                    // Update active thumbnail
-                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                });
-                
-                thumbnails.appendChild(thumb);
-            });
+            // Prva slika nema okvir, ostale imaju
+            if (index === 0) {
+                imageContainer.className = 'main-image';
+            } else {
+                imageContainer.className = 'additional-image';
+            }
             
-            imageGallery.appendChild(thumbnails);
-        }
+            const img = document.createElement('img');
+            img.src = image.src;
+            img.alt = image.alt;
+            
+            imageContainer.appendChild(img);
+            imageGallery.appendChild(imageContainer);
+        });
     } else {
-        // Fallback if no images are available
+        // Rezervna opcija ako nema slika
         const noImageDiv = document.createElement('div');
         noImageDiv.className = 'no-image';
         noImageDiv.textContent = 'Slika nije dostupna';
         imageGallery.appendChild(noImageDiv);
     }
     
-    // 7. Quantity controls
+    // 7. Kontrole za količinu
     window.decreaseQuantity = function() {
         const quantityInput = document.getElementById('quantity');
         let quantity = parseInt(quantityInput.value);
@@ -111,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // 8. Favorites functionality
+    // 8. Funkcionalnost favorita
     const updateFavoriteButton = function() {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const favoriteBtn = document.getElementById('favorite-btn');
@@ -124,16 +98,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // Initialize favorite button state
+    // Inicijalizacija stanja dugmeta za favorite
     updateFavoriteButton();
     
-    // Toggle favorite
+    // Promjena stanja favorita
     document.getElementById('favorite-btn').addEventListener('click', function() {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const index = favorites.findIndex(item => item.id === productId);
         
         if (index === -1) {
-            // Add to favorites
+            // Dodaj u favorite
             favorites.push({
                 id: productId,
                 title: product.title,
@@ -145,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             showNotification('Dodano u favorite ❤️');
         } else {
-            // Remove from favorites
+            // Ukloni iz favorita
             favorites.splice(index, 1);
             showNotification('Uklonjeno iz favorita 💔');
         }
@@ -155,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateFavoriteCount();
     });
     
-    // 9. Add to cart functionality
+    // 9. Funkcionalnost dodavanja u korpu
     document.getElementById('add-to-cart-btn').addEventListener('click', function() {
         const baseOilRadios = document.querySelectorAll('input[name="base-oil"]');
         let selectedBaseOil;
@@ -173,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const quantity = parseInt(document.getElementById('quantity').value);
         
-        // Format base oil name for display
+        // Formatiranje naziva baznog ulja za prikaz
         const baseOilNames = {
             'classic': 'Classic (Jojoba)',
             'silk': 'Silk (Japanska Kamelija)',
@@ -183,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formattedBaseOil = baseOilNames[selectedBaseOil];
         const priceValue = product.prices[selectedBaseOil];
         
-        // Create cart item
+        // Kreiranje stavke za korpu
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const itemId = `${productId}-${selectedBaseOil}-${Date.now()}`;
         
@@ -206,8 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification('Proizvod dodan u košaricu ✨');
     });
     
-    // 10. Helper functions
-    // Update cart count in the header
+    // 10. Pomoćne funkcije
+    // Ažuriranje broja stavki u korpi
     const updateCartCount = function() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const count = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -222,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
     
-    // Update favorite count in the header
+    // Ažuriranje broja favorita
     const updateFavoriteCount = function() {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const favoriteCount = document.getElementById('favorite-count');
@@ -235,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // Show notification
+    // Prikaz notifikacije
     const showNotification = function(message) {
         const notification = document.createElement('div');
         notification.className = 'notification';
@@ -251,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     };
     
-    // Initialize counters
+    // Inicijalizacija brojača
     updateCartCount();
     updateFavoriteCount();
 });
