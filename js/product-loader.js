@@ -1,137 +1,185 @@
+// product-loader.js
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Product Page Script loaded');
+    // 1. Get product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
     
-    // Import products data from shoprollon.js
-    // This assumes the products object is accessible globally
-    
-    // 1. Get product ID from the page
-    const addToCartButton = document.querySelector('.add-to-cart');
-    const favoriteButton = document.querySelector('.favorite-button');
-    
-    if (!addToCartButton || !favoriteButton) {
-        console.error('Cart or favorite buttons not found on the page');
+    // If no product ID found, redirect to shop page
+    if (!productId || !allProducts[productId]) {
+        console.error('Product not found');
+        // Optional: redirect to the shop page
+        // window.location.href = 'shop.html';
         return;
     }
     
-    const productId = addToCartButton.dataset.productId;
+    // 2. Load product data
+    const product = allProducts[productId];
     
-    if (!productId) {
-        console.error('Product ID not found on buttons');
-        return;
+    // Update page title
+    document.getElementById('document-title').textContent = `${product.title} | Crafthana`;
+    
+    // 3. Update breadcrumbs
+    document.getElementById('category-link').textContent = product.category;
+    document.getElementById('category-link').href = product.categoryLink;
+    document.getElementById('product-breadcrumb').textContent = product.title;
+    
+    // 4. Update product details
+    document.getElementById('product-title').textContent = product.title;
+    document.getElementById('product-tagline').textContent = product.tagline;
+    document.getElementById('product-volume').textContent = product.volume;
+    document.getElementById('product-description').textContent = product.description;
+    document.getElementById('product-usage').textContent = product.usage;
+    document.getElementById('product-ingredients').textContent = product.ingredients;
+    
+    // 5. Update price options
+    document.getElementById('classic-price').textContent = `Ulje hladno prešane jojobe - ${product.prices.classic.toFixed(2)} KM`;
+    document.getElementById('silk-price').textContent = `Ulje japanske kamelije - ${product.prices.silk.toFixed(2)} KM`;
+    document.getElementById('ultimate-price').textContent = `Ulje jojobe i japanske kamelije - ${product.prices.ultimate.toFixed(2)} KM`;
+    
+    // 6. Load product images
+    const imageGallery = document.getElementById('image-gallery');
+    imageGallery.innerHTML = '';
+    
+    // Create main image element
+    const mainImage = document.createElement('div');
+    mainImage.className = 'main-image';
+    const img = document.createElement('img');
+    img.src = product.images[0].src;
+    img.alt = product.images[0].alt;
+    mainImage.appendChild(img);
+    imageGallery.appendChild(mainImage);
+    
+    // Create thumbnails if there are multiple images
+    if (product.images.length > 1) {
+        const thumbnails = document.createElement('div');
+        thumbnails.className = 'thumbnails';
+        
+        product.images.forEach((image, index) => {
+            const thumb = document.createElement('div');
+            thumb.className = 'thumbnail';
+            if (index === 0) thumb.classList.add('active');
+            
+            const thumbImg = document.createElement('img');
+            thumbImg.src = image.src;
+            thumbImg.alt = image.alt;
+            thumb.appendChild(thumbImg);
+            
+            // Add click event to change the main image
+            thumb.addEventListener('click', function() {
+                mainImage.querySelector('img').src = image.src;
+                mainImage.querySelector('img').alt = image.alt;
+                
+                // Update active thumbnail
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+            
+            thumbnails.appendChild(thumb);
+        });
+        
+        imageGallery.appendChild(thumbnails);
     }
     
-    console.log('Product page for:', productId);
+    // 7. Quantity controls
+    window.decreaseQuantity = function() {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity > 1) {
+            quantityInput.value = quantity - 1;
+        }
+    };
     
-    // 2. Helper functions (replicated from shoprollon.js)
-    const formatBaseOilName = (baseOil) => {
-        const names = {
+    window.increaseQuantity = function() {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity < 10) {
+            quantityInput.value = quantity + 1;
+        }
+    };
+    
+    // 8. Favorites functionality
+    const updateFavoriteButton = function() {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const favoriteBtn = document.getElementById('favorite-btn');
+        const icon = favoriteBtn.querySelector('i');
+        
+        if (favorites.some(item => item.id === productId)) {
+            icon.className = 'fas fa-heart';
+        } else {
+            icon.className = 'far fa-heart';
+        }
+    };
+    
+    // Initialize favorite button state
+    updateFavoriteButton();
+    
+    // Toggle favorite
+    document.getElementById('favorite-btn').addEventListener('click', function() {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const index = favorites.findIndex(item => item.id === productId);
+        
+        if (index === -1) {
+            // Add to favorites
+            favorites.push({
+                id: productId,
+                title: product.title,
+                image: product.images[0].src,
+                priceRange: `${product.prices.classic.toFixed(2)}-${product.prices.ultimate.toFixed(2)} KM`,
+                description: product.tagline,
+                volume: product.volume,
+                addedAt: new Date().toISOString()
+            });
+            showNotification('Dodano u favorite ❤️');
+        } else {
+            // Remove from favorites
+            favorites.splice(index, 1);
+            showNotification('Uklonjeno iz favorita 💔');
+        }
+        
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        updateFavoriteButton();
+        updateFavoriteCount();
+    });
+    
+    // 9. Add to cart functionality
+    document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+        const baseOilRadios = document.querySelectorAll('input[name="base-oil"]');
+        let selectedBaseOil;
+        
+        baseOilRadios.forEach(radio => {
+            if (radio.checked) {
+                selectedBaseOil = radio.value;
+            }
+        });
+        
+        if (!selectedBaseOil) {
+            showNotification('Molimo odaberite bazno ulje');
+            return;
+        }
+        
+        const quantity = parseInt(document.getElementById('quantity').value);
+        
+        // Format base oil name for display
+        const baseOilNames = {
             'classic': 'Classic (Jojoba)',
             'silk': 'Silk (Japanska Kamelija)',
             'ultimate': 'Ultimate (Jojoba + Kamelija)'
         };
-        return names[baseOil] || baseOil;
-    };
-    
-    // Update cart count badges
-    const updateCartCount = () => {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const count = cartItems.reduce((total, item) => total + item.quantity, 0);
-        document.querySelectorAll('.cart-count').forEach(el => {
-            if (count > 0) {
-                el.style.display = 'flex';
-                el.textContent = count;
-            } else {
-                el.style.display = 'none';
-            }
-        });
-    };
-    
-    // Show notification
-    const showNotification = (message) => {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = message;
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
-        }, 100);
-    };
-    
-    // 3. Add to cart functionality
-    const addToCart = () => {
-        // Get products data from window.products (imported from shoprollon.js)
-        // If it's not available, we'll try to fetch it directly
-        const products = window.products || {};
         
-        const product = products[productId];
-        if (!product) {
-            console.error('Product data not found:', productId);
-            // Fallback to manually creating product data from the page elements
-            const fallbackProduct = createProductDataFromPage();
-            addProductToCart(fallbackProduct);
-            return;
-        }
-        
-        addProductToCart(product);
-    };
-    
-    // Create product data from page elements if products object isn't available
-    const createProductDataFromPage = () => {
-        const name = document.querySelector('.product-title').textContent;
-        const volume = document.querySelector('.product-volume').textContent;
-        const image = document.querySelector('.product-image').src;
-        
-        // Get selected base oil
-        const radioButtons = document.querySelectorAll('input[name="base-oil"]');
-        let selectedBaseOil = 'classic'; // Default
-        let priceValue = 5.99; // Default
-        
-        radioButtons.forEach(radio => {
-            if (radio.checked) {
-                selectedBaseOil = radio.value;
-                // Extract price from the label
-                const detailsText = radio.closest('.oil-option').querySelector('.option-details').textContent;
-                const priceMatch = detailsText.match(/(\d+\.\d+)/);
-                if (priceMatch) {
-                    priceValue = parseFloat(priceMatch[0]);
-                }
-            }
-        });
-        
-        return {
-            id: productId,
-            name: name,
-            prices: { [selectedBaseOil]: priceValue },
-            volume: volume,
-            image: image
-        };
-    };
-    
-    // Add product to cart based on selected options
-    const addProductToCart = (product) => {
-        // Get selected base oil
-        const selectedBaseOil = document.querySelector('input[name="base-oil"]:checked').value;
+        const formattedBaseOil = baseOilNames[selectedBaseOil];
         const priceValue = product.prices[selectedBaseOil];
-        const formattedBaseOil = formatBaseOilName(selectedBaseOil);
         
-        // Get quantity
-        const quantity = parseInt(document.getElementById('quantity').value) || 1;
-        
+        // Create cart item
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        
         const itemId = `${productId}-${selectedBaseOil}-${Date.now()}`;
+        
         const newItem = {
             id: itemId,
             productId: productId,
-            name: product.name,
+            name: product.title,
             price: `${priceValue.toFixed(2)} KM (${formattedBaseOil})`,
             numericPrice: priceValue,
-            image: product.image,
+            image: product.images[0].src,
             volume: product.volume,
             quantity: quantity,
             baseOil: formattedBaseOil,
@@ -142,103 +190,54 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         updateCartCount();
         showNotification('Proizvod dodan u košaricu ✨');
-        console.log('Added item to cart:', newItem);
+    });
+    
+    // 10. Helper functions
+    // Update cart count in the header
+    const updateCartCount = function() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const count = cartItems.reduce((total, item) => total + item.quantity, 0);
+        
+        document.querySelectorAll('.cart-count').forEach(el => {
+            if (count > 0) {
+                el.style.display = 'flex';
+                el.textContent = count;
+            } else {
+                el.style.display = 'none';
+            }
+        });
     };
     
-    // 4. Favorite functionality
-    const updateFavoriteStatus = () => {
+    // Update favorite count in the header
+    const updateFavoriteCount = function() {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        
-        // Update favorite button
-        if (favoriteButton) {
-            const icon = favoriteButton.querySelector('i');
-            if (icon) {
-                const isFavorite = favorites.some(item => item.id === productId);
-                icon.className = isFavorite ? 'fas fa-heart' : 'far fa-heart';
-            }
-        }
-        
-        // Update favorite count in header
         const favoriteCount = document.getElementById('favorite-count');
-        if (favoriteCount) {
-            if (favorites.length > 0) {
-                favoriteCount.style.display = 'flex';
-                favoriteCount.textContent = favorites.length;
-            } else {
-                favoriteCount.style.display = 'none';
-            }
-        }
-    };
-    
-    const toggleFavorite = () => {
-        const products = window.products || {};
-        const product = products[productId];
         
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        const index = favorites.findIndex(item => item.id === productId);
-        
-        if (index === -1) {
-            // If product data isn't available from window.products, create it from the page
-            if (!product) {
-                const fallbackProduct = {
-                    id: productId,
-                    name: document.querySelector('.product-title').textContent,
-                    priceRange: document.querySelector('.oil-base-form').textContent.match(/(\d+\.\d+)/g)[0] + "-" + 
-                               document.querySelector('.oil-base-form').textContent.match(/(\d+\.\d+)/g)[2] + " KM",
-                    image: document.querySelector('.product-image').src,
-                    volume: document.querySelector('.product-volume').textContent,
-                    description: document.querySelector('.product-tagline').textContent,
-                    addedAt: new Date().toISOString()
-                };
-                favorites.push(fallbackProduct);
-            } else {
-                favorites.push({
-                    ...product,
-                    addedAt: new Date().toISOString(),
-                    price: product.priceRange
-                });
-            }
-            showNotification('Dodano u favorite ❤️');
+        if (favorites.length > 0) {
+            favoriteCount.style.display = 'flex';
+            favoriteCount.textContent = favorites.length;
         } else {
-            favorites.splice(index, 1);
-            showNotification('Uklonjeno iz favorita 💔');
+            favoriteCount.style.display = 'none';
         }
+    };
+    
+    // Show notification
+    const showNotification = function(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
         
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        updateFavoriteStatus();
+        setTimeout(() => {
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }, 100);
     };
     
-    // 5. Quantity controls
-    window.increaseQuantity = function() {
-        const quantityInput = document.getElementById('quantity');
-        if (quantityInput) {
-            let currentVal = parseInt(quantityInput.value);
-            if (!isNaN(currentVal)) {
-                quantityInput.value = Math.min(currentVal + 1, 10);
-            }
-        }
-    };
-    
-    window.decreaseQuantity = function() {
-        const quantityInput = document.getElementById('quantity');
-        if (quantityInput) {
-            let currentVal = parseInt(quantityInput.value);
-            if (!isNaN(currentVal) && currentVal > 1) {
-                quantityInput.value = currentVal - 1;
-            }
-        }
-    };
-    
-    // 6. Initialize event listeners
-    if (addToCartButton) {
-        addToCartButton.addEventListener('click', addToCart);
-    }
-    
-    if (favoriteButton) {
-        favoriteButton.addEventListener('click', toggleFavorite);
-    }
-    
-    // 7. Initialize
+    // Initialize counters
     updateCartCount();
-    updateFavoriteStatus();
+    updateFavoriteCount();
 });
