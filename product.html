@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="document-title">Essential Oil Roll On | Crafthana</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/proizvodi.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="discount-banner">
+        <div class="banner-content">
+            <div class="social-icons">
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <a href="popusti.html" class="discount-text">Prijavite se na naš newsletter i ostvarite 10% popusta na svoju prvu kupovinu!</a>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="nav-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Otvori menu">
+                   <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="o-nama.html">O nama</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+            </div>
+            <div class="nav-center">
+                <img src="images/logojez.png" alt="crafthana logo" class="nav-logo">
+                <a href="index.html" class="logo">Crafthana</a>
+            </div>
+            <div class="nav-right">
+                <div class="icon-wrapper">
+                    <a href="favoriti.html" class="icon-link" aria-label="Favoriti">
+                        <i class="fas fa-heart"></i>
+                        <span class="count-badge" id="favorite-count">0</span>
+                    </a>
+                </div>
+                <div class="icon-wrapper">
+                    <a href="kosarica.html" class="icon-link" aria-label="Košarica">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="count-badge cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="product-page">
+        <div class="breadcrumbs">
+            <a href="index.html">Home</a> &gt; 
+            <a href="shop.html">Shop</a> &gt; 
+            <a id="category-link" href="rollon-eo.html">Roll On EO</a> &gt; 
+            <span id="product-breadcrumb">Product Name</span>
+        </div>
+
+        <div class="product-container">
+            <div class="product-images">
+                <div class="image-gallery" id="image-gallery">
+                    <!-- Slike će biti dinamički ubačene putem JavaScript-a -->
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h1 class="product-title" id="product-title">Product Name</h1>
+                <p class="product-tagline" id="product-tagline">Product Tagline</p>
+                
+                <p class="product-volume" id="product-volume">10 ml</p>
+                
+                <div class="product-description">
+                    <p id="product-description">Product description will be loaded here.</p>
+                </div>
+                
+                <div class="usage-info">
+                    <h3>Način korištenja:</h3>
+                    <p id="product-usage">Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.</p>
+                </div>
+                
+                <div class="product-ingredients">
+                    <h3>Sastojci:</h3>
+                    <p id="product-ingredients">Product ingredients will be loaded here.</p>
+                </div>
+                
+                <div class="oil-base-selection">
+                    <h3>Odaberite bazno ulje:</h3>
+                    <form class="oil-base-form">
+                        <label class="oil-option">
+                            <input type="radio" name="base-oil" value="classic" checked>
+                            <div class="oil-option-content">
+                                <span class="option-name">Classic</span>
+                                <span class="option-details" id="classic-price">Ulje hladno prešane jojobe - 5.99 KM</span>
+                            </div>
+                        </label>
+                        <label class="oil-option">
+                            <input type="radio" name="base-oil" value="silk">
+                            <div class="oil-option-content">
+                                <span class="option-name">Silk</span>
+                                <span class="option-details" id="silk-price">Ulje japanske kamelije - 6.99 KM</span>
+                            </div>
+                        </label>
+                        <label class="oil-option">
+                            <input type="radio" name="base-oil" value="ultimate">
+                            <div class="oil-option-content">
+                                <span class="option-name">Ultimate</span>
+                                <span class="option-details" id="ultimate-price">Ulje jojobe i japanske kamelije - 8.99 KM</span>
+                            </div>
+                        </label>
+                    </form>
+                </div>
+                
+                <div class="product-actions">
+                    <div class="product-actions-row">
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="decreaseQuantity()">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn plus" onclick="increaseQuantity()">+</button>
+                        </div>
+                        <button class="favorite-button" id="favorite-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="add-to-cart" id="add-to-cart-btn">
+                        <i class="fas fa-shopping-bag"></i>
+                        Dodaj u ceger
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>Email: info@crafthana.store</p>
+                    <p>Online narudžbe 24/7</p>
+                    <p>Crafted with love in Bosnia and Herzegovina</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Brze poveznice</h3>
+                    <ul>
+                        <li><a href="o-nama.html">O nama</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="uvjeti-koristenja.html">Uvjeti korištenja</a></li>
+                        <li><a href="politika-privatnosti.html">Politika privatnosti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Načini plaćanja</h3>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                        <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CRAFTHANA. Sva prava pridržana.</p>
+        </div>
+    </footer>
+    
+    <!-- Ključni dio: učitavanje skripti -->
+    <script src="js/shoprollon.js"></script>
+    <script src="js/productPage.js"></script><!-- Ovo zadržavamo iz originala -->
+    <script src="js/product-data.js"></script> <!-- Podaci o svim proizvodima -->
+    <script src="js/product-loader.js"></script> <!-- Skripta koja dinamički učitava proizvode -->
+</body>
+</html>
