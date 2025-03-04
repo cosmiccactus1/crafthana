@@ -9,189 +9,140 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Product ID not found in URL');
         return;
     }
-    
-    // Universal method to get product data
-    const getProductData = () => {
-        // Try multiple sources of product data
-        if (window.allProducts && window.allProducts[productId]) {
-            return window.allProducts[productId];
-        }
-        
-        if (window.products && window.products[productId]) {
-            return window.products[productId];
-        }
-        
-        // Fallback: try to extract data from page elements
-        return {
-            id: productId,
-            title: document.querySelector('.product-title')?.textContent || 'Unknown Product',
-            volume: document.querySelector('.product-volume')?.textContent || '10 ml',
-            images: [{ 
-                src: document.querySelector('.product-images img')?.src || 'default-image.png', 
-                alt: document.querySelector('.product-images img')?.alt || 'Product Image' 
-            }],
-            prices: {
-                classic: 5.99,
-                silk: 6.99,
-                ultimate: 8.99
-            }
-        };
-    };
 
-    // Ensure buttons exist before adding event listeners
-    const addToCartButton = document.querySelector('.add-to-cart');
-    const favoriteButton = document.querySelector('.favorite-button');
-    
-    if (!addToCartButton || !favoriteButton) {
-        console.warn('Add to Cart or Favorite buttons not found');
+    // Pronađi proizvod iz različitih izvora
+    const product = 
+        (window.allProducts && window.allProducts[productId]) || 
+        (window.products && window.products[productId]);
+
+    if (!product) {
+        console.error('Product not found:', productId);
         return;
     }
 
-    // Rest of the existing script remains the same
-    const formatBaseOilName = (baseOil) => {
-        const names = {
-            'classic': 'Classic (Jojoba)',
-            'silk': 'Silk (Japanska Kamelija)',
-            'ultimate': 'Ultimate (Jojoba + Kamelija)'
-        };
-        return names[baseOil] || baseOil;
-    };
-    
-    const updateCartCount = () => {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const count = cartItems.reduce((total, item) => total + item.quantity, 0);
-        document.querySelectorAll('.cart-count').forEach(el => {
-            if (count > 0) {
-                el.style.display = 'flex';
-                el.textContent = count;
-            } else {
-                el.style.display = 'none';
-            }
-        });
-    };
-    
-    const showNotification = (message) => {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = message;
-        document.body.appendChild(notification);
+    // Popunjavanje detalja stranice
+    document.getElementById('product-title').textContent = product.title || product.name;
+    document.getElementById('product-tagline').textContent = product.tagline || product.description;
+    document.getElementById('product-description').textContent = product.description;
+    document.getElementById('product-usage').textContent = product.usage;
+    document.getElementById('product-ingredients').textContent = product.ingredients;
+    document.getElementById('product-volume').textContent = product.volume;
 
-        setTimeout(() => {
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
-        }, 100);
-    };
-    
-    const addToCart = () => {
-        const product = getProductData();
-        
-        if (!product) {
-            console.error('Could not retrieve product data');
-            return;
-        }
-        
-        const selectedBaseOil = document.querySelector('input[name="base-oil"]:checked')?.value || 'classic';
-        const priceValue = product.prices[selectedBaseOil] || 5.99;
-        const formattedBaseOil = formatBaseOilName(selectedBaseOil);
-        
+    // Popunjavanje galerije slika
+    const imageGallery = document.getElementById('image-gallery');
+    if (product.images) {
+        product.images.forEach(image => {
+            const imgElement = document.createElement('img');
+            imgElement.src = image.src;
+            imgElement.alt = image.alt;
+            imageGallery.appendChild(imgElement);
+        });
+    }
+
+    // Ažuriranje cijena baznih ulja
+    if (product.prices) {
+        document.getElementById('classic-price').textContent = `Ulje hladno prešane jojobe - ${product.prices.classic.toFixed(2)} KM`;
+        document.getElementById('silk-price').textContent = `Ulje japanske kamelije - ${product.prices.silk.toFixed(2)} KM`;
+        document.getElementById('ultimate-price').textContent = `Ulje jojobe i japanske kamelije - ${product.prices.ultimate.toFixed(2)} KM`;
+    }
+
+    // Dodavanje eventa za dodavanje u košaricu
+    document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+        const baseOil = document.querySelector('input[name="base-oil"]:checked')?.value || 'classic';
         const quantity = parseInt(document.getElementById('quantity')?.value) || 1;
-        
+
+        if (window.addToCart && typeof window.addToCart === 'function') {
+            window.addToCart(productId, baseOil, quantity);
+        } else {
+            // Fallback mehanizam ako global funkcija nije dostupna
+            console.warn('Global addToCart function not found. Using local implementation.');
+            addToCartLocally(product, baseOil, quantity);
+        }
+    });
+
+    // Dodavanje eventa za favorite
+    document.getElementById('favorite-btn').addEventListener('click', () => {
+        if (window.toggleFavorite && typeof window.toggleFavorite === 'function') {
+            window.toggleFavorite(productId);
+        } else {
+            // Fallback mehanizam
+            console.warn('Global toggleFavorite function not found. Using local implementation.');
+            toggleFavoriteLocally(product);
+        }
+    });
+
+    // Lokalna implementacija dodavanja u košaricu (fallback)
+    function addToCartLocally(product, baseOil, quantity) {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        
-        const itemId = `${productId}-${selectedBaseOil}-${Date.now()}`;
+        const priceValue = product.prices[baseOil];
+
         const newItem = {
-            id: itemId,
+            id: `${productId}-${baseOil}-${Date.now()}`,
             productId: productId,
-            name: product.title,
-            price: `${priceValue.toFixed(2)} KM (${formattedBaseOil})`,
-            numericPrice: priceValue,
-            image: product.images[0]?.src || 'default-image.png',
-            volume: product.volume,
+            name: product.title || product.name,
+            price: `${priceValue.toFixed(2)} KM`,
             quantity: quantity,
-            baseOil: formattedBaseOil,
-            addedAt: new Date().toISOString()
+            baseOil: baseOil
         };
-        
+
         cartItems.push(newItem);
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        updateCartCount();
-        showNotification('Proizvod dodan u košaricu ✨');
-        console.log('Added item to cart:', newItem);
-    };
-    
-    const updateFavoriteStatus = () => {
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        
-        if (favoriteButton) {
-            const icon = favoriteButton.querySelector('i');
-            if (icon) {
-                const isFavorite = favorites.some(item => item.id === productId);
-                icon.className = isFavorite ? 'fas fa-heart' : 'far fa-heart';
-            }
+
+        // Osnovno osvježavanje broja artikala
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            cartCount.textContent = cartItems.length;
+            cartCount.style.display = 'block';
         }
-        
-        const favoriteCount = document.getElementById('favorite-count');
-        if (favoriteCount) {
-            if (favorites.length > 0) {
-                favoriteCount.style.display = 'flex';
-                favoriteCount.textContent = favorites.length;
-            } else {
-                favoriteCount.style.display = 'none';
-            }
-        }
-    };
-    
-    const toggleFavorite = () => {
-        const product = getProductData();
-        
+
+        alert('Artikal dodan u košaricu!');
+    }
+
+    // Lokalna implementacija dodavanja u favorite (fallback)
+    function toggleFavoriteLocally(product) {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        const index = favorites.findIndex(item => item.id === productId);
-        
+        const index = favorites.findIndex(fav => fav.id === productId);
+
         if (index === -1) {
             favorites.push({
-                ...product,
-                addedAt: new Date().toISOString(),
-                price: Object.values(product.prices).join('-') + " KM"
+                id: productId,
+                name: product.title || product.name,
+                image: product.images ? product.images[0].src : '',
+                addedAt: new Date().toISOString()
             });
-            showNotification('Dodano u favorite ❤️');
+            alert('Dodano u favorite!');
         } else {
             favorites.splice(index, 1);
-            showNotification('Uklonjeno iz favorita 💔');
+            alert('Uklonjeno iz favorita!');
         }
-        
+
         localStorage.setItem('favorites', JSON.stringify(favorites));
-        updateFavoriteStatus();
-    };
-    
-    // Quantity controls
+
+        // Osvježavanje ikone srca
+        const favoriteIcon = document.querySelector('.favorite-button i');
+        if (favoriteIcon) {
+            favoriteIcon.classList.toggle('fas');
+            favoriteIcon.classList.toggle('far');
+        }
+
+        // Osvježavanje broja favorita
+        const favoriteCount = document.getElementById('favorite-count');
+        if (favoriteCount) {
+            favoriteCount.textContent = favorites.length;
+            favoriteCount.style.display = favorites.length > 0 ? 'block' : 'none';
+        }
+    }
+
+    // Quantity kontrole
     window.increaseQuantity = function() {
         const quantityInput = document.getElementById('quantity');
-        if (quantityInput) {
-            let currentVal = parseInt(quantityInput.value);
-            if (!isNaN(currentVal)) {
-                quantityInput.value = Math.min(currentVal + 1, 10);
-            }
-        }
+        let currentVal = parseInt(quantityInput.value);
+        quantityInput.value = Math.min(currentVal + 1, 10);
     };
-    
+
     window.decreaseQuantity = function() {
         const quantityInput = document.getElementById('quantity');
-        if (quantityInput) {
-            let currentVal = parseInt(quantityInput.value);
-            if (!isNaN(currentVal) && currentVal > 1) {
-                quantityInput.value = currentVal - 1;
-            }
-        }
+        let currentVal = parseInt(quantityInput.value);
+        quantityInput.value = Math.max(currentVal - 1, 1);
     };
-    
-    // Event listeners
-    addToCartButton.addEventListener('click', addToCart);
-    favoriteButton.addEventListener('click', toggleFavorite);
-    
-    // Initialize
-    updateCartCount();
-    updateFavoriteStatus();
 });
