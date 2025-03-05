@@ -135,93 +135,94 @@ const allProducts = {
             silk: 6.99,
             ultimate: 8.99
         }
-        "patchouli-bergamot": {
-    id: "patchouli-bergamot",
-    title: "Patchouli • Bergamot",
-    tagline: "Zemljana dubina s citrusnom svježinom",
-    volume: "10 ml",
-    description: "Opojna mješavina zemljanog pačulija i svježeg bergamota stvara uravnotežen miris koji istovremeno uzemljuje i energizira. Ovaj blend kombinira duboke, zemljane note pačulija s osvježavajućim citrusnim akcentima bergamota.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Pačuli (Pogostemon cablin), Bergamot (Citrus bergamia) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "2 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/2blend6.png", alt: "Patchouli • Bergamot blend roll on" },
-        { src: "images/2blend6-1.png", alt: "Patchouli • Bergamot detail 1" },
-        { src: "images/2blend6-2.png", alt: "Patchouli • Bergamot detail 2" }
-    ],
-    prices: {
-        classic: 5.99,
-        silk: 6.99,
-        ultimate: 8.99
-    }
-},
-"bergamot-vanilla": {
-    id: "bergamot-vanilla",
-    title: "Bergamot • Vanilla",
-    tagline: "Citrusna svježina sa slatkom toplinom",
-    volume: "10 ml",
-    description: "Osvježavajući miris bergamota savršeno se slaže s toplim, ugodnim notama vanilije, stvarajući harmoničan blend koji podiže raspoloženje i unosi smirenost. Idealan za svakodnevno nošenje.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Bergamot (Citrus bergamia), Vanilija (Vanilla planifolia) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "2 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/2blend8.png", alt: "Bergamot • Vanilla blend roll on" },
-        { src: "images/2blend8-1.png", alt: "Bergamot • Vanilla detail 1" },
-        { src: "images/2blend8-2.png", alt: "Bergamot • Vanilla detail 2" }
-    ],
-    prices: {
-        classic: 5.99,
-        silk: 6.99,
-        ultimate: 8.99
-    }
-},
-"ylang-frankincense": {
-    id: "ylang-frankincense",
-    title: "Ylang Ylang • Frankincense",
-    tagline: "Egzotični cvjetni miris s drevnom notom",
-    volume: "10 ml",
-    description: "Luksuzna kombinacija koja spaja egzotični, cvjetni miris ylang ylanga sa dubokim, balzamičnim tonovima tamjanovca. Ovaj blend stvara atmosferu koja opušta, uzdiže duh i potiče meditativno stanje.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Ylang Ylang (Cananga odorata), Tamjanovac (Boswellia carterii) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "2 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/2blend9.png", alt: "Ylang Ylang • Frankincense blend roll on" },
-        { src: "images/2blend9-1.png", alt: "Ylang Ylang • Frankincense detail 1" },
-        { src: "images/2blend9-2.png", alt: "Ylang Ylang • Frankincense detail 2" }
-    ],
-    prices: {
-        classic: 5.99,
-        silk: 6.99,
-        ultimate: 8.99
-    }
-},
-"myrrh-vanilla": {
-    id: "myrrh-vanilla",
-    title: "Myrrh • Vanilla",
-    tagline: "Drevna smola s toplom slatkoćom",
-    volume: "10 ml",
-    description: "Jedinstveni spoj drevne smirne i tople vanilije stvara bogatu, balzamičnu i istovremeno slatku aromu. Ova kombinacija pruža osjećaj ugode, topline i duboke smirenosti, idealna za trenutke opuštanja.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Smirna (Commiphora myrrha), Vanilija (Vanilla planifolia) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "2 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/2blend10.png", alt: "Myrrh • Vanilla blend roll on" },
-        { src: "images/2blend10-1.png", alt: "Myrrh • Vanilla detail 1" },
-        { src: "images/2blend10-2.png", alt: "Myrrh • Vanilla detail 2" }
-    ],
-    prices: {
-        classic: 5.99,
-        silk: 6.99,
-        ultimate: 8.99
-    }
+    },
+    "patchouli-bergamot": {
+        id: "patchouli-bergamot",
+        title: "Patchouli • Bergamot",
+        tagline: "Zemljana dubina s citrusnom svježinom",
+        volume: "10 ml",
+        description: "Opojna mješavina zemljanog pačulija i svježeg bergamota stvara uravnotežen miris koji istovremeno uzemljuje i energizira. Ovaj blend kombinira duboke, zemljane note pačulija s osvježavajućim citrusnim akcentima bergamota.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Pačuli (Pogostemon cablin), Bergamot (Citrus bergamia) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "2 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/2blend6.png", alt: "Patchouli • Bergamot blend roll on" },
+            { src: "images/2blend6-1.png", alt: "Patchouli • Bergamot detail 1" },
+            { src: "images/2blend6-2.png", alt: "Patchouli • Bergamot detail 2" }
+        ],
+        prices: {
+            classic: 5.99,
+            silk: 6.99,
+            ultimate: 8.99
+        }
+    },
+    "bergamot-vanilla": {
+        id: "bergamot-vanilla",
+        title: "Bergamot • Vanilla",
+        tagline: "Citrusna svježina sa slatkom toplinom",
+        volume: "10 ml",
+        description: "Osvježavajući miris bergamota savršeno se slaže s toplim, ugodnim notama vanilije, stvarajući harmoničan blend koji podiže raspoloženje i unosi smirenost. Idealan za svakodnevno nošenje.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Bergamot (Citrus bergamia), Vanilija (Vanilla planifolia) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "2 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/2blend8.png", alt: "Bergamot • Vanilla blend roll on" },
+            { src: "images/2blend8-1.png", alt: "Bergamot • Vanilla detail 1" },
+            { src: "images/2blend8-2.png", alt: "Bergamot • Vanilla detail 2" }
+        ],
+        prices: {
+            classic: 5.99,
+            silk: 6.99,
+            ultimate: 8.99
+        }
+    },
+    "ylang-frankincense": {
+        id: "ylang-frankincense",
+        title: "Ylang Ylang • Frankincense",
+        tagline: "Egzotični cvjetni miris s drevnom notom",
+        volume: "10 ml",
+        description: "Luksuzna kombinacija koja spaja egzotični, cvjetni miris ylang ylanga sa dubokim, balzamičnim tonovima tamjanovca. Ovaj blend stvara atmosferu koja opušta, uzdiže duh i potiče meditativno stanje.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Ylang Ylang (Cananga odorata), Tamjanovac (Boswellia carterii) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "2 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/2blend9.png", alt: "Ylang Ylang • Frankincense blend roll on" },
+            { src: "images/2blend9-1.png", alt: "Ylang Ylang • Frankincense detail 1" },
+            { src: "images/2blend9-2.png", alt: "Ylang Ylang • Frankincense detail 2" }
+        ],
+        prices: {
+            classic: 5.99,
+            silk: 6.99,
+            ultimate: 8.99
+        }
+    },
+    "myrrh-vanilla": {
+        id: "myrrh-vanilla",
+        title: "Myrrh • Vanilla",
+        tagline: "Drevna smola s toplom slatkoćom",
+        volume: "10 ml",
+        description: "Jedinstveni spoj drevne smirne i tople vanilije stvara bogatu, balzamičnu i istovremeno slatku aromu. Ova kombinacija pruža osjećaj ugode, topline i duboke smirenosti, idealna za trenutke opuštanja.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Smirna (Commiphora myrrha), Vanilija (Vanilla planifolia) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "2 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/2blend10.png", alt: "Myrrh • Vanilla blend roll on" },
+            { src: "images/2blend10-1.png", alt: "Myrrh • Vanilla detail 1" },
+            { src: "images/2blend10-2.png", alt: "Myrrh • Vanilla detail 2" }
+        ],
+        prices: {
+            classic: 5.99,
+            silk: 6.99,
+            ultimate: 8.99
+        }
     },
     
     // 3 BLEND proizvodi
@@ -246,94 +247,94 @@ const allProducts = {
             silk: 7.99,
             ultimate: 9.99
         }
-        "frankincense-myrrh-vanilla": {
-    id: "frankincense-myrrh-vanilla",
-    title: "Frankincense • Myrrh • Vanilla",
-    tagline: "Drevna spiritualna harmonija sa slatkoćom",
-    volume: "10 ml",
-    description: "Luksuzna kombinacija koja spaja drevne, balzamične arome tamjanovca i smirne s toplom, umirujućom vanilijom. Ovaj blend stvara atmosferu duboke meditacije s ugodnom slatkoćom koja opušta i uzdiže duh.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Tamjanovac (Boswellia carterii), Smirna (Commiphora myrrha), Vanilija (Vanilla planifolia) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "3 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla blend roll on" },
-        { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla detail 1" },
-        { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla detail 2" }
-    ],
-    prices: {
-        classic: 6.99,
-        silk: 7.99,
-        ultimate: 9.99
-    }
-},
-"jasmine-bergamot-sandalwood": {
-    id: "jasmine-bergamot-sandalwood",
-    title: "Jasmine • Bergamot • Sandalwood",
-    tagline: "Cvjetna orijentalska harmonija",
-    volume: "10 ml",
-    description: "Elegantna kombinacija opojnog jasmina, osvježavajućeg bergamota i bogate sandalovine stvara sofisticiran miris koji istovremeno smiruje i uzdiže. Ovaj harmoničan blend pruža osjećaj luksuza i unutarnjeg mira.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Jasmin (Jasminum officinale), Bergamot (Citrus bergamia), Sandalovina (Santalum album) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "3 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood blend roll on" },
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood detail 1" },
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood detail 2" }
-    ],
-    prices: {
-        classic: 6.99,
-        silk: 7.99,
-        ultimate: 9.99
-    }
-},
-"patchouli-cedarwood-jasmine": {
-    id: "patchouli-cedarwood-jasmine",
-    title: "Patchouli • Cedarwood • Jasmine",
-    tagline: "Šumska zemljana meditacija",
-    volume: "10 ml",
-    description: "Duboki, zemljani pačuli i topla kedrovoina stapaju se s profinjenim notama jasmina, stvarajući kompleksan miris koji povezuje elemente zemlje, šume i cvijeta. Savršen blend za uzemljenje i unutarnji mir.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Pačuli (Pogostemon cablin), Kedrovo drvo (Cedrus atlantica), Jasmin (Jasminum officinale) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "3 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine blend roll on" },
-        { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine detail 1" },
-        { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine detail 2" }
-    ],
-    prices: {
-        classic: 6.99,
-        silk: 7.99,
-        ultimate: 9.99
-    }
-},
-"jasmine-myyrh-ylang": {
-    id: "jasmine-myyrh-ylang",
-    title: "Jasmine • Myrrh • Ylang Ylang",
-    tagline: "Egzotična senzualna esencija",
-    volume: "10 ml",
-    description: "Luksuzna kombinacija opojnih cvjetnih nota jasmina i ylang ylanga s dubokom, balzamičnom smirnom stvara bogat, egzotičan i senzualan miris. Ovaj jedinstveni blend evocira drevne mirise Orijenta.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Jasmin (Jasminum officinale), Smirna (Commiphora myrrha), Ylang Ylang (Cananga odorata) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "3 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang blend roll on" },
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang detail 1" },
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang detail 2" }
-    ],
-    prices: {
-        classic: 6.99,
-        silk: 7.99,
-        ultimate: 9.99
-    }
-}
+    },
+    "frankincense-myrrh-vanilla": {
+        id: "frankincense-myrrh-vanilla",
+        title: "Frankincense • Myrrh • Vanilla",
+        tagline: "Drevna spiritualna harmonija sa slatkoćom",
+        volume: "10 ml",
+        description: "Luksuzna kombinacija koja spaja drevne, balzamične arome tamjanovca i smirne s toplom, umirujućom vanilijom. Ovaj blend stvara atmosferu duboke meditacije s ugodnom slatkoćom koja opušta i uzdiže duh.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Tamjanovac (Boswellia carterii), Smirna (Commiphora myrrha), Vanilija (Vanilla planifolia) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "3 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla blend roll on" },
+            { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla detail 1" },
+            { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla detail 2" }
+        ],
+        prices: {
+            classic: 6.99,
+            silk: 7.99,
+            ultimate: 9.99
+        }
+    },
+    "jasmine-bergamot-sandalwood": {
+        id: "jasmine-bergamot-sandalwood",
+        title: "Jasmine • Bergamot • Sandalwood",
+        tagline: "Cvjetna orijentalska harmonija",
+        volume: "10 ml",
+        description: "Elegantna kombinacija opojnog jasmina, osvježavajućeg bergamota i bogate sandalovine stvara sofisticiran miris koji istovremeno smiruje i uzdiže. Ovaj harmoničan blend pruža osjećaj luksuza i unutarnjeg mira.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Jasmin (Jasminum officinale), Bergamot (Citrus bergamia), Sandalovina (Santalum album) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "3 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood blend roll on" },
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood detail 1" },
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood detail 2" }
+        ],
+        prices: {
+            classic: 6.99,
+            silk: 7.99,
+            ultimate: 9.99
+        }
+    },
+    "patchouli-cedarwood-jasmine": {
+        id: "patchouli-cedarwood-jasmine",
+        title: "Patchouli • Cedarwood • Jasmine",
+        tagline: "Šumska zemljana meditacija",
+        volume: "10 ml",
+        description: "Duboki, zemljani pačuli i topla kedrovoina stapaju se s profinjenim notama jasmina, stvarajući kompleksan miris koji povezuje elemente zemlje, šume i cvijeta. Savršen blend za uzemljenje i unutarnji mir.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Pačuli (Pogostemon cablin), Kedrovo drvo (Cedrus atlantica), Jasmin (Jasminum officinale) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "3 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine blend roll on" },
+            { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine detail 1" },
+            { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine detail 2" }
+        ],
+        prices: {
+            classic: 6.99,
+            silk: 7.99,
+            ultimate: 9.99
+        }
+    },
+    "jasmine-myyrh-ylang": {
+        id: "jasmine-myyrh-ylang",
+        title: "Jasmine • Myrrh • Ylang Ylang",
+        tagline: "Egzotična senzualna esencija",
+        volume: "10 ml",
+        description: "Luksuzna kombinacija opojnih cvjetnih nota jasmina i ylang ylanga s dubokom, balzamičnom smirnom stvara bogat, egzotičan i senzualan miris. Ovaj jedinstveni blend evocira drevne mirise Orijenta.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Jasmin (Jasminum officinale), Smirna (Commiphora myrrha), Ylang Ylang (Cananga odorata) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "3 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang blend roll on" },
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang detail 1" },
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang detail 2" }
+        ],
+        prices: {
+            classic: 6.99,
+            silk: 7.99,
+            ultimate: 9.99
+        }
     },
     
     // 4 BLEND proizvodi
@@ -358,29 +359,30 @@ const allProducts = {
             silk: 10.99,
             ultimate: 11.99
         }
-        "jasmine-patchouli-ylang-cedarwood": {
-    id: "jasmine-patchouli-ylang-cedarwood",
-    title: "Jasmine • Patchouli • Ylang Ylang • Cedarwood",
-    tagline: "Bogata egzotična harmonija",
-    volume: "10 ml",
-    description: "Luksuzna kombinacija opojnog jasmina, zemljanog pačulija, egzotičnog ylang ylanga i tople kedrovine stvara kompleksan, bogat miris koji balansira cvjetne, zemljane i drvenaste note. Ovaj sofisticirani blend pruža duboko opuštajuće i uzdižuće iskustvo.",
-    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Jasmin (Jasminum officinale), Pačuli (Pogostemon cablin), Ylang Ylang (Cananga odorata), Kedrovo drvo (Cedrus atlantica) u baznom ulju po izboru.",
-    category: "Roll On EO",
-    categoryType: "4 Blend Roll On",
-    categoryLink: "rollon-eo.html",
-    images: [
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood blend roll on" },
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 1" },
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 2" }
-    ],
-    prices: {
-        classic: 8.99,
-        silk: 10.99,
-        ultimate: 11.99
-    }
-},
-"jasmine-ylang-bergamot-cedarwood": {
+    },
+    "jasmine-patchouli-ylang-cedarwood": {
+        id: "jasmine-patchouli-ylang-cedarwood",
+        title: "Jasmine • Patchouli • Ylang Ylang • Cedarwood",
+        tagline: "Bogata egzotična harmonija",
+        volume: "10 ml",
+        description: "Luksuzna kombinacija opojnog jasmina, zemljanog pačulija, egzotičnog ylang ylanga i tople kedrovine stvara kompleksan, bogat miris koji balansira cvjetne, zemljane i drvenaste note. Ovaj sofisticirani blend pruža duboko opuštajuće i uzdižuće iskustvo.",
+        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+        ingredients: "Jasmin (Jasminum officinale), Pačuli (Pogostemon cablin), Ylang Ylang (Cananga odorata), Kedrovo drvo (Cedrus atlantica) u baznom ulju po izboru.",
+        category: "Roll On EO",
+        categoryType: "4 Blend Roll On",
+        categoryLink: "rollon-eo.html",
+        images: [
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood blend roll on" },
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 1" },
+            { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 2" }
+        ],
+        prices: {
+            classic: 8.99,
+            silk: 10.99,
+            ultimate: 11.99
+        }
+    },
+   "jasmine-ylang-bergamot-cedarwood": {
     id: "jasmine-ylang-bergamot-cedarwood",
     title: "Jasmine • Ylang Ylang • Bergamot • Cedarwood",
     tagline: "Luksuzna cvjetno-drvenasta kompozicija",
@@ -402,8 +404,6 @@ const allProducts = {
         ultimate: 11.99
     }
 }
-    },
-    
     // 5 BLEND proizvodi
     "patchouli-frankincense-myrrh-sandalwood-vanilla": {
         id: "patchouli-frankincense-myrrh-sandalwood-vanilla",
