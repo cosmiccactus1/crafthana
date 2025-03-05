@@ -382,28 +382,28 @@ const allProducts = {
             ultimate: 11.99
         }
     },
-    "jasmine-ylang-bergamot-cedarwood": {
-        id: "jasmine-ylang-bergamot-cedarwood",
-        title: "Jasmine • Ylang Ylang • Bergamot • Cedarwood",
-        tagline: "Luksuzna cvjetno-drvenasta kompozicija",
-        volume: "10 ml",
-        description: "Elegantna kombinacija koja spaja cvjetne note jasmina i ylang ylanga, osvježavajući citrusni bergamot i toplu kedrovinu. Ovaj harmoničan blend stvara sofisticiran miris koji istovremeno energizira i opušta, pružajući trenutke luksuza u svakodnevici.",
-        usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-        ingredients: "Jasmin (Jasminum officinale), Ylang Ylang (Cananga odorata), Bergamot (Citrus bergamia), Kedrovo drvo (Cedrus atlantica) u baznom ulju po izboru.",
-        category: "Roll On EO",
-        categoryType: "4 Blend Roll On",
-        categoryLink: "rollon-eo.html",
-        images: [
-            { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood blend roll on" },
-            { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood detail 1" },
-            { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood detail 2" }
-        ],
-        prices: {
-            classic: 8.99,
-            silk: 10.99,
-            ultimate: 11.99
-        }
-    },
+   "jasmine-ylang-bergamot-cedarwood": {
+    id: "jasmine-ylang-bergamot-cedarwood",
+    title: "Jasmine • Ylang Ylang • Bergamot • Cedarwood",
+    tagline: "Luksuzna cvjetno-drvenasta kompozicija",
+    volume: "10 ml",
+    description: "Elegantna kombinacija koja spaja cvjetne note jasmina i ylang ylanga, osvježavajući citrusni bergamot i toplu kedrovinu. Ovaj harmoničan blend stvara sofisticiran miris koji istovremeno energizira i opušta, pružajući trenutke luksuza u svakodnevici.",
+    usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
+    ingredients: "Jasmin (Jasminum officinale), Ylang Ylang (Cananga odorata), Bergamot (Citrus bergamia), Kedrovo drvo (Cedrus atlantica) u baznom ulju po izboru.",
+    category: "Roll On EO",
+    categoryType: "4 Blend Roll On",
+    categoryLink: "rollon-eo.html",
+    images: [
+        { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood blend roll on" },
+        { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood detail 1" },
+        { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood detail 2" }
+    ],
+    prices: {
+        classic: 8.99,
+        silk: 10.99,
+        ultimate: 11.99
+    }
+}, // <-- Dodao zarez ovdje
     
     // 5 BLEND proizvodi
     "patchouli-frankincense-myrrh-sandalwood-vanilla": {
@@ -428,3 +428,6 @@ const allProducts = {
             ultimate: 12.99
         }
     }
+    
+    // Dodaj ostale proizvode po potrebi
+}; // <-- Dodao zatvarajuću vitičastu zagradu ovdje
