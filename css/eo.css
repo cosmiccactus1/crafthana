@@ -47,19 +47,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
-/* Šuplji heksagon icon stilovi - manji i ispred teksta */
+/* Šuplji dijamant icon stilovi - manji i iza teksta */
 .hexagon-icon {
     position: relative;
     display: inline-block;
-    width: 0.6em;
-    height: 0.6em;
+    width: 0.4em; /* Još manji */
+    height: 0.4em; /* Još manji */
     background: transparent;
-    border: 1px solid #2c2c2c;
+    border: 1px solid #2c2c2c; /* Ista debljina kao i font */
     transform: rotate(45deg);
-    margin-right: 0.5em;
+    margin-left: 0.5em; /* Margin s lijeve strane da bude iza teksta */
 }
 
 .blend-category-description {
