@@ -50,16 +50,16 @@
     gap: 0.75rem;
 }
 
-/* Šuplji heksagon icon stilovi */
+/* Šuplji heksagon icon stilovi - manji i ispred teksta */
 .hexagon-icon {
     position: relative;
     display: inline-block;
-    width: 0.9em;
-    height: 0.9em;
+    width: 0.6em;
+    height: 0.6em;
     background: transparent;
     border: 1px solid #2c2c2c;
     transform: rotate(45deg);
-    margin: 0 0.3em;
+    margin-right: 0.5em;
 }
 
 .blend-category-description {
