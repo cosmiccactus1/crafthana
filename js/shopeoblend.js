@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. Cart functions
     const updateCartCount = () => {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const count = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
+        const count = cartItems.reduce((total, item) => total + (parseInt(item.quantity) || 1), 0);
         
         document.querySelectorAll('.cart-count').forEach(el => {
             if (count > 0) {
@@ -207,17 +207,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         
+        // Dodajemo u format koji koristimo na drugim stranicama
         const itemId = `${productId}-${Date.now()}`;
         const newItem = {
             id: itemId,
             productId: productId,
             name: product.name,
-            price: `${product.price.toFixed(2)} KM`,
-            numericPrice: product.price,
+            description: product.description,
+            price: product.price.toFixed(2) + " KM",
+            priceValue: product.price,
             image: product.image,
             volume: product.volume,
-            description: product.description,
             quantity: quantity,
+            totalPrice: (product.price * quantity).toFixed(2) + " KM",
+            type: "essential-oil-blend",
+            category: product.category,
             addedAt: new Date().toISOString()
         };
         
@@ -269,6 +273,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (index === -1) {
             favorites.push({
                 ...product,
+                price: product.price.toFixed(2) + " KM",
+                priceValue: product.price,
                 addedAt: new Date().toISOString()
             });
             showNotification('Dodano u favorite ❤️');
