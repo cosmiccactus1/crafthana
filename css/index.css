@@ -15,7 +15,7 @@ body {
   width: 100%;
 }
 
-/* Jednostavan slider koji prati postojeći dizajn */
+/* Improved Hero Section and Slider */
 .hero-section {
     background-color: #fff;
     margin: 0;
@@ -23,6 +23,7 @@ body {
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
     position: relative;
     width: 100%;
+    display: block; /* Ensure all hero sections are displayed */
 }
 
 .slider-container {
@@ -39,13 +40,18 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: block; /* Changed from display: none to allow for fade transition */
+    z-index: 0;
 }
 
 .slider-slide.active {
-    display: block;
+    opacity: 1;
+    z-index: 1;
 }
 
+/* Hero images and content positioning */
 .hero-image {
     height: 100%;
     left: 0;
@@ -93,23 +99,27 @@ body {
     letter-spacing: 0.1em;
 }
 
-/* Media query za mobilne uređaje */
-@media screen and (max-width: 768px) {
-    .hero-section {
-        height: 100vh;
-        padding-top: 0;
-    }
-    
-    .hero-image {
-        object-fit: cover;
-    }
+/* Second Hero Section (Nature Hero) */
+.nature-hero {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
 }
+
+.nature-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+
 /* Nature Text */
 .nature-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   color: #ffffff;
   font-family: 'Raleway', sans-serif;
   font-size: clamp(2rem, 6vw, 4rem);
@@ -122,18 +132,20 @@ body {
   width: 0;
   animation: typing 3.5s steps(40, end) forwards;
 }
+
 .typewriter-text.question-text {
     color: white;
-    font-size: 80px;         /* povećali smo sa 30px na 50px */
-    letter-spacing: 25px;    /* povećali smo sa 5px na 15px za veći razmak između slova */
+    font-size: clamp(2rem, 8vw, 5rem);
+    letter-spacing: 25px;
     margin-top: 80px;
     padding-top: 20px;
-    word-spacing: 30px;      /* povećali smo sa 10px na 20px */
+    word-spacing: 30px;
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
     white-space: nowrap;
     width: 0;
+    animation: typing 3.5s steps(40, end) forwards;
     
     /* Dodajemo transformaciju za izduženi izgled */
     transform: scaleY(1.2);  /* ovo će izdužiti tekst vertikalno za 20% */
@@ -141,14 +153,16 @@ body {
     /* Dodajemo i manju težinu fonta za elegantniji izgled */
     font-weight: 200;        /* tanji font */
 }
+
 .interview-content {
     position: absolute;
-    bottom: 30px;     /* smanjili smo sa 50px da bi ga spustili niže */
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
     text-align: center;
-    color: white;    /* dodali smo bijelu boju za tekst */
+    color: white;
+    width: 100%;
 }
 
 .interview-tag {
@@ -164,56 +178,18 @@ body {
     font-size: 20px;
     letter-spacing: 5px;
 }
-/* Media Queries za tablete */
-@media screen and (max-width: 768px) {
-    .typewriter-text.question-text {
-        font-size: 50px;
-        letter-spacing: 15px;
-        margin-top: 40px;
-        word-spacing: 20px;
-    }
-    
-    .interview-tag,
-    .view-full-text {
-        font-size: 16px;
-        letter-spacing: 3px;
-    }
-    
-    .interview-content {
-        bottom: 20px;
-    }
-}
 
-/* Media Queries za mobile */
-@media screen and (max-width: 480px) {
-    .typewriter-text.question-text {
-        font-size: 20px;         /* smanjeno sa 30px na 20px */
-        letter-spacing: 5px;     /* smanjeno sa 10px na 5px */
-        margin-top: 20px;        /* smanjeno sa 30px na 20px */
-        word-spacing: 8px;       /* smanjeno sa 15px na 8px */
-    }
-    
-    .interview-tag,
-    .view-full-text {
-        font-size: 12px;         /* smanjeno sa 14px na 12px */
-        letter-spacing: 1px;     /* smanjeno sa 2px na 1px */
-        margin-right: 8px;       /* smanjeno sa 10px na 8px */
-    }
-    
-    .interview-content {
-        bottom: 10px;           /* smanjeno sa 15px na 10px */
-        width: 95%;             /* povećano sa 90% na 95% za bolju vidljivost */
-    }
-}
-/* Essential Oils Section */
+/* Essential Oils Section with Improved Centering */
 .essential-oils {
   background: #ffffff;
   padding: 4rem 2rem;
+  text-align: center;
 }
 
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .section-title {
@@ -245,11 +221,14 @@ body {
   font-weight: 300;
 }
 
+/* Improved Oils Grid with Better Spacing */
 .oils-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin: 0 auto 2rem; /* Reduced margin and centered */
+  max-width: 1200px; /* Added max-width for better control */
+  justify-content: center; /* Ensure grid items are centered */
 }
 
 .oil-item {
@@ -260,6 +239,9 @@ body {
   position: relative;
   border: none;
   animation: fadeIn 0.8s ease-out forwards;
+  text-align: center; /* Center text within items */
+  margin: 0 auto; /* Center the items themselves */
+  max-width: 320px; /* Limit width for better alignment */
 }
 
 .oil-item:hover {
@@ -270,6 +252,7 @@ body {
 .oil-item a {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 .oil-image {
@@ -280,6 +263,7 @@ body {
 
 .oil-details {
   padding: 1.5rem;
+  text-align: center;
 }
 
 .oil-details h3 {
@@ -289,20 +273,7 @@ body {
   font-weight: 300;
   line-height: 1.4;
   letter-spacing: 0.2px;
-}
-
-.volume {
-  color: #666666;
-  font-size: 0.9rem;
-  margin: 0.5rem 0;
-  font-weight: 300;
-}
-
-.price {
-  font-size: 1rem;
-  color: #000000;
-  font-weight: 300;
-  margin: 0.5rem 0;
+  text-align: center;
 }
 
 .blend-character {
@@ -311,64 +282,15 @@ body {
   margin: 0.5rem 0 0;
   font-weight: 300;
   font-style: italic;
-}
-
-/* Usage Suggestions Section */
-.usage-suggestions {
-  background: #ffffff;
-  padding: 3rem 0;
-  margin: 4rem 0;
-  position: relative;
-  border-top: 1px solid rgba(0,0,0,0.03);
-  border-bottom: 1px solid rgba(0,0,0,0.03);
-}
-
-.usage-suggestions h3 {
-  color: #000000;
-  margin-bottom: 2rem;
-  font-size: 1.6rem;
-  font-weight: 300;
   text-align: center;
-  letter-spacing: -0.3px;
 }
 
-.usage-suggestions p {
-  text-align: center;
-  color: #333333;
-  margin-bottom: 2rem;
-  font-size: 1rem;
-  font-weight: 300;
-}
-
-.usage-suggestions ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.usage-suggestions li {
-  color: #333333;
-  line-height: 1.6;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  font-weight: 300;
-}
-
-.usage-suggestions li::before {
-  content: '—';
-  margin-right: 1rem;
-  color: #000000;
-  opacity: 0.3;
-}
-
-/* View All Link */
+/* Improved View All Link positioning */
 .view-all-container {
   text-align: center;
-  margin-top: 3rem;
+  margin: 2rem auto 1rem; /* Balanced spacing */
+  width: 100%;
+  max-width: 1200px;
 }
 
 .view-all-link {
@@ -387,16 +309,69 @@ body {
   color: #ffffff;
 }
 
-.delivery-section {
-    background-color: #e6f0ff;  /* svijetlo plava pozadina */
-    padding: 40px 0;
-    margin: 0 auto;
+/* Usage Suggestions Section with Better Spacing */
+.usage-suggestions {
+  background: #ffffff;
+  padding: 2.5rem 0; /* Reduced from 3rem to 2.5rem */
+  margin: 2.5rem 0; /* Reduced from 4rem to 2.5rem */
+  position: relative;
+  border-top: 1px solid rgba(0,0,0,0.03);
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  text-align: center;
 }
 
-.section-container {
-    max-width: 1200px;
+.usage-suggestions h3 {
+  color: #000000;
+  margin-bottom: 1.5rem; /* Reduced from 2rem to 1.5rem */
+  font-size: 1.6rem;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+.usage-suggestions p {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 1.5rem; /* Reduced from 2rem to 1.5rem */
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.usage-suggestions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; /* Reduced from 2rem to 1.5rem */
+  max-width: 1000px; /* Limit width for better appearance */
+}
+
+.usage-suggestions li {
+  color: #333333;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+  justify-content: center; /* Center the list items */
+  text-align: left; /* Keep text left-aligned within items */
+}
+
+.usage-suggestions li::before {
+  content: '—';
+  margin-right: 1rem;
+  color: #000000;
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+/* Delivery Section */
+.delivery-section {
+    background-color: #e6f0ff;
+    padding: 40px 0;
     margin: 0 auto;
-    padding: 0 20px;
+    text-align: center;
 }
 
 .delivery-title {
@@ -413,6 +388,8 @@ body {
     padding: 30px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .delivery-content p {
@@ -428,26 +405,13 @@ body {
     font-weight: 400;
 }
 
-@media screen and (max-width: 768px) {
-    .delivery-section {
-        padding: 30px 15px;
-    }
-    
-    .delivery-content {
-        padding: 20px;
-    }
-    
-    .delivery-title {
-        font-size: 1.8rem;
-    }
-}
-
 /* Newsletter Section */
 .newsletter-section {
   background: #fff;
   border-top: none;
   margin-top: 60px;
   padding: 60px 0;
+  text-align: center;
 }
 
 .newsletter-content {
@@ -515,9 +479,9 @@ body {
 
 .newsletter-btn {
   background: #fff;
-  border: 1px solid #000000;    /* Promijenjeno u crno */
+  border: 1px solid #000000;
   border-radius: 3px;
-  color: #000000;              /* Promijenjeno u crno */
+  color: #000000;
   cursor: pointer;
   font-size: 13px;
   font-weight: 200;
@@ -527,10 +491,35 @@ body {
 }
 
 .newsletter-btn:hover {
-  background: #000000;         /* Promijenjeno u crno */
+  background: #000000;
   color: #fff;
 }
-/* Animations */
+
+/* Add automatic slider animation */
+@keyframes slideAnimation {
+  0%, 45% {
+    opacity: 1;
+    z-index: 1;
+  }
+  50%, 95% {
+    opacity: 0;
+    z-index: 0;
+  }
+  100% {
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+.slider-slide:nth-child(1) {
+  animation: slideAnimation 10s infinite;
+}
+
+.slider-slide:nth-child(2) {
+  animation: slideAnimation 10s infinite reverse;
+}
+
+/* Typing Animation */
 @keyframes typing {
   from {
     width: 0;
@@ -625,6 +614,35 @@ body {
     padding: 12px;
     width: 100%;
   }
+  
+  .typewriter-text.question-text {
+    font-size: 50px;
+    letter-spacing: 15px;
+    margin-top: 40px;
+    word-spacing: 20px;
+  }
+  
+  .interview-tag,
+  .view-full-text {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+  
+  .interview-content {
+    bottom: 20px;
+  }
+  
+  .delivery-section {
+    padding: 30px 15px;
+  }
+  
+  .delivery-content {
+    padding: 20px;
+  }
+  
+  .delivery-title {
+    font-size: 1.8rem;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -646,5 +664,24 @@ body {
 
   .newsletter-section {
     padding: 40px 20px;
+  }
+  
+  .typewriter-text.question-text {
+    font-size: 20px;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    word-spacing: 8px;
+  }
+  
+  .interview-tag,
+  .view-full-text {
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-right: 8px;
+  }
+  
+  .interview-content {
+    bottom: 10px;
+    width: 95%;
   }
 }
