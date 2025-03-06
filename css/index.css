@@ -33,17 +33,36 @@ body {
     height: 100%;
 }
 
+/* Improved slider animation */
 .slider-slide {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    display: block;
 }
 
-.slider-slide.active {
-    display: block;
+.slider-slide:nth-child(1) {
+    animation: firstSlide 12s infinite;
+}
+
+.slider-slide:nth-child(2) {
+    animation: secondSlide 12s infinite;
+}
+
+@keyframes firstSlide {
+    0%, 45% { opacity: 1; }
+    50%, 95% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes secondSlide {
+    0%, 45% { opacity: 0; }
+    50%, 95% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .hero-image {
@@ -93,17 +112,11 @@ body {
     letter-spacing: 0.1em;
 }
 
-/* Media query za mobilne uređaje */
-@media screen and (max-width: 768px) {
-    .hero-section {
-        height: 100vh;
-        padding-top: 0;
-    }
-    
-    .hero-image {
-        object-fit: cover;
-    }
+/* Fix for second hero section */
+.nature-hero {
+    display: block;
 }
+
 /* Nature Text */
 .nature-text {
   position: absolute;
@@ -122,6 +135,7 @@ body {
   width: 0;
   animation: typing 3.5s steps(40, end) forwards;
 }
+
 .typewriter-text.question-text {
     color: white;
     font-size: 80px;         /* povećali smo sa 30px na 50px */
@@ -141,6 +155,7 @@ body {
     /* Dodajemo i manju težinu fonta za elegantniji izgled */
     font-weight: 200;        /* tanji font */
 }
+
 .interview-content {
     position: absolute;
     bottom: 30px;     /* smanjili smo sa 50px da bi ga spustili niže */
@@ -164,47 +179,7 @@ body {
     font-size: 20px;
     letter-spacing: 5px;
 }
-/* Media Queries za tablete */
-@media screen and (max-width: 768px) {
-    .typewriter-text.question-text {
-        font-size: 50px;
-        letter-spacing: 15px;
-        margin-top: 40px;
-        word-spacing: 20px;
-    }
-    
-    .interview-tag,
-    .view-full-text {
-        font-size: 16px;
-        letter-spacing: 3px;
-    }
-    
-    .interview-content {
-        bottom: 20px;
-    }
-}
 
-/* Media Queries za mobile */
-@media screen and (max-width: 480px) {
-    .typewriter-text.question-text {
-        font-size: 20px;         /* smanjeno sa 30px na 20px */
-        letter-spacing: 5px;     /* smanjeno sa 10px na 5px */
-        margin-top: 20px;        /* smanjeno sa 30px na 20px */
-        word-spacing: 8px;       /* smanjeno sa 15px na 8px */
-    }
-    
-    .interview-tag,
-    .view-full-text {
-        font-size: 12px;         /* smanjeno sa 14px na 12px */
-        letter-spacing: 1px;     /* smanjeno sa 2px na 1px */
-        margin-right: 8px;       /* smanjeno sa 10px na 8px */
-    }
-    
-    .interview-content {
-        bottom: 10px;           /* smanjeno sa 15px na 10px */
-        width: 95%;             /* povećano sa 90% na 95% za bolju vidljivost */
-    }
-}
 /* Essential Oils Section */
 .essential-oils {
   background: #ffffff;
@@ -313,19 +288,20 @@ body {
   font-style: italic;
 }
 
-/* Usage Suggestions Section */
+/* Improved Usage Suggestions Section */
 .usage-suggestions {
   background: #ffffff;
-  padding: 3rem 0;
-  margin: 4rem 0;
+  padding: 2.5rem 0;
+  margin: 2.5rem auto;
   position: relative;
   border-top: 1px solid rgba(0,0,0,0.03);
   border-bottom: 1px solid rgba(0,0,0,0.03);
+  max-width: 900px;
 }
 
 .usage-suggestions h3 {
   color: #000000;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-size: 1.6rem;
   font-weight: 300;
   text-align: center;
@@ -335,18 +311,16 @@ body {
 .usage-suggestions p {
   text-align: center;
   color: #333333;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-size: 1rem;
   font-weight: 300;
 }
 
 .usage-suggestions ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 800px;
 }
 
 .usage-suggestions li {
@@ -354,21 +328,27 @@ body {
   line-height: 1.6;
   transition: all 0.3s ease;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   font-weight: 300;
+  padding: 0.5rem 0;
+  text-align: left;
 }
 
 .usage-suggestions li::before {
   content: '—';
   margin-right: 1rem;
   color: #000000;
-  opacity: 0.3;
+  opacity: 0.7;
 }
 
-/* View All Link */
+/* Improved centering for View All Link */
 .view-all-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem auto;
   text-align: center;
-  margin-top: 3rem;
 }
 
 .view-all-link {
@@ -380,6 +360,7 @@ body {
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
   border: 1px solid rgba(0,0,0,0.1);
+  margin: 0 auto;
 }
 
 .view-all-link:hover {
@@ -426,20 +407,6 @@ body {
 .delivery-content strong {
     color: #333;
     font-weight: 400;
-}
-
-@media screen and (max-width: 768px) {
-    .delivery-section {
-        padding: 30px 15px;
-    }
-    
-    .delivery-content {
-        padding: 20px;
-    }
-    
-    .delivery-title {
-        font-size: 1.8rem;
-    }
 }
 
 /* Newsletter Section */
@@ -530,6 +497,7 @@ body {
   background: #000000;         /* Promijenjeno u crno */
   color: #fff;
 }
+
 /* Animations */
 @keyframes typing {
   from {
@@ -625,6 +593,35 @@ body {
     padding: 12px;
     width: 100%;
   }
+  
+  .typewriter-text.question-text {
+    font-size: 50px;
+    letter-spacing: 15px;
+    margin-top: 40px;
+    word-spacing: 20px;
+  }
+  
+  .interview-tag,
+  .view-full-text {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+  
+  .interview-content {
+    bottom: 20px;
+  }
+  
+  .delivery-section {
+    padding: 30px 15px;
+  }
+  
+  .delivery-content {
+    padding: 20px;
+  }
+  
+  .delivery-title {
+    font-size: 1.8rem;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -646,5 +643,24 @@ body {
 
   .newsletter-section {
     padding: 40px 20px;
+  }
+  
+  .typewriter-text.question-text {
+    font-size: 20px;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    word-spacing: 8px;
+  }
+  
+  .interview-tag,
+  .view-full-text {
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-right: 8px;
+  }
+  
+  .interview-content {
+    bottom: 10px;
+    width: 95%;
   }
 }
