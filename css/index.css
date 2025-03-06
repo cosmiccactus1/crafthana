@@ -15,7 +15,7 @@ body {
   width: 100%;
 }
 
-/* Jednostavan slider koji prati postojeći dizajn */
+/* Slider with improved animations */
 .hero-section {
     background-color: #fff;
     margin: 0;
@@ -23,6 +23,7 @@ body {
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
     position: relative;
     width: 100%;
+    display: block; /* Ensure all hero sections display */
 }
 
 .slider-container {
@@ -33,7 +34,6 @@ body {
     height: 100%;
 }
 
-/* Improved slider animation */
 .slider-slide {
     position: absolute;
     top: 0;
@@ -93,6 +93,10 @@ body {
     font-weight: 200;
     letter-spacing: 0.2em;
     margin-bottom: 1rem;
+    /* Initial state for JS animation */
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .hero-content .title-large {
@@ -102,6 +106,10 @@ body {
     font-weight: 200;
     letter-spacing: 0.1em;
     margin-bottom: 0.5rem;
+    /* Initial state for JS animation */
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .hero-content .subtitle {
@@ -110,19 +118,31 @@ body {
     font-size: clamp(1.5rem, 4vw, 2rem);  
     font-weight: 200;
     letter-spacing: 0.1em;
+    /* Initial state for JS animation */
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-/* Fix for second hero section */
+/* Second hero (nature) */
 .nature-hero {
     display: block;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Nature Text */
+.nature-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+
 .nature-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   color: #ffffff;
   font-family: 'Raleway', sans-serif;
   font-size: clamp(2rem, 6vw, 4rem);
@@ -130,40 +150,38 @@ body {
   text-align: center;
   letter-spacing: 0.1em;
   z-index: 2;
+  /* Initial state for JS animation */
   white-space: nowrap;
   overflow: hidden;
   width: 0;
-  animation: typing 3.5s steps(40, end) forwards;
 }
 
 .typewriter-text.question-text {
     color: white;
-    font-size: 80px;         /* povećali smo sa 30px na 50px */
-    letter-spacing: 25px;    /* povećali smo sa 5px na 15px za veći razmak između slova */
+    font-size: 80px;
+    letter-spacing: 25px;
     margin-top: 80px;
     padding-top: 20px;
-    word-spacing: 30px;      /* povećali smo sa 10px na 20px */
+    word-spacing: 30px;
     margin-left: auto;
     margin-right: auto;
+    /* Initial state for JS animation */
     overflow: hidden;
     white-space: nowrap;
     width: 0;
-    
-    /* Dodajemo transformaciju za izduženi izgled */
-    transform: scaleY(1.2);  /* ovo će izdužiti tekst vertikalno za 20% */
-    
-    /* Dodajemo i manju težinu fonta za elegantniji izgled */
-    font-weight: 200;        /* tanji font */
+    transform: scaleY(1.2);
+    font-weight: 200;
 }
 
 .interview-content {
     position: absolute;
-    bottom: 30px;     /* smanjili smo sa 50px da bi ga spustili niže */
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
     text-align: center;
-    color: white;    /* dodali smo bijelu boju za tekst */
+    color: white;
+    width: 100%;
 }
 
 .interview-tag {
@@ -180,15 +198,17 @@ body {
     letter-spacing: 5px;
 }
 
-/* Essential Oils Section */
+/* Essential Oils Section with better centering */
 .essential-oils {
   background: #ffffff;
   padding: 4rem 2rem;
+  text-align: center; /* Center all content */
 }
 
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .section-title {
@@ -220,11 +240,16 @@ body {
   font-weight: 300;
 }
 
+/* Fixed grid layout for proper centering */
 .oils-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin: 0 auto 2rem;
+  max-width: 1200px;
+  justify-content: center;
+  justify-items: center; /* Center items horizontally */
+  align-items: stretch; /* Stretch items vertically */
 }
 
 .oil-item {
@@ -235,6 +260,9 @@ body {
   position: relative;
   border: none;
   animation: fadeIn 0.8s ease-out forwards;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
 }
 
 .oil-item:hover {
@@ -245,6 +273,7 @@ body {
 .oil-item a {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 .oil-image {
@@ -255,6 +284,7 @@ body {
 
 .oil-details {
   padding: 1.5rem;
+  text-align: center;
 }
 
 .oil-details h3 {
@@ -264,20 +294,7 @@ body {
   font-weight: 300;
   line-height: 1.4;
   letter-spacing: 0.2px;
-}
-
-.volume {
-  color: #666666;
-  font-size: 0.9rem;
-  margin: 0.5rem 0;
-  font-weight: 300;
-}
-
-.price {
-  font-size: 1rem;
-  color: #000000;
-  font-weight: 300;
-  margin: 0.5rem 0;
+  text-align: center;
 }
 
 .blend-character {
@@ -286,9 +303,38 @@ body {
   margin: 0.5rem 0 0;
   font-weight: 300;
   font-style: italic;
+  text-align: center;
 }
 
-/* Improved Usage Suggestions Section */
+/* Fixed "Pogledaj cijelu ponudu" centering */
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem auto;
+  text-align: center;
+  grid-column: 1 / -1; /* Make it span all columns in grid */
+}
+
+.view-all-link {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.1);
+  margin: 0 auto;
+}
+
+.view-all-link:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* Improved usage suggestions section */
 .usage-suggestions {
   background: #ffffff;
   padding: 2.5rem 0;
@@ -297,6 +343,7 @@ body {
   border-top: 1px solid rgba(0,0,0,0.03);
   border-bottom: 1px solid rgba(0,0,0,0.03);
   max-width: 900px;
+  grid-column: 1 / -1; /* Make it span all columns in grid */
 }
 
 .usage-suggestions h3 {
@@ -341,43 +388,11 @@ body {
   opacity: 0.7;
 }
 
-/* Improved centering for View All Link */
-.view-all-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 2rem auto;
-  text-align: center;
-}
-
-.view-all-link {
-  display: inline-block;
-  padding: 0.8rem 2rem;
-  color: #000000;
-  text-decoration: none;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0,0,0,0.1);
-  margin: 0 auto;
-}
-
-.view-all-link:hover {
-  background: #000000;
-  color: #ffffff;
-}
-
 .delivery-section {
-    background-color: #e6f0ff;  /* svijetlo plava pozadina */
+    background-color: #e6f0ff;
     padding: 40px 0;
     margin: 0 auto;
-}
-
-.section-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    text-align: center;
 }
 
 .delivery-title {
@@ -394,6 +409,8 @@ body {
     padding: 30px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .delivery-content p {
@@ -415,6 +432,7 @@ body {
   border-top: none;
   margin-top: 60px;
   padding: 60px 0;
+  text-align: center;
 }
 
 .newsletter-content {
@@ -482,9 +500,9 @@ body {
 
 .newsletter-btn {
   background: #fff;
-  border: 1px solid #000000;    /* Promijenjeno u crno */
+  border: 1px solid #000000;
   border-radius: 3px;
-  color: #000000;              /* Promijenjeno u crno */
+  color: #000000;
   cursor: pointer;
   font-size: 13px;
   font-weight: 200;
@@ -494,7 +512,7 @@ body {
 }
 
 .newsletter-btn:hover {
-  background: #000000;         /* Promijenjeno u crno */
+  background: #000000;
   color: #fff;
 }
 
