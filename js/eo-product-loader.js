@@ -115,7 +115,7 @@ function setupFavoriteFunctionality(productId) {
     
     // Provjeri je li proizvod već u favoritima
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const isInFavorites = favorites.includes(productId);
+    const isInFavorites = favorites.some(item => item.id === productId);
     
     // Postavi odgovarajuću ikonu
     if (isInFavorites) {
@@ -132,17 +132,32 @@ function setupFavoriteFunctionality(productId) {
 
 // Funkcija za dodavanje/uklanjanje iz favorita
 function toggleFavorite(productId, button) {
+    const product = allEOProducts[productId];
+    if (!product) return;
+    
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const index = favorites.indexOf(productId);
+    const index = favorites.findIndex(item => item.id === productId);
     
     if (index > -1) {
         // Ukloni iz favorita
         favorites.splice(index, 1);
         button.innerHTML = '<i class="far fa-heart"></i>';
+        showNotification('Uklonjeno iz favorita 💔');
     } else {
-        // Dodaj u favorite
-        favorites.push(productId);
+        // Dodaj u favorite s formatom podataka koji se koristi na drugim stranicama
+        favorites.push({
+            id: productId,
+            name: product.title,
+            price: product.price.toFixed(2) + " KM",
+            priceValue: product.price,
+            image: product.images[0].src,
+            volume: product.volume,
+            description: product.tagline,
+            category: product.categoryType,
+            addedAt: new Date().toISOString()
+        });
         button.innerHTML = '<i class="fas fa-heart"></i>';
+        showNotification('Dodano u favorite ❤️');
     }
     
     localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -153,7 +168,12 @@ function toggleFavorite(productId, button) {
 function updateFavoriteCount() {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const favoriteCount = document.getElementById('favorite-count');
-    favoriteCount.textContent = favorites.length;
+    if (favorites.length > 0) {
+        favoriteCount.style.display = 'flex';
+        favoriteCount.textContent = favorites.length;
+    } else {
+        favoriteCount.style.display = 'none';
+    }
 }
 
 // Funkcionalnost za košaricu
@@ -172,31 +192,32 @@ function setupCartFunctionality(productId, product) {
 function addToCart(productId, product, quantity) {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     
-    // Provjera je li proizvod već u košarici
-    const existingItemIndex = cartItems.findIndex(item => item.id === productId);
+    // Format koji odgovara ostalim stranicama
+    const itemId = `${productId}-${Date.now()}`;
+    const newItem = {
+        id: itemId,
+        productId: productId,
+        name: product.title,
+        description: product.tagline,
+        price: product.price.toFixed(2) + " KM",
+        priceValue: product.price,
+        image: product.images[0].src,
+        volume: product.volume,
+        quantity: quantity,
+        totalPrice: (product.price * quantity).toFixed(2) + " KM",
+        type: "essential-oil",
+        category: product.categoryType,
+        addedAt: new Date().toISOString()
+    };
     
-    if (existingItemIndex > -1) {
-        // Ažuriraj količinu ako je proizvod već u košarici
-        cartItems[existingItemIndex].quantity += quantity;
-    } else {
-        // Dodaj novi proizvod u košaricu
-        cartItems.push({
-            id: productId,
-            title: product.title,
-            price: product.price,
-            image: product.images[0].src,
-            quantity: quantity
-        });
-    }
-    
-    // Spremi u localStorage
+    cartItems.push(newItem);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     
     // Ažuriraj broj proizvoda u košarici
     updateCartCount();
     
-    // Prikaži poruku o uspješnom dodavanju
-    alert(`Proizvod "${product.title}" uspješno dodan u košaricu!`);
+    // Prikaži obavještenje
+    showNotification('Proizvod dodan u košaricu ✨');
 }
 
 // Funkcija za ažuriranje broja proizvoda u košarici
@@ -204,8 +225,13 @@ function updateCartCount() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartCount = document.querySelector('.cart-count');
     
-    const totalCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-    cartCount.textContent = totalCount;
+    const totalCount = cartItems.reduce((total, item) => total + (parseInt(item.quantity) || 1), 0);
+    if (totalCount > 0) {
+        cartCount.style.display = 'flex';
+        cartCount.textContent = totalCount;
+    } else {
+        cartCount.style.display = 'none';
+    }
 }
 
 // Funkcije za povećanje i smanjenje količine
@@ -223,6 +249,22 @@ function decreaseQuantity() {
     if (quantity > 1) {
         quantityInput.value = quantity - 1;
     }
+}
+
+// Funkcija za prikaz obavještenja (dodana)
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 2000);
+    }, 100);
 }
 
 // Inicijalizacija kada se stranica učita
