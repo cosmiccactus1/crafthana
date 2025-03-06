@@ -1,14 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Essential Oil Shop Script Loaded');
     
+    // Definisanje liste proizvoda i njihovih ID-ova
+    const productIds = [
+        "vanilla-jasmine",
+        "pine-cedarwood",
+        "bergamot-vanilla",
+        "myrrh-vanilla",
+        "pine-cedarwood-bergamot-vanilla",
+        "planinska-koliba",
+        "jaffa-keks",
+        "zalazak-sunca",
+        "kandirana-mandarina",
+        "bijeli-musk",
+        // Dodaj ostale proizvode ako ih imaš
+        "bergamot-ylang-sandalwood",
+        "frankincense-myrrh-vanilla",
+        "jasmine-bergamot-sandalwood",
+        "patchouli-cedarwood-jasmine",
+        "jasmine-myyrh-ylang",
+        "jasmine-patchouli-ylang-cedarwood",
+        "jasmine-ylang-bergamot-cedarwood",
+        "patchouli-frankincense-myrrh-sandalwood-vanilla"
+    ];
+    
     // 1. Modalni prozori
     const openModal = (modalId) => {
         const modal = document.getElementById(modalId);
         if (!modal) {
             console.error('Modal nije pronađen:', modalId);
-            return;
+            // Pokušaj otvoriti generički modal u slučaju da specifični ID ne postoji
+            const genericModalId = 'modal-generic';
+            const genericModal = document.getElementById(genericModalId);
+            
+            if (genericModal) {
+                console.log('Otvaranje generičkog modala');
+                genericModal.style.display = 'block';
+                return;
+            } else {
+                console.error('Ni generički modal nije pronađen');
+                return;
+            }
         }
         
+        console.log('Otvaranje modala:', modalId);
         modal.style.display = 'block';
         
         // Dugmad za količinu
@@ -17,14 +52,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const quantityInput = modal.querySelector('.quantity-input');
         
         if (minusBtn && plusBtn && quantityInput) {
-            minusBtn.addEventListener('click', () => {
+            // Ukloni postojeće event listenere
+            const newMinusBtn = minusBtn.cloneNode(true);
+            const newPlusBtn = plusBtn.cloneNode(true);
+            minusBtn.parentNode.replaceChild(newMinusBtn, minusBtn);
+            plusBtn.parentNode.replaceChild(newPlusBtn, plusBtn);
+            
+            newMinusBtn.addEventListener('click', () => {
                 let quantity = parseInt(quantityInput.value);
                 if (quantity > 1) {
                     quantityInput.value = quantity - 1;
                 }
             });
             
-            plusBtn.addEventListener('click', () => {
+            newPlusBtn.addEventListener('click', () => {
                 let quantity = parseInt(quantityInput.value);
                 if (quantity < 10) {
                     quantityInput.value = quantity + 1;
@@ -50,7 +91,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Dodavanje u korpu
         const form = modal.querySelector('form');
         if (form) {
-            form.addEventListener('submit', (e) => {
+            // Ukloni postojeće event listenere
+            const newForm = form.cloneNode(true);
+            form.parentNode.replaceChild(newForm, form);
+            
+            newForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
                 // Dobijanje informacija o proizvodu iz data atributa
@@ -69,14 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const image = oilItem.querySelector('.oil-image').src;
                 
                 // Dobijanje odabrane opcije i cijene
-                const selectedOption = form.querySelector('input[name="bottle-size"]:checked');
+                const selectedOption = newForm.querySelector('input[name="bottle-size"]:checked');
                 const priceLabel = selectedOption.parentElement.textContent.trim();
                 const priceRegex = /(\d+(\.\d+)?) KM/;
                 const priceMatch = priceLabel.match(priceRegex);
                 const price = priceMatch ? priceMatch[1] : "0.00";
                 
                 // Dobijanje količine
-                const quantity = parseInt(quantityInput.value);
+                const newQuantityInput = newForm.querySelector('.quantity-input');
+                const quantity = parseInt(newQuantityInput.value);
                 
                 // Kreiranje objekta za korpu
                 const cartItem = {
@@ -90,6 +136,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     quantity: quantity,
                     addedAt: new Date().toISOString()
                 };
+                
+                console.log('Dodavanje artikla u korpu:', cartItem);
                 
                 // Dodavanje u lokalnu memoriju
                 const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -214,6 +262,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 5. Inicijalizacija event listenera
     const initializeEventListeners = () => {
+        // Provjera da li svi modali postoje
+        productIds.forEach(id => {
+            const modalId = `modal-${id}`;
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                console.warn(`Modal ${modalId} nije pronađen. Molimo dodajte ga u HTML.`);
+            }
+        });
+        
         // Dugmad za dodavanje u korpu
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
@@ -224,6 +281,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const productId = productContainer.dataset.productId;
                 if (!productId) return;
+                
+                console.log('Kliknuto na "Dodaj u ceger" za proizvod:', productId);
                 
                 const modalId = `modal-${productId}`;
                 openModal(modalId);
