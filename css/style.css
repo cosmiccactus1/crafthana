@@ -184,56 +184,91 @@ nav {
     transform: scale(1.2);
 }
 
-/* Footer */
+/* Improved Footer with Better Centering */
 footer {
     background-color: #f8f8f8;
     padding: 40px 20px;
     margin-top: 40px;
     border-top: 1px solid #eee;
+    text-align: center;
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 60px;
 }
 
-.footer-left {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+.footer-section {
+    flex: 1;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .footer-section h3 {
     font-size: 18px;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .footer-section ul {
     list-style: none;
+    padding: 0;
 }
 
 .footer-section ul li {
     margin-bottom: 8px;
+    text-align: center;
 }
 
 .footer-section ul li a,
 .footer-section p {
     color: #666;
     transition: color 0.3s ease;
+    text-align: center;
+}
+
+.footer-section p {
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 .footer-section ul li a:hover {
     color: #333;
 }
 
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
 .payment-icons i,
 .footer-right .social-icons a {
     font-size: 24px;
-    margin-right: 10px;
     color: #666;
     transition: color 0.3s ease;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-right .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 0;
+}
+
+.footer-right .social-icons a {
+    margin-right: 0;
 }
 
 .footer-right .social-icons a:hover {
@@ -255,6 +290,10 @@ footer {
     
     .nav-links a {
         margin: 0 10px;
+    }
+    
+    .footer-content {
+        gap: 30px;
     }
 }
 
@@ -314,16 +353,30 @@ footer {
 
     .footer-content {
         flex-direction: column;
+        gap: 30px;
     }
-
-    .footer-left {
+    
+    .footer-section {
+        max-width: 100%;
         margin-bottom: 20px;
     }
 
     .footer-right {
         text-align: center;
+        margin-top: 20px;
     }
 }
+
+@media (max-width: 480px) {
+    .footer-content {
+        gap: 20px;
+    }
+    
+    .footer-section h3 {
+        font-size: 16px;
+    }
+}
+
 .modal {
     display: none;
     position: fixed;
