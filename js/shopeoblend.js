@@ -1,162 +1,189 @@
+// shopeoblend.js
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Essential Oil Shop Script Loaded');
     
-    // Definisanje liste proizvoda i njihovih ID-ova
-    const productIds = [
-        "vanilla-jasmine",
-        "pine-cedarwood",
-        "bergamot-vanilla",
-        "myrrh-vanilla",
-        "pine-cedarwood-bergamot-vanilla",
-        "planinska-koliba",
-        "jaffa-keks",
-        "zalazak-sunca",
-        "kandirana-mandarina",
-        "bijeli-musk",
-        // Dodaj ostale proizvode ako ih imaš
-        "bergamot-ylang-sandalwood",
-        "frankincense-myrrh-vanilla",
-        "jasmine-bergamot-sandalwood",
-        "patchouli-cedarwood-jasmine",
-        "jasmine-myyrh-ylang",
-        "jasmine-patchouli-ylang-cedarwood",
-        "jasmine-ylang-bergamot-cedarwood",
-        "patchouli-frankincense-myrrh-sandalwood-vanilla"
-    ];
-    
-    // 1. Modalni prozori
-    const openModal = (modalId) => {
-        const modal = document.getElementById(modalId);
-        if (!modal) {
-            console.error('Modal nije pronađen:', modalId);
-            // Pokušaj otvoriti generički modal u slučaju da specifični ID ne postoji
-            const genericModalId = 'modal-generic';
-            const genericModal = document.getElementById(genericModalId);
-            
-            if (genericModal) {
-                console.log('Otvaranje generičkog modala');
-                genericModal.style.display = 'block';
-                return;
-            } else {
-                console.error('Ni generički modal nije pronađen');
-                return;
-            }
-        }
+    // 1. Products object
+    const products = {
+        'vanilla-jasmine': {
+            id: 'vanilla-jasmine',
+            name: 'Vanilla • Jasmine',
+            price: 8.89,
+            image: 'images/test2.png',
+            volume: '10 ml',
+            description: 'Slatka, cvjetna harmonija',
+            category: '2 Blend Roll On'
+        },
+        'patchouli-cedarwood': {
+            id: 'patchouli-cedarwood',
+            name: 'Patchouli • Cedarwood',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Zemljana nota sa drvenastim prizvukom',
+            category: '2 Blend Roll On'
+        },
+        'bergamot-ylang': {
+            id: 'bergamot-ylang',
+            name: 'Bergamot • Ylang Ylang',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Svježa cvjetna harmonija',
+            category: '2 Blend Roll On'
+        },
+        'pine-cedarwood': {
+            id: 'pine-cedarwood',
+            name: 'Pine Needle • Cedarwood',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Svježa šumska harmonija',
+            category: '2 Blend Roll On'
+        },
+        'sandalwood-jasmine': {
+            id: 'sandalwood-jasmine',
+            name: 'Sandalwood • Jasmine',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Orijentalna cvjetna harmonija',
+            category: '2 Blend Roll On'
+        },
+        'patchouli-bergamot': {
+            id: 'patchouli-bergamot',
+            name: 'Patchouli • Bergamot',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Zemljana svježina citrus nota',
+            category: '2 Blend Roll On'
+        },
+        'frankincense-myrrh': {
+            id: 'frankincense-myrrh',
+            name: 'Frankincense • Myrrh',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Drevna mistična harmonija',
+            category: '2 Blend Roll On'
+        },
+        'bergamot-vanilla': {
+            id: 'bergamot-vanilla',
+            name: 'Bergamot • Vanilla',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Slatka citrusna elegancija',
+            category: '2 Blend Roll On'
+        },
+        'ylang-frankincense': {
+            id: 'ylang-frankincense',
+            name: 'Ylang Ylang • Frankincense',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Egzotična drevna čarolija',
+            category: '2 Blend Roll On'
+        },
+        'myrrh-vanilla': {
+            id: 'myrrh-vanilla',
+            name: 'Myrrh • Vanilla',
+            price: 8.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Topla orijentalna slatkoća',
+            category: '2 Blend Roll On'
+        },
         
-        console.log('Otvaranje modala:', modalId);
-        modal.style.display = 'block';
+        // 3 Blend proizvodi
+        'bergamot-ylang-sandalwood': {
+            id: 'bergamot-ylang-sandalwood',
+            name: 'Bergamot • Ylang Ylang • Sandalwood',
+            price: 9.59,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Luksuzna tropska kompozicija',
+            category: '3 Blend Roll On'
+        },
+        'frankincense-myrrh-vanilla': {
+            id: 'frankincense-myrrh-vanilla',
+            name: 'Frankincense • Myrrh • Vanilla',
+            price: 9.59,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Drevna mistična harmonija',
+            category: '3 Blend Roll On'
+        },
+        'jasmine-bergamot-sandalwood': {
+            id: 'jasmine-bergamot-sandalwood',
+            name: 'Jasmine • Bergamot • Sandalwood',
+            price: 9.59,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Cvjetna orijentalska harmonija',
+            category: '3 Blend Roll On'
+        },
+        'patchouli-cedarwood-jasmine': {
+            id: 'patchouli-cedarwood-jasmine',
+            name: 'Patchouli • Cedarwood • Jasmine',
+            price: 9.59,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Šumska zemljana meditacija',
+            category: '3 Blend Roll On'
+        },
+        'jasmine-myrrh-ylang': {
+            id: 'jasmine-myrrh-ylang',
+            name: 'Jasmine • Myrrh • Ylang Ylang',
+            price: 9.59,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Egzotična senzualna esencija',
+            category: '3 Blend Roll On'
+        },
         
-        // Dugmad za količinu
-        const minusBtn = modal.querySelector('.quantity-btn.minus');
-        const plusBtn = modal.querySelector('.quantity-btn.plus');
-        const quantityInput = modal.querySelector('.quantity-input');
+        // 4 Blend proizvodi
+        'jasmine-patchouli-ylang-cedarwood': {
+            id: 'jasmine-patchouli-ylang-cedarwood',
+            name: 'Jasmine • Patchouli • Ylang Ylang • Cedarwood',
+            price: 9.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Bogata egzotična harmonija',
+            category: '4 Blend Roll On'
+        },
+        'pine-cedarwood-bergamot-vanilla': {
+            id: 'pine-cedarwood-bergamot-vanilla',
+            name: 'Pine • Cedarwood • Bergamot • Vanilla',
+            price: 9.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Šumsko-slatka harmonija',
+            category: '4 Blend Roll On'
+        },
+        'jasmine-ylang-bergamot-cedarwood': {
+            id: 'jasmine-ylang-bergamot-cedarwood',
+            name: 'Jasmine • Ylang Ylang • Bergamot • Cedarwood',
+            price: 9.89,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Luksuzna cvjetno-drvenasta kompozicija',
+            category: '4 Blend Roll On'
+        },
         
-        if (minusBtn && plusBtn && quantityInput) {
-            // Ukloni postojeće event listenere
-            const newMinusBtn = minusBtn.cloneNode(true);
-            const newPlusBtn = plusBtn.cloneNode(true);
-            minusBtn.parentNode.replaceChild(newMinusBtn, minusBtn);
-            plusBtn.parentNode.replaceChild(newPlusBtn, plusBtn);
-            
-            newMinusBtn.addEventListener('click', () => {
-                let quantity = parseInt(quantityInput.value);
-                if (quantity > 1) {
-                    quantityInput.value = quantity - 1;
-                }
-            });
-            
-            newPlusBtn.addEventListener('click', () => {
-                let quantity = parseInt(quantityInput.value);
-                if (quantity < 10) {
-                    quantityInput.value = quantity + 1;
-                }
-            });
-        }
-        
-        // Zatvaranje modala klikom na X
-        const closeBtn = modal.querySelector('.close');
-        if (closeBtn) {
-            closeBtn.onclick = () => {
-                modal.style.display = 'none';
-            };
-        }
-        
-        // Zatvaranje modala klikom izvan njega
-        window.onclick = (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        };
-        
-        // Dodavanje u korpu
-        const form = modal.querySelector('form');
-        if (form) {
-            // Ukloni postojeće event listenere
-            const newForm = form.cloneNode(true);
-            form.parentNode.replaceChild(newForm, form);
-            
-            newForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Dobijanje informacija o proizvodu iz data atributa
-                const productId = modalId.replace('modal-', '');
-                const oilItem = document.querySelector(`.oil-item[data-product-id="${productId}"]`);
-                
-                if (!oilItem) {
-                    console.error('Proizvod nije pronađen:', productId);
-                    return;
-                }
-                
-                // Dobijanje informacija o proizvodu
-                const name = oilItem.querySelector('h4').textContent;
-                const description = oilItem.querySelector('.blend-character').textContent;
-                const volume = oilItem.querySelector('.volume').textContent;
-                const image = oilItem.querySelector('.oil-image').src;
-                
-                // Dobijanje odabrane opcije i cijene
-                const selectedOption = newForm.querySelector('input[name="bottle-size"]:checked');
-                const priceLabel = selectedOption.parentElement.textContent.trim();
-                const priceRegex = /(\d+(\.\d+)?) KM/;
-                const priceMatch = priceLabel.match(priceRegex);
-                const price = priceMatch ? priceMatch[1] : "0.00";
-                
-                // Dobijanje količine
-                const newQuantityInput = newForm.querySelector('.quantity-input');
-                const quantity = parseInt(newQuantityInput.value);
-                
-                // Kreiranje objekta za korpu
-                const cartItem = {
-                    id: `${productId}-${Date.now()}`,
-                    productId: productId,
-                    name: name,
-                    price: price,
-                    image: image,
-                    volume: volume,
-                    description: description,
-                    quantity: quantity,
-                    addedAt: new Date().toISOString()
-                };
-                
-                console.log('Dodavanje artikla u korpu:', cartItem);
-                
-                // Dodavanje u lokalnu memoriju
-                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                cartItems.push(cartItem);
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                
-                // Ažuriranje brojača korpe
-                updateCartCount();
-                
-                // Zatvaranje modala
-                modal.style.display = 'none';
-                
-                // Prikazivanje obavještenja
-                showNotification('Proizvod dodan u košaricu ✨');
-            });
+        // 5 Blend proizvod
+        'patchouli-frankincense-myrrh-sandalwood-vanilla': {
+            id: 'patchouli-frankincense-myrrh-sandalwood-vanilla',
+            name: 'Patchouli • Frankincense • Myrrh • Sandalwood • Vanilla',
+            price: 10.99,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Luksuzni orijentalni parfem',
+            category: '5 Blend Roll On'
         }
     };
     
-    // 2. Funkcije za korpu
+    // 2. Cart functions
     const updateCartCount = () => {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const count = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
@@ -171,7 +198,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
     
-    // 3. Funkcije za favorite
+    const addToCart = (productId, quantity = 1) => {
+        const product = products[productId];
+        if (!product) {
+            console.error('Proizvod nije pronađen:', productId);
+            return;
+        }
+        
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        
+        const itemId = `${productId}-${Date.now()}`;
+        const newItem = {
+            id: itemId,
+            productId: productId,
+            name: product.name,
+            price: `${product.price.toFixed(2)} KM`,
+            numericPrice: product.price,
+            image: product.image,
+            volume: product.volume,
+            description: product.description,
+            quantity: quantity,
+            addedAt: new Date().toISOString()
+        };
+        
+        cartItems.push(newItem);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartCount();
+        showNotification('Proizvod dodan u košaricu ✨');
+        console.log('Added item to cart:', newItem);
+    };
+    
+    // 3. Favorite functions
     const updateFavoriteStatus = () => {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         
@@ -199,39 +256,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    const toggleFavorite = (button) => {
-        const productContainer = button.closest('.oil-item');
-        if (!productContainer) return;
-        
-        const productId = productContainer.dataset.productId;
-        const nameElement = productContainer.querySelector('h4');
-        const priceElement = productContainer.querySelector('.price');
-        const imageElement = productContainer.querySelector('.oil-image');
-        const volumeElement = productContainer.querySelector('.volume');
-        const descriptionElement = productContainer.querySelector('.blend-character');
-        
-        if (!nameElement || !priceElement || !imageElement || !volumeElement || !descriptionElement) {
-            console.error('Potrebni elementi nisu pronađeni');
+    const toggleFavorite = (productId) => {
+        const product = products[productId];
+        if (!product) {
+            console.error('Proizvod nije pronađen:', productId);
             return;
         }
-        
-        const name = nameElement.textContent;
-        const price = priceElement.textContent;
-        const image = imageElement.src;
-        const volume = volumeElement.textContent;
-        const description = descriptionElement.textContent;
         
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const index = favorites.findIndex(item => item.id === productId);
         
         if (index === -1) {
             favorites.push({
-                id: productId,
-                name: name,
-                price: price,
-                image: image,
-                volume: volume,
-                description: description,
+                ...product,
                 addedAt: new Date().toISOString()
             });
             showNotification('Dodano u favorite ❤️');
@@ -244,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateFavoriteStatus();
     };
     
-    // 4. Pomoćne funkcije
+    // 4. Helper functions
     const showNotification = (message) => {
         const notification = document.createElement('div');
         notification.className = 'notification';
@@ -260,17 +297,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     };
     
-    // 5. Inicijalizacija event listenera
+    // 5. Event Listeners
     const initializeEventListeners = () => {
-        // Provjera da li svi modali postoje
-        productIds.forEach(id => {
-            const modalId = `modal-${id}`;
-            const modal = document.getElementById(modalId);
-            if (!modal) {
-                console.warn(`Modal ${modalId} nije pronađen. Molimo dodajte ga u HTML.`);
-            }
-        });
-        
         // Dugmad za dodavanje u korpu
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
@@ -284,8 +312,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 console.log('Kliknuto na "Dodaj u ceger" za proizvod:', productId);
                 
-                const modalId = `modal-${productId}`;
-                openModal(modalId);
+                // Direktno dodaj u korpu bez modalnog prozora
+                addToCart(productId, 1);
             });
         });
         
@@ -293,7 +321,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.favorite-icon').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
-                toggleFavorite(button);
+                
+                const productContainer = button.closest('.oil-item');
+                if (!productContainer) return;
+                
+                const productId = productContainer.dataset.productId;
+                if (productId) {
+                    toggleFavorite(productId);
+                }
             });
         });
     };
@@ -302,4 +337,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     updateFavoriteStatus();
     initializeEventListeners();
+    
+    console.log('Essential Oil Shop Script has been initialized');
 });
