@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button class="remove-favorite" onclick="removeFavorite('${product.id}')">
                             <i class="fas fa-trash"></i>
                         </button>
-                        <a href="${product.pageUrl}" class="view-product">
+                       <a href="product.html?id=${product.id}" class="view-product">
                             Pogledaj proizvod
                         </a>
                     </div>
