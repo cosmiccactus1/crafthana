@@ -34,6 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'Slatka, cvjetna harmonija',
             category: '2-blend'
         },
+        'pine-cedarwood': {
+    id: 'pine-cedarwood',
+    name: 'Pine Needle • Cedarwood',
+    prices: { classic: 5.99, silk: 6.99, ultimate: 8.99 },
+    priceRange: '5.99-8.99 KM',
+    image: 'images/2blend4.png',
+    volume: '10 ml',
+    description: 'Šumska svježina s drvenastom dubinom',
+    category: '2-blend'
+},
         'sandalwood-jasmine': {
     id: 'sandalwood-jasmine',
     name: 'Sandalwood • Jasmine',
