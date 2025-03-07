@@ -98,109 +98,102 @@ document.addEventListener('DOMContentLoaded', function() {
     description: 'Topla orijentalna slatkoća',
     category: '2-blend'
 },
-    // 3 BLEND PROIZVODI
-    'bergamot-ylang-sandalwood': {
-        id: 'bergamot-ylang-sandalwood',
-        name: 'Bergamot • Ylang Ylang • Sandalwood',
-        prices: { classic: 6.99, silk: 8.99, ultimate: 9.99 },
-        priceRange: '6.99-9.99 KM',
-        image: 'images/blend-placeholder.png',
-        volume: '10 ml',
-        description: 'Luksuzna tropska kompozicija',
-        category: '3-blend'
-    },
+     // 3 BLEND PRODUCTS - CORRECTED
+        'bergamot-ylang-sandalwood': {
+            id: 'bergamot-ylang-sandalwood',
+            name: 'Bergamot • Ylang Ylang • Sandalwood',
+            prices: { classic: 6.99, silk: 7.99, ultimate: 9.99 },
+            priceRange: '6.99-9.99 KM',
+            image: 'images/3blend1.png',
+            volume: '10 ml',
+            description: 'Luksuzna tropska kompozicija',
+            category: '3-blend'
+        },
+        'frankincense-myrrh-vanilla': {
+            id: 'frankincense-myrrh-vanilla',
+            name: 'Frankincense • Myrrh • Vanilla',
+            prices: { classic: 6.99, silk: 7.99, ultimate: 9.99 },
+            priceRange: '6.99-9.99 KM',
+            image: 'images/3blend2.png',
+            volume: '10 ml',
+            description: 'Drevna spiritualna harmonija sa slatkoćom',
+            category: '3-blend'
+        },
+        'jasmine-bergamot-vanilla': {
+            id: 'jasmine-bergamot-vanilla',
+            name: 'Jasmine • Bergamot • Vanilla',
+            prices: { classic: 6.99, silk: 7.99, ultimate: 9.99 },
+            priceRange: '6.99-9.99 KM',
+            image: 'images/3blend3.png',
+            volume: '10 ml',
+            description: 'Cvjetna orijentalska harmonija',
+            category: '3-blend'
+        },
+        'patchouli-cedarwood-jasmine': {
+            id: 'patchouli-cedarwood-jasmine',
+            name: 'Patchouli • Cedarwood • Jasmine',
+            prices: { classic: 6.99, silk: 7.99, ultimate: 9.99 },
+            priceRange: '6.99-9.99 KM',
+            image: 'images/3blend4.png',
+            volume: '10 ml',
+            description: 'Šumska zemljana meditacija',
+            category: '3-blend'
+        },
+        'jasmine-myrrh-ylang': {
+            id: 'jasmine-myrrh-ylang',
+            name: 'Jasmine • Myrrh • Ylang Ylang',
+            prices: { classic: 6.99, silk: 7.99, ultimate: 9.99 },
+            priceRange: '6.99-9.99 KM',
+            image: 'images/3blend5.png',
+            volume: '10 ml',
+            description: 'Egzotična senzualna esencija',
+            category: '3-blend'
+        },
 
-    'frankincense-myrrh-vanilla': {
-        id: 'frankincense-myrrh-vanilla',
-        name: 'Frankincense • Myrrh • Vanilla',
-        prices: { classic: 6.99, silk: 8.99, ultimate: 9.99 },
-        priceRange: '6.99-9.99 KM',
-        image: 'images/blend-placeholder.png',
-        volume: '10 ml',
-        description: 'Luksuzna tropska kompozicija',
-        category: '3-blend'
-    },
+        // 4 BLEND PRODUCTS - CORRECTED
+        'jasmine-patchouli-ylang-cedarwood': {
+            id: 'jasmine-patchouli-ylang-cedarwood',
+            name: 'Jasmine • Patchouli • Ylang Ylang • Cedarwood',
+            prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
+            priceRange: '8.99-11.99 KM',
+            image: 'images/4blend1.png',
+            volume: '10 ml',
+            description: 'Bogata egzotična harmonija',
+            category: '4-blend'
+        },
+        'pine-cedarwood-bergamot-vanilla': {
+            id: 'pine-cedarwood-bergamot-vanilla',
+            name: 'Pine • Cedarwood • Bergamot • Vanilla',
+            prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
+            priceRange: '8.99-11.99 KM',
+            image: 'images/4blend2.png',
+            volume: '10 ml',
+            description: 'Šumsko-slatka harmonija',
+            category: '4-blend'
+        },
+        'jasmine-ylang-bergamot-vanilla': {
+            id: 'jasmine-ylang-bergamot-vanilla',
+            name: 'Jasmine • Ylang Ylang • Bergamot • Vanilla',
+            prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
+            priceRange: '8.99-11.99 KM',
+            image: 'images/4blend3.png',
+            volume: '10 ml',
+            description: 'Luksuzna cvjetno-drvenasta kompozicija',
+            category: '4-blend'
+        },
 
-    'jasmine-bergamot-sandalwood': {
-        id: 'jasmine-bergamot-sandalwood',
-        name: 'Jasmine • Bergamot • Sandalwood',
-        prices: { classic: 6.99, silk: 8.99, ultimate: 9.99 },
-        priceRange: '6.99-9.99 KM',
-        image: 'images/blend-placeholder.png',
-        volume: '10 ml',
-        description: 'Cvjetna orijentalska harmonija',
-        category: '3-blend'
-    },
-
-    'patchouli-cedarwood-jasmine': {
-        id: 'patchouli-cedarwood-jasmine',
-        name: 'Patchouli • Cedarwood • Jasmine',
-        prices: { classic: 6.99, silk: 8.99, ultimate: 9.99 },
-        priceRange: '6.99-9.99 KM',
-        image: 'images/blend-placeholder.png',
-        volume: '10 ml',
-        description: 'Šumska zemljana meditacija',
-        category: '3-blend'
-    },
-
-    'jasmine-myyrh-ylang': {
-        id: 'jasmine-myyrh-ylang',
-        name: 'Jasmine • Myyrh • Ylang Ylang',
-        prices: { classic: 6.99, silk: 8.99, ultimate: 9.99 },
-        priceRange: '6.99-9.99 KM',
-        image: 'images/blend-placeholder.png',
-        volume: '10 ml',
-        description: 'Egzotična senzualna esencija',
-        category: '3-blend'
-    },
-
-    // 4 BLEND PROIZVODI
-    'jasmine-patchouli-ylang-cedarwood': {
-        id: 'jasmine-patchouli-ylang-cedarwood',
-        name: 'Jasmine • Patchouli • Ylang Ylang • Cedarwood',
-        prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
-        priceRange: '8.99-11.99 KM',
-        image: 'images/blend-placeholder.png',
-        volume: '10 ml',
-        description: 'Bogata egzotična harmonija',
-        category: '4-blend'
-    },
-
-    'pine-cedarwood-bergamot-vanilla': {
-        id: 'pine-cedarwood-bergamot-vanilla',
-        name: 'Pine • Cedarwood • Bergamot • Vanilla',
-        prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
-        priceRange: '8.99-11.99 KM',
-        image: 'images/pcbv.png',
-        volume: '10 ml',
-        description: 'Šumsko-slatka harmonija',
-        category: '4-blend'
-    },
-
-    'jasmine-ylang-bergamot-cedarwood': {
-        id: 'jasmine-ylang-bergamot-cedarwood',
-        name: 'Jasmine • Ylang Ylang • Bergamot • Cedarwood',
-        prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
-        priceRange: '8.99-11.99 KM',
-        image: 'images/blend-placeholder.png',
-        volume: '10 ml',
-        description: 'Luksuzna cvjetno-drvenasta kompozicija',
-        category: '4-blend'
-    },
-
-    // 5 BLEND PROIZVOD
-    'patchouli-frankincense-myrrh-sandalwood-vanilla': {
-        id: 'patchouli-frankincense-myrrh-sandalwood-vanilla',
-        name: 'Patchouli • Frankincense • Myrrh • Sandalwood • Vanilla',
-        prices: { classic: 8.99, silk: 10.99, ultimate: 12.99 },
-        priceRange: '8.99-12.99 KM',
-        image: 'images/blend-placeholder.png',
-        volume: '10 ml',
-        description: 'Luksuzni orijentalni parfem',
-        category: '5-blend'
-    }
-};
-    
+        // 5 BLEND PRODUCT - CORRECTED
+        'patchouli-frankincense-myrrh-sandalwood-vanilla': {
+            id: 'patchouli-frankincense-myrrh-sandalwood-vanilla',
+            name: 'Patchouli • Frankincense • Myrrh • Sandalwood • Vanilla',
+            prices: { classic: 8.99, silk: 10.99, ultimate: 12.99 },
+            priceRange: '8.99-12.99 KM',
+            image: 'images/5blend1.png',
+            volume: '10 ml',
+            description: 'Luksuzni orijentalni parfem',
+            category: '5-blend'
+        }
+    };
 
     // Helper funkcija za formatiranje imena baznog ulja
     const formatBaseOilName = (baseOil) => {
