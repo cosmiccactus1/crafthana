@@ -105,7 +105,7 @@
 }
 
 /* Overlay za full-screen prikaz slike */
-.image-overlay {
+#image-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -115,13 +115,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 9999;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
 }
 
-.image-overlay.active {
+#image-overlay.active {
     opacity: 1;
     pointer-events: auto;
 }
@@ -130,6 +130,7 @@
     max-width: 80%;
     max-height: 80%;
     object-fit: contain;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .close-overlay {
@@ -148,6 +149,7 @@
     justify-content: center;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
 }
 
 .close-overlay:hover {
@@ -357,7 +359,7 @@
 
 /* Isključivanje funkcionalnosti na mobilnim uređajima */
 @media (max-width: 768px) {
-    .image-overlay {
+    #image-overlay {
         display: none;
     }
 }
