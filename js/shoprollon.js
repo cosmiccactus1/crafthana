@@ -181,9 +181,9 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'Šumsko-slatka harmonija',
             category: '4-blend'
         },
-        'jasmine-ylang-bergamot-vanilla': {
-            id: 'jasmine-ylang-bergamot-vanilla',
-            name: 'Jasmine • Ylang Ylang • Bergamot • Vanilla',
+        'jasmine-ylang-bergamot-cedarwood': {
+            id: 'jasmine-ylang-bergamot-cedarwood',
+            name: 'Jasmine • Ylang Ylang • Bergamot • Cedarwood',
             prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
             priceRange: '8.99-11.99 KM',
             image: 'images/4blend3.png',
