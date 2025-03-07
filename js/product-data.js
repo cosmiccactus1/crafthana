@@ -238,7 +238,7 @@ const allProducts = {
         categoryType: "3 Blend Roll On",
         categoryLink: "rollon-eo.html",
         images: [
-            { src: "images/blend-placeholder.png", alt: "Bergamot • Ylang Ylang • Sandalwood blend roll on" },
+            { src: "images/3blend1.png", alt: "Bergamot • Ylang Ylang • Sandalwood blend roll on" },
             { src: "images/blend-placeholder.png", alt: "Bergamot • Ylang Ylang • Sandalwood detail 1" },
             { src: "images/blend-placeholder.png", alt: "Bergamot • Ylang Ylang • Sandalwood detail 2" }
         ],
@@ -260,7 +260,7 @@ const allProducts = {
         categoryType: "3 Blend Roll On",
         categoryLink: "rollon-eo.html",
         images: [
-            { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla blend roll on" },
+            { src: "images/3blend2.png", alt: "Frankincense • Myrrh • Vanilla blend roll on" },
             { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla detail 1" },
             { src: "images/blend-placeholder.png", alt: "Frankincense • Myrrh • Vanilla detail 2" }
         ],
@@ -282,7 +282,7 @@ const allProducts = {
         categoryType: "3 Blend Roll On",
         categoryLink: "rollon-eo.html",
         images: [
-            { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood blend roll on" },
+            { src: "images/3blend3.png", alt: "Jasmine • Bergamot • Sandalwood blend roll on" },
             { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood detail 1" },
             { src: "images/blend-placeholder.png", alt: "Jasmine • Bergamot • Sandalwood detail 2" }
         ],
@@ -304,7 +304,7 @@ const allProducts = {
         categoryType: "3 Blend Roll On",
         categoryLink: "rollon-eo.html",
         images: [
-            { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine blend roll on" },
+            { src: "images/3blend4.png", alt: "Patchouli • Cedarwood • Jasmine blend roll on" },
             { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine detail 1" },
             { src: "images/blend-placeholder.png", alt: "Patchouli • Cedarwood • Jasmine detail 2" }
         ],
@@ -326,7 +326,7 @@ const allProducts = {
         categoryType: "3 Blend Roll On",
         categoryLink: "rollon-eo.html",
         images: [
-            { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang blend roll on" },
+            { src: "images/3blend5.png", alt: "Jasmine • Myrrh • Ylang Ylang blend roll on" },
             { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang detail 1" },
             { src: "images/blend-placeholder.png", alt: "Jasmine • Myrrh • Ylang Ylang detail 2" }
         ],
@@ -350,7 +350,7 @@ const allProducts = {
         categoryType: "4 Blend Roll On",
         categoryLink: "rollon-eo.html",
         images: [
-            { src: "images/pcbv.png", alt: "Pine • Cedarwood • Bergamot • Vanilla blend roll on" },
+            { src: "images/4blend1.png", alt: "Pine • Cedarwood • Bergamot • Vanilla blend roll on" },
             { src: "images/pcbv-1.png", alt: "Pine • Cedarwood • Bergamot • Vanilla detail 1" },
             { src: "images/pcbv-2.png", alt: "Pine • Cedarwood • Bergamot • Vanilla detail 2" }
         ],
@@ -372,7 +372,7 @@ const allProducts = {
         categoryType: "4 Blend Roll On",
         categoryLink: "rollon-eo.html",
         images: [
-            { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood blend roll on" },
+            { src: "images/4blend2.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood blend roll on" },
             { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 1" },
             { src: "images/blend-placeholder.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 2" }
         ],
@@ -383,18 +383,18 @@ const allProducts = {
         }
     },
    "jasmine-ylang-bergamot-cedarwood": {
-    id: "jasmine-ylang-bergamot-cedarwood",
-    title: "Jasmine • Ylang Ylang • Bergamot • Cedarwood",
+    id: "jasmine-ylang-bergamot-vanilla",
+    title: "Jasmine • Ylang Ylang • Bergamot • Vanilla",
     tagline: "Luksuzna cvjetno-drvenasta kompozicija",
     volume: "10 ml",
-    description: "Elegantna kombinacija koja spaja cvjetne note jasmina i ylang ylanga, osvježavajući citrusni bergamot i toplu kedrovinu. Ovaj harmoničan blend stvara sofisticiran miris koji istovremeno energizira i opušta, pružajući trenutke luksuza u svakodnevici.",
+    description: "Elegantna kombinacija koja spaja cvjetne note jasmina i ylang ylanga, osvježavajući citrusni bergamot i vanillu. Ovaj harmoničan blend stvara sofisticiran miris koji istovremeno energizira i opušta, pružajući trenutke luksuza u svakodnevici.",
     usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Jasmin (Jasminum officinale), Ylang Ylang (Cananga odorata), Bergamot (Citrus bergamia), Kedrovo drvo (Cedrus atlantica) u baznom ulju po izboru.",
+    ingredients: "Jasmin (Jasminum officinale), Ylang Ylang (Cananga odorata), Bergamot (Citrus bergamia), Vanilla u baznom ulju po izboru.",
     category: "Roll On EO",
     categoryType: "4 Blend Roll On",
     categoryLink: "rollon-eo.html",
     images: [
-        { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood blend roll on" },
+        { src: "images/4blend3.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood blend roll on" },
         { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood detail 1" },
         { src: "images/blend-placeholder.png", alt: "Jasmine • Ylang Ylang • Bergamot • Cedarwood detail 2" }
     ],
@@ -418,7 +418,7 @@ const allProducts = {
         categoryType: "5 Blend Roll On",
         categoryLink: "rollon-eo.html",
         images: [
-            { src: "images/blend-placeholder.png", alt: "Luxury 5 Oil Blend roll on" },
+            { src: "images/4blend4.png", alt: "Luxury 5 Oil Blend roll on" },
             { src: "images/blend-placeholder.png", alt: "Luxury 5 Oil Blend detail 1" },
             { src: "images/blend-placeholder.png", alt: "Luxury 5 Oil Blend detail 2" }
         ],
