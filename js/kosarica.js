@@ -1,31 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Kosarica.js učitan");
-    
     const cartContainer = document.querySelector('.cart-container');
     const newsletterForm = document.getElementById('newsletterForm');
     const discountMessage = document.querySelector('.discount-message');
 
-    // Kreiramo magnifier element - jednostavnije i direktnije
-    let magnifier = document.querySelector('.magnifier');
-    
-    if (!magnifier) {
-        console.log("Kreiranje magnifier elementa");
-        magnifier = document.createElement('div');
-        magnifier.className = 'magnifier';
+    // Postavljanje magnifier funkcionalnosti
+    function setupMagnifier() {
+        // Kreiraj magnifier element ako ne postoji
+        let magnifier = document.querySelector('.magnifier');
+        if (!magnifier) {
+            magnifier = document.createElement('div');
+            magnifier.className = 'magnifier';
+            
+            const img = document.createElement('img');
+            magnifier.appendChild(img);
+            
+            document.body.appendChild(magnifier);
+        }
         
-        const img = document.createElement('img');
-        magnifier.appendChild(img);
+        // Dohvati sliku u magnifieru
+        const magnifierImg = magnifier.querySelector('img');
         
-        document.body.appendChild(magnifier);
-        console.log("Magnifier dodan u DOM:", magnifier);
-    }
-    
-    // Funkcija za provjeru da li je uređaj mobilan
-    function isMobileDevice() {
-        return (window.innerWidth <= 768) || 
-               ('ontouchstart' in window) || 
-               (navigator.maxTouchPoints > 0) ||
-               (navigator.msMaxTouchPoints > 0);
+        // Dodaj event listenere na sve kontejnere slika
+        document.querySelectorAll('.product-image-container').forEach(container => {
+            const img = container.querySelector('img');
+            
+            // Kad miš uđe u kontejner
+            container.onmouseenter = function() {
+                if (img && img.src) {
+                    magnifierImg.src = img.src;
+                    magnifier.style.display = 'block';
+                }
+            };
+            
+            // Kad miš izađe iz kontejnera
+            container.onmouseleave = function() {
+                magnifier.style.display = 'none';
+            };
+            
+            // Kad se miš kreće unutar kontejnera
+            container.onmousemove = function(e) {
+                // Pozicioniraj magnifier pored kursora
+                magnifier.style.left = (e.pageX + 20) + 'px';
+                magnifier.style.top = (e.pageY - 50) + 'px';
+            };
+        });
     }
 
     // Funkcija za dohvaćanje newsletter popusta iz localStorage
@@ -56,8 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Renderiranje košarice
     function renderCart() {
-        console.log("Renderiranje košarice");
-        
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const discountPercent = getNewsletterDiscount();
         let cartHTML = '';
@@ -80,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button class="remove-item" aria-label="Ukloni proizvod">
                             <i class="fas fa-times"></i>
                         </button>
-                        <div class="product-image-container" data-zoom="true">
+                        <div class="product-image-container">
                             <img src="${item.image}" alt="${item.name}">
                         </div>
                         <div class="product-details">
@@ -145,10 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
         addRemoveListeners();
         addCheckoutListener();
         
-        // Dodajemo listenere za zumiranje nakon malog odgađanja da se DOM ažurira
-        setTimeout(function() {
-            addMagnifierListeners();
-        }, 100);
+        // Postavljamo zoom funkcionalnost
+        setupMagnifier();
     }
 
     // Funkcija za ažuriranje količine proizvoda
@@ -184,97 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.style.display = totalItems > 0 ? 'flex' : 'none';
             });
         }
-    }
-
-    // Funkcija za dodavanje event listenera za magnifier efekt
-    function addMagnifierListeners() {
-        console.log("Dodavanje magnifier listenera");
-        
-        // Preskačemo ako je mobilan uređaj
-        if (isMobileDevice()) {
-            console.log("Mobilan uređaj detektiran, preskačem magnifier");
-            return;
-        }
-        
-        const magnifierImg = magnifier.querySelector('img');
-        if (!magnifierImg) {
-            console.error("Nije pronađena slika unutar magnifier elementa");
-            return;
-        }
-        
-        document.querySelectorAll('.product-image-container[data-zoom="true"]').forEach(container => {
-            console.log("Postavljanje zoom listenera za kontejner:", container);
-            
-            const img = container.querySelector('img');
-            if (!img || !img.src) {
-                console.error("Nema slike ili src atributa unutar kontejnera");
-                return;
-            }
-            
-            // Kada miš uđe u kontejner slike
-            container.addEventListener('mouseenter', function(e) {
-                console.log("Mouse enter na slici");
-                magnifierImg.src = img.src;
-                magnifier.style.display = 'block';
-                
-                // Postavljamo zoom faktor za sliku u magnifieru
-                magnifierImg.style.transform = 'scale(2.5)';
-                magnifierImg.style.transformOrigin = '0 0';
-                
-                // Simuliramo mousemove da se odmah postavi pozicija
-                const mouseEvent = new MouseEvent('mousemove', {
-                    clientX: e.clientX,
-                    clientY: e.clientY
-                });
-                container.dispatchEvent(mouseEvent);
-            });
-            
-            // Kada miš izađe iz kontejnera slike
-            container.addEventListener('mouseleave', function() {
-                console.log("Mouse leave sa slike");
-                magnifier.style.display = 'none';
-            });
-            
-            // Kada se miš pomjera unutar kontejnera slike
-            container.addEventListener('mousemove', function(e) {
-                // Potrebno izračunati relativnu poziciju miša unutar kontejnera
-                const rect = container.getBoundingClientRect();
-                const mouseX = e.clientX - rect.left;
-                const mouseY = e.clientY - rect.top;
-                
-                // Izračunavanje postotka pozicije miša unutar slike
-                const xPercent = mouseX / rect.width * 100;
-                const yPercent = mouseY / rect.height * 100;
-                
-                // Pomak da magnifier ne pokriva kursor
-                const offsetX = 30;
-                const offsetY = 30;
-                
-                // Dimenzije magnifiera
-                const magnifierWidth = magnifier.offsetWidth;
-                const magnifierHeight = magnifier.offsetHeight;
-                
-                // Pozicioniranje - prvo desno od kursora
-                let left = e.clientX + offsetX;
-                let top = e.clientY + offsetY;
-                
-                // Provjera da ne izlazi izvan ekrana
-                if (left + magnifierWidth > window.innerWidth) {
-                    left = e.clientX - magnifierWidth - offsetX;
-                }
-                
-                if (top + magnifierHeight > window.innerHeight) {
-                    top = e.clientY - magnifierHeight - offsetY;
-                }
-                
-                // Postavlja poziciju magnifiera
-                magnifier.style.left = left + 'px';
-                magnifier.style.top = top + 'px';
-                
-                // Pomičemo sliku unutar magnifiera da simuliramo zoom efekt
-                magnifierImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-            });
-        });
     }
 
     // Event listeneri za gumbe za količinu (+/-)
@@ -327,17 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event listener za promjenu veličine prozora
-    window.addEventListener('resize', function() {
-        // Ako je prozor smanjen na mobilnu veličinu, sakrijemo magnifier
-        if (isMobileDevice()) {
-            magnifier.style.display = 'none';
-        }
-    });
-
     // Inicijalno renderiranje košarice
     if (cartContainer) {
-        console.log("Pokretanje inicijalizacije košarice");
         renderCart();
         updateCartCount();
     }
