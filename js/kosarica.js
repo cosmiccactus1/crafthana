@@ -127,7 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
         addCheckoutListener();
         
         // Postavimo efekt povećanja slike nakon renderiranja košarice
-        setTimeout(setupImageMagnifier, 100);
+        // Koristimo kraće razdoblje za setTimeout da bi se bolje odazvalo
+        setTimeout(setupImageMagnifier, 50);
     }
 
     // Funkcija za ažuriranje količine proizvoda
@@ -252,10 +253,26 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalImg = container.querySelector('img');
             
             // Kada miš uđe u kontejner slike
-            container.addEventListener('mouseenter', function() {
+            container.addEventListener('mouseenter', function(e) {
                 if (originalImg && originalImg.src) {
                     magnifiedImg.src = originalImg.src;
-                    magnifiedContainer.style.opacity = '1';
+                    
+                    // Osigurajmo da je slika učitana prije nego što pokažemo kontejner
+                    magnifiedImg.onload = function() {
+                        magnifiedContainer.style.opacity = '1';
+                        
+                        // Simuliramo mousemove da se pozicionira slika
+                        const mouseMoveEvent = new MouseEvent('mousemove', {
+                            clientX: e.clientX,
+                            clientY: e.clientY
+                        });
+                        container.dispatchEvent(mouseMoveEvent);
+                    };
+                    
+                    // Za slučaj da je slika već u cache-u
+                    if (magnifiedImg.complete) {
+                        magnifiedContainer.style.opacity = '1';
+                    }
                 }
             });
             
@@ -271,8 +288,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const mouseY = e.clientY;
                 
                 // Pomak da slika ne pokriva kursor
-                const offsetX = 20; 
-                const offsetY = 20;
+                const offsetX = 30; // Povećan pomak 
+                const offsetY = 30; // Povećan pomak
                 
                 // Dimenzije uvećane slike
                 const imgWidth = magnifiedContainer.offsetWidth;
@@ -298,6 +315,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Dodajemo event listener za promjenu veličine prozora
+    window.addEventListener('resize', function() {
+        // Ako veličina prozora mijenja između mobilne i desktop verzije
+        // ponovnog pokreni postavljanje magnifier-a
+        setupImageMagnifier();
+    });
 
     // Inicijalno renderiranje košarice
     if (cartContainer) {
