@@ -217,6 +217,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 magnifierImg.src = img.src;
                 magnifier.style.display = 'block';
                 
+                // Postavljamo zoom faktor za sliku u magnifieru
+                magnifierImg.style.transform = 'scale(2.5)';
+                magnifierImg.style.transformOrigin = '0 0';
+                
                 // Simuliramo mousemove da se odmah postavi pozicija
                 const mouseEvent = new MouseEvent('mousemove', {
                     clientX: e.clientX,
@@ -233,8 +237,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Kada se miš pomjera unutar kontejnera slike
             container.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
+                // Potrebno izračunati relativnu poziciju miša unutar kontejnera
+                const rect = container.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                
+                // Izračunavanje postotka pozicije miša unutar slike
+                const xPercent = mouseX / rect.width * 100;
+                const yPercent = mouseY / rect.height * 100;
                 
                 // Pomak da magnifier ne pokriva kursor
                 const offsetX = 30;
@@ -245,21 +255,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 const magnifierHeight = magnifier.offsetHeight;
                 
                 // Pozicioniranje - prvo desno od kursora
-                let left = mouseX + offsetX;
-                let top = mouseY + offsetY;
+                let left = e.clientX + offsetX;
+                let top = e.clientY + offsetY;
                 
                 // Provjera da ne izlazi izvan ekrana
                 if (left + magnifierWidth > window.innerWidth) {
-                    left = mouseX - magnifierWidth - offsetX;
+                    left = e.clientX - magnifierWidth - offsetX;
                 }
                 
                 if (top + magnifierHeight > window.innerHeight) {
-                    top = mouseY - magnifierHeight - offsetY;
+                    top = e.clientY - magnifierHeight - offsetY;
                 }
                 
-                // Postavlja poziciju
+                // Postavlja poziciju magnifiera
                 magnifier.style.left = left + 'px';
                 magnifier.style.top = top + 'px';
+                
+                // Pomičemo sliku unutar magnifiera da simuliramo zoom efekt
+                magnifierImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
             });
         });
     }
