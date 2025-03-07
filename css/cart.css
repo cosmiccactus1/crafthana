@@ -114,14 +114,28 @@
     display: none;
     background-color: white;
     overflow: hidden;
-    border: 1px solid #eaeaea;
+    border: 2px solid #eaeaea;
     padding: 10px;
+    top: 0;
+    left: 0;
 }
 
 .magnifier img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
+}
+
+/* Cursor za kontejner slike - jasno pokazuje da je moguće zumiranje */
+.product-image-container[data-zoom="true"] {
+    cursor: zoom-in !important;
+}
+
+/* Naglašeni hover efekat */
+.product-image-container[data-zoom="true"]:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    border-color: #ccc;
 }
 
 .product-details {
