@@ -100,7 +100,7 @@
 }
 
 .product-image-container:hover img {
-    transform: scale(1.05);
+    transform: scale(1.15); /* Povećano sa 1.05 */
 }
 
 .product-details {
@@ -278,18 +278,18 @@
     color: #27ae60;
 }
 
-/* Kontejner za uvećanu sliku */
+/* Povećani kontejner za uvećanu sliku */
 .magnified-image-container {
     position: fixed;
     z-index: 1000;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.2s ease;
-    width: 200px;
-    height: 200px;
-    border-radius: 8px;
+    width: 300px;  /* Povećano sa 200px */
+    height: 300px; /* Povećano sa 200px */
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
     background-color: white;
     display: flex;
     align-items: center;
@@ -325,6 +325,22 @@
 
     .subtotal, .discount, .total {
         justify-content: space-between;
+    }
+}
+
+/* Isključivanje funkcionalnosti na mobilnim uređajima */
+@media (max-width: 768px) {
+    .product-image-container {
+        cursor: default; /* Uklonjen cursor: zoom-in */
+    }
+    
+    .product-image-container:hover img {
+        transform: none; /* Bez zoom efekta na hover */
+    }
+    
+    /* Magnifier kontejner se neće prikazati na mobilnim uređajima */
+    .magnified-image-container {
+        display: none;
     }
 }
 
