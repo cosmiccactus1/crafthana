@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Funkcija za provjeru da li je uređaj mobilan
+    function isMobileDevice() {
+        return (window.innerWidth <= 768) || 
+               ('ontouchstart' in window) || 
+               (navigator.maxTouchPoints > 0) ||
+               (navigator.msMaxTouchPoints > 0);
+    }
+
     // Renderiranje košarice
     function renderCart() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -209,6 +217,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Funkcija za postavljanje efekta povećanja slike
     function setupImageMagnifier() {
+        // Provjera da li je mobilni uređaj - ako jest, ne postavljamo magnifier
+        if (isMobileDevice()) {
+            return;
+        }
+        
         // Kreiranje kontejnera za uvećanu sliku ako već ne postoji
         let magnifiedContainer = document.getElementById('magnified-image-container');
         if (!magnifiedContainer) {
