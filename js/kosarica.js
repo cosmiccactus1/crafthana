@@ -3,6 +3,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const newsletterForm = document.getElementById('newsletterForm');
     const discountMessage = document.querySelector('.discount-message');
 
+    // Kreiramo overlay za prikaz slika
+    const createImageOverlay = () => {
+        if (document.getElementById('image-overlay')) return;
+        
+        const overlay = document.createElement('div');
+        overlay.id = 'image-overlay';
+        overlay.className = 'image-overlay';
+        
+        const img = document.createElement('img');
+        img.className = 'overlay-image';
+        
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'close-overlay';
+        closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('active');
+        });
+        
+        // Zatvaranje overlaya na klik izvan slike
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+        
+        overlay.appendChild(img);
+        overlay.appendChild(closeBtn);
+        document.body.appendChild(overlay);
+    };
+    
+    // Funkcija za provjeru da li je uređaj mobilan
+    function isMobileDevice() {
+        return (window.innerWidth <= 768) || 
+               ('ontouchstart' in window) || 
+               (navigator.maxTouchPoints > 0) ||
+               (navigator.msMaxTouchPoints > 0);
+    }
+
     // Funkcija za dohvaćanje newsletter popusta iz localStorage
     function getNewsletterDiscount() {
         const discountCode = localStorage.getItem('discountCode');
@@ -29,14 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Funkcija za provjeru da li je uređaj mobilan
-    function isMobileDevice() {
-        return (window.innerWidth <= 768) || 
-               ('ontouchstart' in window) || 
-               (navigator.maxTouchPoints > 0) ||
-               (navigator.msMaxTouchPoints > 0);
-    }
-
     // Renderiranje košarice
     function renderCart() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -61,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button class="remove-item" aria-label="Ukloni proizvod">
                             <i class="fas fa-times"></i>
                         </button>
-                        <div class="product-image-container">
+                        <div class="product-image-container" data-image="${item.image}">
                             <img src="${item.image}" alt="${item.name}">
                         </div>
                         <div class="product-details">
@@ -125,10 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         addQuantityListeners();
         addRemoveListeners();
         addCheckoutListener();
-        
-        // Postavimo efekt povećanja slike nakon renderiranja košarice
-        // Koristimo kraće razdoblje za setTimeout da bi se bolje odazvalo
-        setTimeout(setupImageMagnifier, 50);
+        addImageListeners();
     }
 
     // Funkcija za ažuriranje količine proizvoda
@@ -164,6 +191,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.style.display = totalItems > 0 ? 'flex' : 'none';
             });
         }
+    }
+
+    // Dodavanje listenera za prikaz slike u punoj veličini
+    function addImageListeners() {
+        // Provjera je li mobilni uređaj
+        if (isMobileDevice()) return;
+        
+        // Kreiramo overlay ako već ne postoji
+        createImageOverlay();
+        
+        const overlay = document.getElementById('image-overlay');
+        const overlayImg = overlay.querySelector('.overlay-image');
+        
+        document.querySelectorAll('.product-image-container').forEach(container => {
+            container.addEventListener('click', function() {
+                const imgSrc = this.getAttribute('data-image');
+                if (imgSrc) {
+                    overlayImg.src = imgSrc;
+                    
+                    // Aktiviramo overlay nakon što se slika učita
+                    overlayImg.onload = function() {
+                        overlay.classList.add('active');
+                    };
+                    
+                    // Za slučaj da je slika već u cache-u
+                    if (overlayImg.complete) {
+                        overlay.classList.add('active');
+                    }
+                }
+            });
+        });
     }
 
     // Event listeneri za gumbe za količinu (+/-)
@@ -216,111 +274,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Funkcija za postavljanje efekta povećanja slike
-    function setupImageMagnifier() {
-        // Provjera da li je mobilni uređaj - ako jest, ne postavljamo magnifier
-        if (isMobileDevice()) {
-            return;
-        }
-        
-        // Kreiranje kontejnera za uvećanu sliku ako već ne postoji
-        let magnifiedContainer = document.getElementById('magnified-image-container');
-        if (!magnifiedContainer) {
-            magnifiedContainer = document.createElement('div');
-            magnifiedContainer.id = 'magnified-image-container';
-            magnifiedContainer.className = 'magnified-image-container';
-            document.body.appendChild(magnifiedContainer);
-        }
-
-        // Dodavanje uvećane slike unutar kontejnera
-        if (!magnifiedContainer.querySelector('img')) {
-            const magnifiedImg = document.createElement('img');
-            magnifiedImg.id = 'magnified-image';
-            magnifiedContainer.appendChild(magnifiedImg);
-        }
-
-        // Dohvat reference na uvećanu sliku
-        const magnifiedImg = magnifiedContainer.querySelector('img');
-
-        // Dodavanje event listenera na sve kontejnere slika u košarici
-        document.querySelectorAll('.product-image-container').forEach(container => {
-            // Provjeri da li već ima event listenere
-            if (container.dataset.hasMagnifier === 'true') {
-                return;
+    // Dodajemo event listener za tipku Escape za zatvaranje overlay-a
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const overlay = document.getElementById('image-overlay');
+            if (overlay && overlay.classList.contains('active')) {
+                overlay.classList.remove('active');
             }
-            
-            container.dataset.hasMagnifier = 'true';
-            const originalImg = container.querySelector('img');
-            
-            // Kada miš uđe u kontejner slike
-            container.addEventListener('mouseenter', function(e) {
-                if (originalImg && originalImg.src) {
-                    magnifiedImg.src = originalImg.src;
-                    
-                    // Osigurajmo da je slika učitana prije nego što pokažemo kontejner
-                    magnifiedImg.onload = function() {
-                        magnifiedContainer.style.opacity = '1';
-                        
-                        // Simuliramo mousemove da se pozicionira slika
-                        const mouseMoveEvent = new MouseEvent('mousemove', {
-                            clientX: e.clientX,
-                            clientY: e.clientY
-                        });
-                        container.dispatchEvent(mouseMoveEvent);
-                    };
-                    
-                    // Za slučaj da je slika već u cache-u
-                    if (magnifiedImg.complete) {
-                        magnifiedContainer.style.opacity = '1';
-                    }
-                }
-            });
-            
-            // Kada miš izađe iz kontejnera slike
-            container.addEventListener('mouseleave', function() {
-                magnifiedContainer.style.opacity = '0';
-            });
-            
-            // Kada se miš pomjera unutar kontejnera slike
-            container.addEventListener('mousemove', function(e) {
-                // Pozicioniranje uvećane slike da prati kursor
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
-                
-                // Pomak da slika ne pokriva kursor
-                const offsetX = 30; // Povećan pomak 
-                const offsetY = 30; // Povećan pomak
-                
-                // Dimenzije uvećane slike
-                const imgWidth = magnifiedContainer.offsetWidth;
-                const imgHeight = magnifiedContainer.offsetHeight;
-                
-                // Pozicioniranje tako da slika ostane unutar prozora
-                let left = mouseX + offsetX;
-                let top = mouseY + offsetY;
-                
-                // Provjera da slika ne izlazi iz desne strane ekrana
-                if (left + imgWidth > window.innerWidth) {
-                    left = mouseX - imgWidth - offsetX;
-                }
-                
-                // Provjera da slika ne izlazi iz donje strane ekrana
-                if (top + imgHeight > window.innerHeight) {
-                    top = mouseY - imgHeight - offsetY;
-                }
-                
-                // Postavlja poziciju
-                magnifiedContainer.style.left = left + 'px';
-                magnifiedContainer.style.top = top + 'px';
-            });
-        });
-    }
-
-    // Dodajemo event listener za promjenu veličine prozora
-    window.addEventListener('resize', function() {
-        // Ako veličina prozora mijenja između mobilne i desktop verzije
-        // ponovnog pokreni postavljanje magnifier-a
-        setupImageMagnifier();
+        }
     });
 
     // Inicijalno renderiranje košarice
