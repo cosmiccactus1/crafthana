@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const newsletterForm = document.getElementById('newsletterForm');
     const discountMessage = document.querySelector('.discount-message');
 
+    console.log("Kosarica.js učitan - verzija s debuggingom");
+
     // Postavljanje magnifier funkcionalnosti
     function setupMagnifier() {
         // Kreiraj magnifier element ako ne postoji
@@ -54,31 +56,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Funkcija za dodavanje proizvoda u košaricu - globalna za korištenje na drugim stranicama
     window.addToCart = function(product) {
+        console.log("Dodavanje proizvoda u košaricu:", product);
+        
         let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        console.log("Trenutno stanje košarice:", cartItems);
         
         // Provjeravamo postoji li već isti proizvod u košarici
         const existingItemIndex = cartItems.findIndex(item => {
-            // Provjera osnovnog ID-a
-            if (item.id !== product.id) return false;
+            // Osnovne provjere
+            const idMatch = item.id === product.id;
             
-            // Provjera dodatnih opcija ako postoje (npr. bazno ulje)
-            if (item.baseOil && product.baseOil && item.baseOil !== product.baseOil) return false;
+            // Debuggiranje - ispisujemo što uspoređujemo
+            console.log(`Usporedba s postojećim proizvodom (ID: ${item.id}):`);
+            console.log(`- ID podudaranje: ${idMatch}`);
             
-            // Sve provjere su prošle, to je isti proizvod
-            return true;
+            // Provjera baznog ulja ako postoji
+            let oilMatch = true;
+            if (item.baseOil && product.baseOil) {
+                oilMatch = item.baseOil === product.baseOil;
+                console.log(`- Bazno ulje: ${item.baseOil} vs ${product.baseOil}, podudaranje: ${oilMatch}`);
+            }
+            
+            // Konačni rezultat
+            const isMatch = idMatch && oilMatch;
+            console.log(`- Konačni rezultat usporedbe: ${isMatch}`);
+            
+            return isMatch;
         });
+        
+        console.log(`Rezultat pretrage: ${existingItemIndex !== -1 ? 'Proizvod već postoji' : 'Novi proizvod'}`);
         
         if (existingItemIndex !== -1) {
             // Ako proizvod već postoji, samo povećamo količinu
-            cartItems[existingItemIndex].quantity = (cartItems[existingItemIndex].quantity || 1) + 1;
+            const oldQuantity = cartItems[existingItemIndex].quantity || 1;
+            cartItems[existingItemIndex].quantity = oldQuantity + 1;
+            console.log(`Povećana količina na: ${cartItems[existingItemIndex].quantity}`);
         } else {
             // Ako proizvod ne postoji, dodajemo ga s količinom 1
             product.quantity = 1;
             cartItems.push(product);
+            console.log("Dodan novi proizvod u košaricu");
         }
         
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         updateCartCount();
+        
+        console.log("Ažurirano stanje košarice:", JSON.parse(localStorage.getItem('cartItems')));
         
         // Opciono: prikaz potvrde dodavanja
         alert('Proizvod je dodan u košaricu!');
@@ -107,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Renderiranje košarice
     function renderCart() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        console.log("Renderiranje košarice, artikli:", cartItems);
+        
         const discountPercent = getNewsletterDiscount();
         let cartHTML = '';
         let subtotal = 0;
@@ -123,8 +148,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const itemTotal = price * quantity;
                 subtotal += itemTotal;
                 
+                console.log(`Renderiranje artikla: ${item.name}, količina: ${quantity}, id: ${item.id}`);
+                if (item.baseOil) {
+                    console.log(`- Bazno ulje: ${item.baseOil}`);
+                }
+                
                 cartHTML += `
-                    <div class="selected-product" data-id="${item.id}">
+                    <div class="selected-product" data-id="${item.id}" ${item.baseOil ? `data-base-oil="${item.baseOil}"` : ''}>
                         <button class="remove-item" aria-label="Ukloni proizvod">
                             <i class="fas fa-times"></i>
                         </button>
@@ -213,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Funkcija za uklanjanje proizvoda iz košarice
     function removeItem(productId) {
+        console.log(`Uklanjanje proizvoda s ID: ${productId}`);
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const updatedCart = cartItems.filter(item => item.id !== productId);
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
@@ -283,8 +314,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Inicijalno renderiranje košarice
+    // Inicijalno renderiranje košarice i debugging košarice
     if (cartContainer) {
+        console.log("Košarica pronađena, inicijaliziram...");
+        console.log("Trenutno stanje košarice:", JSON.parse(localStorage.getItem('cartItems') || '[]'));
         renderCart();
         updateCartCount();
     }
