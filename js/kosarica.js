@@ -53,7 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button class="remove-item" aria-label="Ukloni proizvod">
                             <i class="fas fa-times"></i>
                         </button>
-                        <img src="${item.image}" alt="${item.name}">
+                        <div class="product-image-container">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
                         <div class="product-details">
                             <div>
                                 <h2>${item.name}</h2>
@@ -142,11 +144,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Funkcija za ažuriranje broja artikala u košarici
     function updateCartCount() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const cartCount = document.querySelector('.cart-count');
-        if (cartCount) {
+        const cartCountElements = document.querySelectorAll('.cart-count');
+        if (cartCountElements.length > 0) {
             const totalItems = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
-            cartCount.textContent = totalItems;
-            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+            cartCountElements.forEach(element => {
+                element.textContent = totalItems;
+                element.style.display = totalItems > 0 ? 'flex' : 'none';
+            });
         }
     }
 
