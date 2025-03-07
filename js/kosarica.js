@@ -1,15 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("Kosarica.js učitan");
     const cartContainer = document.querySelector('.cart-container');
     const newsletterForm = document.getElementById('newsletterForm');
     const discountMessage = document.querySelector('.discount-message');
 
-    // Kreiramo overlay za prikaz slika
-    const createImageOverlay = () => {
-        if (document.getElementById('image-overlay')) return;
+    // Kreiramo overlay za prikaz slika - odmah na početku stranice
+    function setupImageOverlay() {
+        // Ako overlay već postoji, ne stvaramo novi
+        if (document.getElementById('image-overlay')) {
+            return document.getElementById('image-overlay');
+        }
         
+        console.log("Kreiranje overlay-a za slike");
         const overlay = document.createElement('div');
         overlay.id = 'image-overlay';
-        overlay.className = 'image-overlay';
         
         const img = document.createElement('img');
         img.className = 'overlay-image';
@@ -17,28 +21,53 @@ document.addEventListener('DOMContentLoaded', function() {
         const closeBtn = document.createElement('button');
         closeBtn.className = 'close-overlay';
         closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-        closeBtn.addEventListener('click', () => {
-            overlay.classList.remove('active');
-        });
-        
-        // Zatvaranje overlaya na klik izvan slike
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                overlay.classList.remove('active');
-            }
-        });
         
         overlay.appendChild(img);
         overlay.appendChild(closeBtn);
         document.body.appendChild(overlay);
-    };
+        
+        // Event za zatvaranje overlay-a
+        closeBtn.addEventListener('click', function() {
+            console.log("Klik na X za zatvaranje");
+            overlay.classList.remove('active');
+        });
+        
+        // Zatvaranje overlaya na klik izvan slike
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                console.log("Klik izvan slike za zatvaranje");
+                overlay.classList.remove('active');
+            }
+        });
+        
+        // Zatvaranje na Escape tipku
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                console.log("Escape tipka za zatvaranje");
+                overlay.classList.remove('active');
+            }
+        });
+        
+        console.log("Overlay kreiran i dodan u DOM");
+        return overlay;
+    }
     
-    // Funkcija za provjeru da li je uređaj mobilan
-    function isMobileDevice() {
-        return (window.innerWidth <= 768) || 
-               ('ontouchstart' in window) || 
-               (navigator.maxTouchPoints > 0) ||
-               (navigator.msMaxTouchPoints > 0);
+    // Pozivamo odmah na početku
+    const imageOverlay = setupImageOverlay();
+    
+    // Funkcija za otvaranje overlay-a sa slikom
+    function openImageOverlay(imgSrc) {
+        if (!imgSrc) return;
+        
+        console.log("Otvaranje slike u overlay-u:", imgSrc);
+        const overlayImg = imageOverlay.querySelector('.overlay-image');
+        overlayImg.src = imgSrc;
+        
+        // Dodajemo klasu active nakon kratkog delay-a da se DOM ažurira
+        setTimeout(function() {
+            imageOverlay.classList.add('active');
+            console.log("Overlay je aktivan");
+        }, 50);
     }
 
     // Funkcija za dohvaćanje newsletter popusta iz localStorage
@@ -69,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Renderiranje košarice
     function renderCart() {
+        console.log("Renderiranje košarice");
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const discountPercent = getNewsletterDiscount();
         let cartHTML = '';
@@ -91,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button class="remove-item" aria-label="Ukloni proizvod">
                             <i class="fas fa-times"></i>
                         </button>
-                        <div class="product-image-container" data-image="${item.image}">
-                            <img src="${item.image}" alt="${item.name}">
+                        <div class="product-image-container">
+                            <img src="${item.image}" alt="${item.name}" data-full-image="${item.image}">
                         </div>
                         <div class="product-details">
                             <div>
@@ -195,33 +225,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Dodavanje listenera za prikaz slike u punoj veličini
     function addImageListeners() {
-        // Provjera je li mobilni uređaj
-        if (isMobileDevice()) return;
+        console.log("Dodavanje event listenera za slike");
         
-        // Kreiramo overlay ako već ne postoji
-        createImageOverlay();
-        
-        const overlay = document.getElementById('image-overlay');
-        const overlayImg = overlay.querySelector('.overlay-image');
-        
+        // Dodajemo click event na sve kontejnere slika
         document.querySelectorAll('.product-image-container').forEach(container => {
-            container.addEventListener('click', function() {
-                const imgSrc = this.getAttribute('data-image');
-                if (imgSrc) {
-                    overlayImg.src = imgSrc;
-                    
-                    // Aktiviramo overlay nakon što se slika učita
-                    overlayImg.onload = function() {
-                        overlay.classList.add('active');
-                    };
-                    
-                    // Za slučaj da je slika već u cache-u
-                    if (overlayImg.complete) {
-                        overlay.classList.add('active');
-                    }
-                }
-            });
+            // Uklanjamo prethodni listener ako postoji
+            container.removeEventListener('click', imageClickHandler);
+            
+            // Dodajemo novi listener
+            container.addEventListener('click', imageClickHandler);
         });
+    }
+    
+    // Handler za klik na sliku
+    function imageClickHandler(e) {
+        console.log("Klik na sliku");
+        // Pronalazimo sliku unutar kontejnera
+        const img = this.querySelector('img');
+        
+        if (img && img.src) {
+            console.log("Pronađena slika:", img.src);
+            openImageOverlay(img.src);
+        }
+        
+        // Zaustavljamo event da ne bi aktivirao druge elemente
+        e.stopPropagation();
     }
 
     // Event listeneri za gumbe za količinu (+/-)
@@ -274,18 +302,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Dodajemo event listener za tipku Escape za zatvaranje overlay-a
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const overlay = document.getElementById('image-overlay');
-            if (overlay && overlay.classList.contains('active')) {
-                overlay.classList.remove('active');
-            }
-        }
-    });
-
     // Inicijalno renderiranje košarice
     if (cartContainer) {
+        console.log("Pokretanje inicijalizacije košarice");
         renderCart();
         updateCartCount();
     }
