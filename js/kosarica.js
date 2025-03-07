@@ -117,6 +117,9 @@ document.addEventListener('DOMContentLoaded', function() {
         addQuantityListeners();
         addRemoveListeners();
         addCheckoutListener();
+        
+        // Postavimo efekt povećanja slike nakon renderiranja košarice
+        setTimeout(setupImageMagnifier, 100);
     }
 
     // Funkcija za ažuriranje količine proizvoda
@@ -202,6 +205,85 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+    }
+
+    // Funkcija za postavljanje efekta povećanja slike
+    function setupImageMagnifier() {
+        // Kreiranje kontejnera za uvećanu sliku ako već ne postoji
+        let magnifiedContainer = document.getElementById('magnified-image-container');
+        if (!magnifiedContainer) {
+            magnifiedContainer = document.createElement('div');
+            magnifiedContainer.id = 'magnified-image-container';
+            magnifiedContainer.className = 'magnified-image-container';
+            document.body.appendChild(magnifiedContainer);
+        }
+
+        // Dodavanje uvećane slike unutar kontejnera
+        if (!magnifiedContainer.querySelector('img')) {
+            const magnifiedImg = document.createElement('img');
+            magnifiedImg.id = 'magnified-image';
+            magnifiedContainer.appendChild(magnifiedImg);
+        }
+
+        // Dohvat reference na uvećanu sliku
+        const magnifiedImg = magnifiedContainer.querySelector('img');
+
+        // Dodavanje event listenera na sve kontejnere slika u košarici
+        document.querySelectorAll('.product-image-container').forEach(container => {
+            // Provjeri da li već ima event listenere
+            if (container.dataset.hasMagnifier === 'true') {
+                return;
+            }
+            
+            container.dataset.hasMagnifier = 'true';
+            const originalImg = container.querySelector('img');
+            
+            // Kada miš uđe u kontejner slike
+            container.addEventListener('mouseenter', function() {
+                if (originalImg && originalImg.src) {
+                    magnifiedImg.src = originalImg.src;
+                    magnifiedContainer.style.opacity = '1';
+                }
+            });
+            
+            // Kada miš izađe iz kontejnera slike
+            container.addEventListener('mouseleave', function() {
+                magnifiedContainer.style.opacity = '0';
+            });
+            
+            // Kada se miš pomjera unutar kontejnera slike
+            container.addEventListener('mousemove', function(e) {
+                // Pozicioniranje uvećane slike da prati kursor
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                // Pomak da slika ne pokriva kursor
+                const offsetX = 20; 
+                const offsetY = 20;
+                
+                // Dimenzije uvećane slike
+                const imgWidth = magnifiedContainer.offsetWidth;
+                const imgHeight = magnifiedContainer.offsetHeight;
+                
+                // Pozicioniranje tako da slika ostane unutar prozora
+                let left = mouseX + offsetX;
+                let top = mouseY + offsetY;
+                
+                // Provjera da slika ne izlazi iz desne strane ekrana
+                if (left + imgWidth > window.innerWidth) {
+                    left = mouseX - imgWidth - offsetX;
+                }
+                
+                // Provjera da slika ne izlazi iz donje strane ekrana
+                if (top + imgHeight > window.innerHeight) {
+                    top = mouseY - imgHeight - offsetY;
+                }
+                
+                // Postavlja poziciju
+                magnifiedContainer.style.left = left + 'px';
+                magnifiedContainer.style.top = top + 'px';
+            });
+        });
     }
 
     // Inicijalno renderiranje košarice
