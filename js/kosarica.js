@@ -52,6 +52,38 @@ document.addEventListener('DOMContentLoaded', function() {
         return discountCode ? 0.1 : null; // 10% popust ako postoji kod
     }
 
+    // Funkcija za dodavanje proizvoda u košaricu - globalna za korištenje na drugim stranicama
+    window.addToCart = function(product) {
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        
+        // Provjeravamo postoji li već isti proizvod u košarici
+        const existingItemIndex = cartItems.findIndex(item => {
+            // Provjera osnovnog ID-a
+            if (item.id !== product.id) return false;
+            
+            // Provjera dodatnih opcija ako postoje (npr. bazno ulje)
+            if (item.baseOil && product.baseOil && item.baseOil !== product.baseOil) return false;
+            
+            // Sve provjere su prošle, to je isti proizvod
+            return true;
+        });
+        
+        if (existingItemIndex !== -1) {
+            // Ako proizvod već postoji, samo povećamo količinu
+            cartItems[existingItemIndex].quantity = (cartItems[existingItemIndex].quantity || 1) + 1;
+        } else {
+            // Ako proizvod ne postoji, dodajemo ga s količinom 1
+            product.quantity = 1;
+            cartItems.push(product);
+        }
+        
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartCount();
+        
+        // Opciono: prikaz potvrde dodavanja
+        alert('Proizvod je dodan u košaricu!');
+    };
+
     // Primjena koda za popust
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', function(e) {
@@ -102,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="product-details">
                             <div>
                                 <h2>${item.name}</h2>
+                                ${item.baseOil ? `<p class="base-oil">${item.baseOil}</p>` : ''}
                                 <p class="price">${priceText}</p>
                             </div>
                             <div class="quantity-selector">
