@@ -228,6 +228,12 @@ footer {
     color: #333;
 }
 
+.payment-icons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
 .payment-icons i {
     font-size: 24px;
     margin-right: 10px;
@@ -242,9 +248,9 @@ footer {
 }
 
 .footer-logo {
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
-    justify-content: flex-end; /* Pomakni ga desno */
+    justify-content: flex-start; /* Poravnano s lijeve strane kao i načini plaćanja */
     align-items: center;
 }
 
@@ -337,7 +343,6 @@ footer {
     }
     
     .footer-logo {
-        margin-top: 20px;
         justify-content: center; /* Na mobilnom centriraj */
     }
     
