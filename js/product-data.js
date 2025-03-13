@@ -315,7 +315,7 @@ const allProducts = {
     }
 },
 "jasmine-myyrh-ylang": {
-    id: "jasmine-myyrh-ylang",
+    id: "jasmine-myrrh-ylang",
     title: "Jasmine • Myrrh • Ylang Ylang",
     tagline: "Egzotična senzualna esencija",
     volume: "10 ml",
