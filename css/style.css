@@ -242,6 +242,17 @@ footer {
     color: #333;
 }
 
+/* Footer Logo Styles */
+.footer-logo {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer-nav-logo {
+    width: 120px; /* Logo će biti veći nego u headeru */
+    height: auto;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
