@@ -1,6 +1,15 @@
 // shoprollon.js
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Script is loaded');
+    const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active'); // Koristimo 'active' jer već imate taj CSS
+        console.log('Menu toggled');
+    });
+}
     
     // 1. Products object
     const products = {
