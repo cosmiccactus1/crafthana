@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const hasDiscount = !!localStorage.getItem('discountCode');
         const discountAmount = hasDiscount ? subtotal * 0.1 : 0;
-        const isFreeShipping = subtotal > 50;
+        const isFreeShipping = subtotal > 30;
         
         toggleDeliveryOptions(!isFreeShipping);
         
