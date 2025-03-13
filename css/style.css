@@ -194,13 +194,15 @@ footer {
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
+    justify-content: space-around; /* Promijenjeno s space-between za bolje centriranje */
+    max-width: 1000px; /* Smanjena maksimalna širina */
     margin: 0 auto;
+    gap: 30px; /* Dodano razmak između sekcija */
 }
 
 .footer-section {
     flex: 1;
+    max-width: 300px; /* Ograničava maksimalnu širinu svake sekcije */
 }
 
 .footer-section h3 {
@@ -250,7 +252,6 @@ footer {
 .footer-logo {
     margin-top: 20px;
     display: flex;
-    justify-content: flex-start; /* Poravnano s lijeve strane kao i načini plaćanja */
     align-items: center;
 }
 
@@ -265,8 +266,8 @@ footer {
     margin-top: 20px;
     border-top: 1px solid #eee;
     font-weight: 200; /* Thinner text */
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1000px; /* Usklađeno s footer-content */
+    margin: 20px auto 0;
 }
 
 /* Responsive Design */
@@ -336,10 +337,13 @@ footer {
 
     .footer-content {
         flex-direction: column;
+        align-items: center;
     }
 
     .footer-section {
         margin-bottom: 20px;
+        max-width: 100%;
+        text-align: center;
     }
     
     .footer-logo {
