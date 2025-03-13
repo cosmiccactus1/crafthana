@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleDeliveryOptions(!isFreeShipping);
         
         const selectedDelivery = document.querySelector('input[name="delivery"]:checked');
-        let shippingCost = 4;
+        let shippingCost = 5;
         
         if (!isFreeShipping && selectedDelivery) {
-            shippingCost = selectedDelivery.value.includes('10km') ? 10 : 4;
+            shippingCost = selectedDelivery.value.includes('10km') ? 10 : 5;
         }
         
         const shipping = isFreeShipping ? 0 : shippingCost;
