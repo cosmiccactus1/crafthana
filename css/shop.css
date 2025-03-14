@@ -386,6 +386,92 @@
     margin-right: 15px;
 }
 
+/* Stilovi za categories-grid */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.category-card {
+    display: block;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.category-image {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* Aspect ratio 4:3 */
+    overflow: hidden;
+}
+
+.category-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.category-card:hover .category-image img {
+    transform: scale(1.05);
+}
+
+.category-card h2 {
+    padding: 20px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+/* Stilovi za coming-soon-banner */
+.coming-soon-banner {
+    grid-column: 1 / -1; /* Zauzima cijelu širinu grida */
+    text-align: center;
+    margin: 30px 0;
+    padding: 25px;
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.coming-soon-banner h3 {
+    color: #333;
+    font-weight: 300;
+    letter-spacing: 3px;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+}
+
+.coming-soon-banner p {
+    font-size: 16px;
+    color: #666;
+    font-weight: 300;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .essential-oils {
@@ -403,6 +489,19 @@
 
     .modal-content {
         margin: 5vh 1rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .coming-soon-banner h3 {
+        font-size: 20px;
+    }
+
+    .coming-soon-banner p {
+        font-size: 14px;
     }
 }
 
