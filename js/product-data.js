@@ -351,8 +351,8 @@ const allProducts = {
     categoryLink: "rollon-eo.html",
     images: [
         { src: "images/4blend1.png", alt: "Pine • Cedarwood • Bergamot • Vanilla blend roll on" },
-        { src: "images/4blend1-1.png", alt: "Pine • Cedarwood • Bergamot • Vanilla detail 1" },
-        { src: "images/4blend1-2.png", alt: "Pine • Cedarwood • Bergamot • Vanilla detail 2" }
+        { src: "images/4blend2-1.png", alt: "Pine • Cedarwood • Bergamot • Vanilla detail 1" },
+        { src: "images/4blend2-2.png", alt: "Pine • Cedarwood • Bergamot • Vanilla detail 2" }
     ],
     prices: {
         classic: 8.99,
@@ -373,8 +373,8 @@ const allProducts = {
     categoryLink: "rollon-eo.html",
     images: [
         { src: "images/4blend2.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood blend roll on" },
-        { src: "images/4blend2-1.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 1" },
-        { src: "images/4blend2-2.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 2" }
+        { src: "images/4blend1-1.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 1" },
+        { src: "images/4blend1-2.png", alt: "Jasmine • Patchouli • Ylang Ylang • Cedarwood detail 2" }
     ],
     prices: {
         classic: 8.99,
