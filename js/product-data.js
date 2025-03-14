@@ -314,7 +314,7 @@ const allProducts = {
         ultimate: 9.99
     }
 },
-"jasmine-myyrh-ylang": {
+"jasmine-myrrh-ylang": {
     id: "jasmine-myrrh-ylang",
     title: "Jasmine • Myrrh • Ylang Ylang",
     tagline: "Egzotična senzualna esencija",
