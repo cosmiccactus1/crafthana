@@ -68,7 +68,7 @@ function loadProduct() {
     
     // Ako nema ID-a, preusmjeri na stranicu kategorije
     if (!productId) {
-        window.location.href = 'essential-oil.html';
+        window.location.href = 'essential-oils.html';
         return;
     }
     
@@ -77,7 +77,7 @@ function loadProduct() {
     
     // Ako proizvod ne postoji, preusmjeri na stranicu kategorije
     if (!product) {
-        window.location.href = 'essential-oil.html';
+        window.location.href = 'essential-oils.html';
         return;
     }
     
@@ -86,8 +86,8 @@ function loadProduct() {
     
     // Postavi breadcrumb
     document.getElementById('product-breadcrumb').textContent = product.title;
-    document.getElementById('category-link').textContent = 'Essential Oil';
-    document.getElementById('category-link').href = product.categoryLink;
+    document.getElementById('category-link').textContent = 'Essential Oils';
+    document.getElementById('category-link').href = 'essential-oils.html'; // Fiksiramo link ovdje
     
     // Postavi detalje proizvoda
     document.getElementById('product-title').textContent = product.title;
