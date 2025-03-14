@@ -2,15 +2,11 @@
 <html lang="hr">
 <head>
     <meta charset="UTF-8">
-    <!DOCTYPE html>
-<html lang="hr">
-<head>
-    <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRAFTHANA</title>
+    <title>Blog - CRAFTHANA</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/blog.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -36,7 +32,7 @@
                     <a href="index.html">Home</a>
                     <a href="shop.html">Shop</a>
                     <a href="o-nama.html">O nama</a>
-                    <a href="blog.html">Blog</a>
+                    <a href="blog.html" class="active">Blog</a>
                 </div>
             </div>
             <div class="nav-center">
@@ -60,35 +56,70 @@
         </nav>
     </header>
 
-    
-        <section class="delivery-section">
-    <div class="section-container">
-        <h2 class="delivery-title">Opcije dostave</h2>
-        <div class="delivery-content">
-            <p>Opcije dostave unutar Bosne i Hercegovine su putem <strong>BH Pošte (isporuka 2-5 dana)</strong> cijena 5,00 KM, uz narudžbu preko 30,00 KM poštarina je besplatna ili opcija <strong>brzom poštom u roku od 24-48 sati</strong>, cijena 10,00 KM.</p>
-        </div>
-    </div>
-</section>
+    <main class="blog-main">
+        <h1 class="page-title">Blog</h1>
         
-        <!-- Newsletter Section -->
-        <section class="newsletter-section">
-            <div class="section-container">
-                <div class="newsletter-content">
-                    <i class="fas fa-gift newsletter-icon"></i>
-                    <h2>Newsletter</h2>
-                    <p>Ostvarite 10% popusta na prvu kupovinu</p>
-                    <form id="newsletterForm" class="newsletter-form">
-                        <div class="form-wrapper">
-                            <input type="email" id="newsletterEmail" placeholder="Vaša email adresa" required>
-                            <button type="submit" class="newsletter-btn">
-                                <span>Pretplatite se</span>
-                            </button>
-                        </div>
-                    </form>
+        <div class="blog-posts">
+            <!-- Interview Post -->
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="images/4.png" alt="Intervju - Crafthana priča">
+                    <span class="post-tag">INTERVIEW</span>
                 </div>
-            </div>
-        </section>
+                <div class="post-content">
+                    <h2 class="post-title">Tko smo mi? Crafthana priča</h2>
+                    <p class="post-date">14.03.2025.</p>
+                    <p class="post-excerpt">Mi smo mala radionica smještena u Bosni i Hercegovini, zemlji u obliku srca. Stvaramo proizvode od eteričnih ulja, parfemskih ulja i drugih prirodnih sastojaka. Naša inspiracija? Priroda, svježa jutra, cozy kabine, rosa, zrak poslije kiše...</p>
+                    <a href="interview.html" class="read-more">PROČITAJ VIŠE</a>
+                </div>
+            </article>
+            
+            <!-- Dodatni blog postovi možeš dodati ovdje -->
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="images/blog-placeholder.jpg" alt="Eterična ulja i njihova primjena">
+                    <span class="post-tag">SAVJETI</span>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">5 načina korištenja eteričnih ulja za opuštanje</h2>
+                    <p class="post-date">08.03.2025.</p>
+                    <p class="post-excerpt">Otkrijte kako eterična ulja mogu unaprijediti vaše trenutke opuštanja i pomoći u smanjenju stresa...</p>
+                    <a href="#" class="read-more">USKORO</a>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="images/blog-placeholder.jpg" alt="Različite vrste baza za eterična ulja">
+                    <span class="post-tag">EDUKACIJA</span>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">Koje baze koristiti za eterična ulja?</h2>
+                    <p class="post-date">01.03.2025.</p>
+                    <p class="post-excerpt">Usporedba različitih baza poput jojobe, kokosovog ulja, tsubaki ulja i njihove prednosti za različite tipove kože...</p>
+                    <a href="#" class="read-more">USKORO</a>
+                </div>
+            </article>
+        </div>
     </main>
+    
+    <section class="newsletter-section">
+        <div class="section-container">
+            <div class="newsletter-content">
+                <i class="fas fa-gift newsletter-icon"></i>
+                <h2>Newsletter</h2>
+                <p>Ostvarite 10% popusta na prvu kupovinu</p>
+                <form id="newsletterForm" class="newsletter-form">
+                    <div class="form-wrapper">
+                        <input type="email" id="newsletterEmail" placeholder="Vaša email adresa" required>
+                        <button type="submit" class="newsletter-btn">
+                            <span>Pretplatite se</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-content">
@@ -135,7 +166,5 @@
 
     <script src="js/script.js"></script>
     <script src="js/newsletter.js"></script>
-    <script src="js/indextekst.js"></script>
 </body>
 </html>
- 
