@@ -270,14 +270,14 @@ const allProducts = {
         ultimate: 9.99
     }
 },
-"jasmine-bergamot-sandalwood": {
-    id: "jasmine-bergamot-sandalwood",
-    title: "Jasmine • Bergamot • Sandalwood",
+"jasmine-bergamot-vanilla": {
+    id: "jasmine-bergamot-vanilla",
+    title: "Jasmine • Bergamot • Vanilla",
     tagline: "Cvjetna orijentalska harmonija",
     volume: "10 ml",
     description: "Elegantna kombinacija opojnog jasmina, osvježavajućeg bergamota i bogate sandalovine stvara sofisticiran miris koji istovremeno smiruje i uzdiže. Ovaj harmoničan blend pruža osjećaj luksuza i unutarnjeg mira.",
     usage: "Nanesite na pulsne tačke. Idealno kao prirodna mirisna terapija, diskretni parfem ili kao dodatni sloj ispod vašeg omiljenog parfema za veću postojanost. Za najbolje rezultate, nanosite više puta tokom dana po potrebi.",
-    ingredients: "Jasmin (Jasminum officinale), Bergamot (Citrus bergamia), Sandalovina (Santalum album) u baznom ulju po izboru.",
+    ingredients: "Jasmin (Jasminum officinale), Bergamot (Citrus bergamia), Vanilla u baznom ulju po izboru.",
     category: "Roll On EO",
     categoryType: "3 Blend Roll On",
     categoryLink: "rollon-eo.html",
