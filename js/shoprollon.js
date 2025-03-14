@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Jasmine • Patchouli • Ylang Ylang • Cedarwood',
             prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
             priceRange: '8.99-11.99 KM',
-            image: 'images/4blend1.png',
+            image: 'images/4blend2.png',
             volume: '10 ml',
             description: 'Bogata egzotična harmonija',
             category: '4-blend'
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Pine • Cedarwood • Bergamot • Vanilla',
             prices: { classic: 8.99, silk: 10.99, ultimate: 11.99 },
             priceRange: '8.99-11.99 KM',
-            image: 'images/4blend2.png',
+            image: 'images/4blend1.png',
             volume: '10 ml',
             description: 'Šumsko-slatka harmonija',
             category: '4-blend'
