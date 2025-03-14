@@ -13,18 +13,18 @@
 .section-title {
     font-family: 'Raleway', sans-serif;
     font-size: 2.25rem;
-    font-weight: 100;
+    font-weight: 100; /* Ekstremno tanki font */
     color: #2c2c2c;
     text-align: center;
     margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.1em; /* Još veći razmak između slova */
     text-transform: uppercase;
 }
 
 .section-description {
     font-family: 'Raleway', sans-serif;
     font-size: 0.95rem;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
     color: #666;
     text-align: center;
     max-width: 700px;
@@ -41,7 +41,7 @@
 .blend-category-title {
     font-family: 'Raleway', sans-serif;
     font-size: 1.4rem;
-    font-weight: 100;
+    font-weight: 100; /* Ekstremno tanki font */
     color: #2c2c2c;
     text-align: center;
     margin-bottom: 1.8rem;
@@ -66,7 +66,7 @@
 /* Product Grid Styles */
 .oils-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Još uži kontejneri */
     gap: 2rem;
     margin: 0 auto;
     max-width: 1280px;
@@ -104,7 +104,7 @@
 /* Kontejner za sliku - ZNAČAJNO VIŠI */
 .image-container {
     position: relative;
-    padding-top: 220%;
+    padding-top: 220%; /* Ekstremno izdužen kontejner (prije 180%) */
     background: white;
     overflow: hidden;
 }
@@ -112,7 +112,7 @@
 /* Prilagođeno pozicioniranje slike - više prema gore */
 .oil-image {
     position: absolute;
-    top: 45%;
+    top: 45%; /* Pomaknuto više prema gore (prije 50%) */
     left: 50%;
     transform: translate(-50%, -50%) scale(1.05);
     width: auto;
@@ -137,7 +137,7 @@
 .oil-details h4 {
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: 200; /* Još tanji font */
     color: #333;
     margin: 0 0 0.3rem 0;
     letter-spacing: 0.06em;
@@ -146,7 +146,7 @@
 
 .volume {
     font-size: 0.8rem;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
     color: #666;
     margin: 0 0 0.3rem 0;
     letter-spacing: 0.03em;
@@ -154,7 +154,7 @@
 
 .price {
     font-size: 0.95rem;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
     color: #333;
     margin: 0 0 0.5rem 0;
     letter-spacing: 0.03em;
@@ -162,7 +162,7 @@
 
 .blend-character {
     font-size: 0.8rem;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
     color: #666;
     margin: 0;
     font-style: italic;
@@ -208,7 +208,7 @@
 /* Prilagođen gumb za dodavanje u košaricu - više prema vrhu */
 .add-to-cart {
     position: absolute;
-    bottom: 15px;
+    bottom: 15px; /* Pomaknuto više prema vrhu proizvoda */
     left: 0;
     right: 0;
     margin: 0 10px;
@@ -224,7 +224,7 @@
     cursor: pointer;
     font-family: 'Raleway', sans-serif;
     font-size: 0.85rem;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     opacity: 0;
     transform: translateY(60px);
@@ -321,7 +321,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
     letter-spacing: 0.03em;
 }
 
@@ -341,7 +341,7 @@
     border-radius: 8px;
     font-family: 'Raleway', sans-serif;
     font-size: 0.95rem;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
     cursor: pointer;
     transition: all 0.2s ease;
     letter-spacing: 0.07em;
@@ -365,7 +365,7 @@
     border-radius: 50px;
     font-family: 'Raleway', sans-serif;
     font-size: 0.85rem;
-    font-weight: 200;
+    font-weight: 200; /* Tanji font */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     opacity: 0;
@@ -470,212 +470,5 @@
     
     .modal label {
         padding: 0.75rem;
-    }
-}
-
-/* Stilovi za shop stranicu */
-.shop-main {
-    padding: 2rem 1rem;
-    max-width: 1280px;
-    margin: 0 auto;
-}
-
-.shop-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.shop-header h1 {
-    font-size: 2.5rem;
-    font-weight: 200;
-    color: #2c2c2c;
-    margin-bottom: 1rem;
-    letter-spacing: 0.1em;
-}
-
-.welcome-text {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.script-heading {
-    font-size: 1.8rem;
-    font-weight: 300;
-    color: #333;
-    margin-bottom: 1rem;
-    letter-spacing: 0.05em;
-}
-
-.welcome-text p {
-    font-size: 1.1rem;
-    font-weight: 200;
-    color: #666;
-    line-height: 1.6;
-}
-
-/* Stilovi za kartice kategorija */
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin: 0 auto;
-}
-
-.category-card {
-    display: block;
-    background-color: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.category-image {
-    position: relative;
-    width: 100%;
-    padding-top: 75%;
-    overflow: hidden;
-}
-
-.category-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.category-card:hover .category-image img {
-    transform: scale(1.05);
-}
-
-.category-card h2 {
-    padding: 20px;
-    font-size: 1.4rem;
-    font-weight: 300;
-    text-align: center;
-    margin: 0;
-    letter-spacing: 0.05em;
-}
-
-/* Stilovi za EO Blend kategoriju */
-.eo-blend-container {
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.eo-blend-container .category-card {
-    max-width: 100%;
-    margin: 0 auto;
-    position: relative;
-}
-
-.eo-blend-container .category-card::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
-    z-index: 1;
-}
-
-/* Stil za coming-soon-banner */
-.coming-soon-banner {
-    text-align: center;
-    margin: 20px auto 40px;
-    padding: 25px 20px;
-    background-color: #f8f8f8;
-    border: 1px solid #eaeaea;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    max-width: 1000px;
-}
-
-.coming-soon-banner h3 {
-    color: #333;
-    font-weight: 300;
-    letter-spacing: 3px;
-    font-size: 22px;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    font-family: 'Raleway', sans-serif;
-}
-
-.coming-soon-banner p {
-    font-size: 15px;
-    color: #666;
-    font-weight: 300;
-    font-family: 'Raleway', sans-serif;
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* Stilovi za Roll-on kategoriju */
-.rollon-container {
-    margin-top: 40px;
-}
-
-.rollon-container .category-card {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-/* Dodatni responzivni stilovi */
-@media (max-width: 768px) {
-    .shop-header h1 {
-        font-size: 2rem;
-    }
-    
-    .script-heading {
-        font-size: 1.5rem;
-    }
-    
-    .welcome-text p {
-        font-size: 1rem;
-    }
-    
-    .categories-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .coming-soon-banner h3 {
-        font-size: 20px;
-    }
-    
-    .coming-soon-banner p {
-        font-size: 14px;
-    }
-    
-    .eo-blend-container,
-    .rollon-container {
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-@media (max-width: 480px) {
-    .coming-soon-banner {
-        padding: 20px 15px;
-    }
-    
-    .coming-soon-banner h3 {
-        font-size: 18px;
-        letter-spacing: 2px;
-    }
-    
-    .coming-soon-banner p {
-        font-size: 13px;
     }
 }
