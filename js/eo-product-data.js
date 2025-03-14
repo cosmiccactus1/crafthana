@@ -23,7 +23,7 @@ const allEOProducts = {
             "Proizvedeno u Bosni i Hercegovini"
         ],
         images: [
-            { src: "images/test3.png", alt: "Vanilla • Jasmine essential oil" },
+            { src: "images/EOtest.jpg", alt: "Vanilla • Jasmine essential oil" },
             { src: "images/EOtest.jpg", alt: "Vanilla • Jasmine detail 1" },
             { src: "images/EOtest.jpg", alt: "Vanilla • Jasmine detail 2" }
         ],
