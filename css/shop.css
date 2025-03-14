@@ -473,7 +473,7 @@
     }
 }
 
-/* Stilovi za shop stranicu i coming-soon-banner */
+/* Stilovi za shop stranicu */
 .shop-main {
     padding: 2rem 1rem;
     max-width: 1280px;
@@ -513,6 +513,7 @@
     line-height: 1.6;
 }
 
+/* Stilovi za kartice kategorija */
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -566,4 +567,115 @@
     letter-spacing: 0.05em;
 }
 
-/* S
+/* Stilovi za EO Blend kategoriju */
+.eo-blend-container {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.eo-blend-container .category-card {
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.eo-blend-container .category-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 1;
+}
+
+/* Stil za coming-soon-banner */
+.coming-soon-banner {
+    text-align: center;
+    margin: 20px auto 40px;
+    padding: 25px 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    max-width: 1000px;
+}
+
+.coming-soon-banner h3 {
+    color: #333;
+    font-weight: 300;
+    letter-spacing: 3px;
+    font-size: 22px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+}
+
+.coming-soon-banner p {
+    font-size: 15px;
+    color: #666;
+    font-weight: 300;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Stilovi za Roll-on kategoriju */
+.rollon-container {
+    margin-top: 40px;
+}
+
+.rollon-container .category-card {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Dodatni responzivni stilovi */
+@media (max-width: 768px) {
+    .shop-header h1 {
+        font-size: 2rem;
+    }
+    
+    .script-heading {
+        font-size: 1.5rem;
+    }
+    
+    .welcome-text p {
+        font-size: 1rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .coming-soon-banner h3 {
+        font-size: 20px;
+    }
+    
+    .coming-soon-banner p {
+        font-size: 14px;
+    }
+    
+    .eo-blend-container,
+    .rollon-container {
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .coming-soon-banner {
+        padding: 20px 15px;
+    }
+    
+    .coming-soon-banner h3 {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+    
+    .coming-soon-banner p {
+        font-size: 13px;
+    }
+}
