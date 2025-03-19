@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'vanilla-jasmine',
             name: 'Vanilla • Jasmine',
             price: 8.89,
-            image: 'images/test2.png',
+            image: 'images/EOtest.jpg',
             volume: '10 ml',
             description: 'Slatka, cvjetna harmonija',
             category: '2 Blend Roll On'
@@ -180,169 +180,273 @@ document.addEventListener('DOMContentLoaded', function() {
             volume: '10 ml',
             description: 'Luksuzni orijentalni parfem',
             category: '5 Blend Roll On'
+        },
+        
+        // Special Blendovi
+        'planinska-koliba': {
+            id: 'planinska-koliba',
+            name: 'Planinska Koliba',
+            price: 11.99,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Prirodna harmonija borova i topline',
+            category: 'Special Blendovi'
+        },
+        'special-narandza': {
+            id: 'special-narandza',
+            name: 'Special narandža',
+            price: 11.99,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Nostalgična kombinacija čokolade i naranče',
+            category: 'Special Blendovi'
+        },
+        'cejf': {
+            id: 'cejf',
+            name: 'Ćejf',
+            price: 11.99,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Bosanska riječ koja opisuje najveći stepen zadovoljstva',
+            category: 'Special Blendovi'
         }
     };
+    
+    // Debugiranje - provjera da li su svi proizvodi ispravno definirani
+    console.log('Loaded products:', Object.keys(products).length);
     
     // 2. Cart functions
     const updateCartCount = () => {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const count = cartItems.reduce((total, item) => total + (parseInt(item.quantity) || 1), 0);
-        
-        document.querySelectorAll('.cart-count').forEach(el => {
-            if (count > 0) {
-                el.style.display = 'flex';
-                el.textContent = count;
-            } else {
-                el.style.display = 'none';
-            }
-        });
+        try {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const count = cartItems.reduce((total, item) => total + (parseInt(item.quantity) || 1), 0);
+            
+            document.querySelectorAll('.cart-count').forEach(el => {
+                if (count > 0) {
+                    el.style.display = 'flex';
+                    el.textContent = count;
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        } catch (error) {
+            console.error('Error updating cart count:', error);
+        }
     };
     
     const addToCart = (productId, quantity = 1) => {
-        const product = products[productId];
-        if (!product) {
-            console.error('Proizvod nije pronađen:', productId);
-            return;
+        try {
+            console.log('Adding to cart:', productId);
+            
+            // Provjera postojanja proizvoda
+            const product = products[productId];
+            if (!product) {
+                console.error('Product not found in products object:', productId);
+                console.log('Available products:', Object.keys(products));
+                return;
+            }
+            
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            // Dodajemo u format koji koristimo na drugim stranicama
+            const itemId = `${productId}-${Date.now()}`;
+            const newItem = {
+                id: itemId,
+                productId: productId,
+                name: product.name,
+                description: product.description,
+                price: product.price.toFixed(2) + " KM",
+                priceValue: product.price,
+                image: product.image,
+                volume: product.volume,
+                quantity: quantity,
+                totalPrice: (product.price * quantity).toFixed(2) + " KM",
+                type: "essential-oil-blend",
+                category: product.category,
+                addedAt: new Date().toISOString()
+            };
+            
+            cartItems.push(newItem);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCount();
+            showNotification('Proizvod dodan u košaricu ✨');
+            console.log('Added item to cart:', newItem);
+        } catch (error) {
+            console.error('Error adding to cart:', error, 'Product ID:', productId);
         }
-        
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        
-        // Dodajemo u format koji koristimo na drugim stranicama
-        const itemId = `${productId}-${Date.now()}`;
-        const newItem = {
-            id: itemId,
-            productId: productId,
-            name: product.name,
-            description: product.description,
-            price: product.price.toFixed(2) + " KM",
-            priceValue: product.price,
-            image: product.image,
-            volume: product.volume,
-            quantity: quantity,
-            totalPrice: (product.price * quantity).toFixed(2) + " KM",
-            type: "essential-oil-blend",
-            category: product.category,
-            addedAt: new Date().toISOString()
-        };
-        
-        cartItems.push(newItem);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        updateCartCount();
-        showNotification('Proizvod dodan u košaricu ✨');
-        console.log('Added item to cart:', newItem);
     };
     
     // 3. Favorite functions
     const updateFavoriteStatus = () => {
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        
-        document.querySelectorAll('.favorite-icon').forEach(button => {
-            const productContainer = button.closest('.oil-item');
-            if (!productContainer) return;
+        try {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             
-            const productId = productContainer.dataset.productId;
-            const icon = button.querySelector('i');
+            document.querySelectorAll('.favorite-icon').forEach(button => {
+                const productContainer = button.closest('.oil-item');
+                if (!productContainer) return;
+                
+                const productId = productContainer.dataset.productId;
+                const icon = button.querySelector('i');
+                
+                if (productId && icon) {
+                    const isFavorite = favorites.some(item => item.id === productId);
+                    icon.className = isFavorite ? 'fas fa-heart' : 'far fa-heart';
+                }
+            });
             
-            if (productId && icon) {
-                const isFavorite = favorites.some(item => item.id === productId);
-                icon.className = isFavorite ? 'fas fa-heart' : 'far fa-heart';
+            const favoriteCount = document.getElementById('favorite-count');
+            if (favoriteCount) {
+                if (favorites.length > 0) {
+                    favoriteCount.style.display = 'flex';
+                    favoriteCount.textContent = favorites.length;
+                } else {
+                    favoriteCount.style.display = 'none';
+                }
             }
-        });
-        
-        const favoriteCount = document.getElementById('favorite-count');
-        if (favoriteCount) {
-            if (favorites.length > 0) {
-                favoriteCount.style.display = 'flex';
-                favoriteCount.textContent = favorites.length;
-            } else {
-                favoriteCount.style.display = 'none';
-            }
+        } catch (error) {
+            console.error('Error updating favorite status:', error);
         }
     };
     
     const toggleFavorite = (productId) => {
-        const product = products[productId];
-        if (!product) {
-            console.error('Proizvod nije pronađen:', productId);
-            return;
+        try {
+            console.log('Toggling favorite for:', productId);
+            
+            // Provjera postojanja proizvoda
+            const product = products[productId];
+            if (!product) {
+                console.error('Product not found for favorite:', productId);
+                console.log('Available products:', Object.keys(products));
+                return;
+            }
+            
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const index = favorites.findIndex(item => item.id === productId);
+            
+            if (index === -1) {
+                favorites.push({
+                    id: productId,
+                    name: product.name,
+                    price: product.price.toFixed(2) + " KM",
+                    priceValue: product.price,
+                    image: product.image,
+                    volume: product.volume,
+                    description: product.description,
+                    category: product.category,
+                    addedAt: new Date().toISOString()
+                });
+                showNotification('Dodano u favorite ❤️');
+            } else {
+                favorites.splice(index, 1);
+                showNotification('Uklonjeno iz favorita 💔');
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoriteStatus();
+        } catch (error) {
+            console.error('Error toggling favorite:', error, 'Product ID:', productId);
         }
-        
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        const index = favorites.findIndex(item => item.id === productId);
-        
-        if (index === -1) {
-            favorites.push({
-                ...product,
-                price: product.price.toFixed(2) + " KM",
-                priceValue: product.price,
-                addedAt: new Date().toISOString()
-            });
-            showNotification('Dodano u favorite ❤️');
-        } else {
-            favorites.splice(index, 1);
-            showNotification('Uklonjeno iz favorita 💔');
-        }
-        
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        updateFavoriteStatus();
     };
     
     // 4. Helper functions
     const showNotification = (message) => {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.classList.add('show');
+        try {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
             setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
-        }, 100);
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
+            }, 100);
+        } catch (error) {
+            console.error('Error showing notification:', error);
+        }
     };
     
     // 5. Event Listeners
     const initializeEventListeners = () => {
-        // Dugmad za dodavanje u korpu
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                const productContainer = button.closest('.oil-item');
-                if (!productContainer) return;
-                
-                const productId = productContainer.dataset.productId;
-                if (!productId) return;
-                
-                console.log('Kliknuto na "Dodaj u ceger" za proizvod:', productId);
-                
-                // Direktno dodaj u korpu bez modalnog prozora
-                addToCart(productId, 1);
+        try {
+            console.log('Initializing event listeners');
+            
+            // Debug - prikaži sve gumbe
+            const allButtons = document.querySelectorAll('.add-to-cart, .favorite-icon');
+            console.log('Found buttons:', allButtons.length);
+            
+            // Check all product containers
+            document.querySelectorAll('.oil-item').forEach(container => {
+                console.log('Oil item:', container.dataset.productId);
             });
-        });
-        
-        // Dugmad za favorite
-        document.querySelectorAll('.favorite-icon').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                const productContainer = button.closest('.oil-item');
-                if (!productContainer) return;
-                
-                const productId = productContainer.dataset.productId;
-                if (productId) {
+            
+            // Dugmad za dodavanje u korpu
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Spriječi event bubbling
+                    
+                    const productContainer = this.closest('.oil-item');
+                    if (!productContainer) {
+                        console.error('Product container not found');
+                        return;
+                    }
+                    
+                    const productId = productContainer.dataset.productId;
+                    if (!productId) {
+                        console.error('Product ID not found in container:', productContainer);
+                        return;
+                    }
+                    
+                    console.log('Kliknuto na "Dodaj u ceger" za proizvod:', productId);
+                    addToCart(productId, 1);
+                });
+            });
+            
+            // Dugmad za favorite
+            document.querySelectorAll('.favorite-icon').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Spriječi event bubbling
+                    
+                    const productContainer = this.closest('.oil-item');
+                    if (!productContainer) {
+                        console.error('Product container not found for favorite');
+                        return;
+                    }
+                    
+                    const productId = productContainer.dataset.productId;
+                    if (!productId) {
+                        console.error('Product ID not found for favorite in container:', productContainer);
+                        return;
+                    }
+                    
+                    console.log('Kliknuto na favorit za proizvod:', productId);
                     toggleFavorite(productId);
-                }
+                });
             });
-        });
+            
+            console.log('Event listeners initialized');
+        } catch (error) {
+            console.error('Error initializing event listeners:', error);
+        }
     };
     
     // 6. Inicijalizacija stranice
-    updateCartCount();
-    updateFavoriteStatus();
-    initializeEventListeners();
-    
-    console.log('Essential Oil Shop Script has been initialized');
+    try {
+        console.log('Starting initialization');
+        updateCartCount();
+        updateFavoriteStatus();
+        
+        // Dodaj malo odgode za inicijalizaciju event listenera
+        setTimeout(() => {
+            initializeEventListeners();
+        }, 100);
+        
+        console.log('Essential Oil Shop Script has been initialized');
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    }
 });
