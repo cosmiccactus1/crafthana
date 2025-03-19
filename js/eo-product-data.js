@@ -161,7 +161,6 @@ const allEOProducts = {
     },
     
     // Special Blendovi
-  {
     "planinska-koliba": {
         id: "planinska-koliba",
         title: "Planinska Koliba",
@@ -239,4 +238,4 @@ const allEOProducts = {
         ],
         price: 11.99
     }
-}
+};
