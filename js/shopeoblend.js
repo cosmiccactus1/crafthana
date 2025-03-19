@@ -8,27 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'vanilla-jasmine',
             name: 'Vanilla • Jasmine',
             price: 8.89,
-            image: 'images/test2.png',
+            image: 'images/EOtest.jpg',
             volume: '10 ml',
             description: 'Slatka, cvjetna harmonija',
-            category: '2 Blend Roll On'
-        },
-        'patchouli-cedarwood': {
-            id: 'patchouli-cedarwood',
-            name: 'Patchouli • Cedarwood',
-            price: 8.89,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Zemljana nota sa drvenastim prizvukom',
-            category: '2 Blend Roll On'
-        },
-        'bergamot-ylang': {
-            id: 'bergamot-ylang',
-            name: 'Bergamot • Ylang Ylang',
-            price: 8.89,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Svježa cvjetna harmonija',
             category: '2 Blend Roll On'
         },
         'pine-cedarwood': {
@@ -40,33 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'Svježa šumska harmonija',
             category: '2 Blend Roll On'
         },
-        'sandalwood-jasmine': {
-            id: 'sandalwood-jasmine',
-            name: 'Sandalwood • Jasmine',
-            price: 8.89,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Orijentalna cvjetna harmonija',
-            category: '2 Blend Roll On'
-        },
-        'patchouli-bergamot': {
-            id: 'patchouli-bergamot',
-            name: 'Patchouli • Bergamot',
-            price: 8.89,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Zemljana svježina citrus nota',
-            category: '2 Blend Roll On'
-        },
-        'frankincense-myrrh': {
-            id: 'frankincense-myrrh',
-            name: 'Frankincense • Myrrh',
-            price: 8.89,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Drevna mistična harmonija',
-            category: '2 Blend Roll On'
-        },
         'bergamot-vanilla': {
             id: 'bergamot-vanilla',
             name: 'Bergamot • Vanilla',
@@ -74,15 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
             image: 'images/EOtest.jpg',
             volume: '10 ml',
             description: 'Slatka citrusna elegancija',
-            category: '2 Blend Roll On'
-        },
-        'ylang-frankincense': {
-            id: 'ylang-frankincense',
-            name: 'Ylang Ylang • Frankincense',
-            price: 8.89,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Egzotična drevna čarolija',
             category: '2 Blend Roll On'
         },
         'myrrh-vanilla': {
@@ -94,64 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'Topla orijentalna slatkoća',
             category: '2 Blend Roll On'
         },
-        
-        // 3 Blend proizvodi
-        'bergamot-ylang-sandalwood': {
-            id: 'bergamot-ylang-sandalwood',
-            name: 'Bergamot • Ylang Ylang • Sandalwood',
-            price: 9.59,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Luksuzna tropska kompozicija',
-            category: '3 Blend Roll On'
-        },
-        'frankincense-myrrh-vanilla': {
-            id: 'frankincense-myrrh-vanilla',
-            name: 'Frankincense • Myrrh • Vanilla',
-            price: 9.59,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Drevna mistična harmonija',
-            category: '3 Blend Roll On'
-        },
-        'jasmine-bergamot-sandalwood': {
-            id: 'jasmine-bergamot-sandalwood',
-            name: 'Jasmine • Bergamot • Sandalwood',
-            price: 9.59,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Cvjetna orijentalska harmonija',
-            category: '3 Blend Roll On'
-        },
-        'patchouli-cedarwood-jasmine': {
-            id: 'patchouli-cedarwood-jasmine',
-            name: 'Patchouli • Cedarwood • Jasmine',
-            price: 9.59,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Šumska zemljana meditacija',
-            category: '3 Blend Roll On'
-        },
-        'jasmine-myrrh-ylang': {
-            id: 'jasmine-myrrh-ylang',
-            name: 'Jasmine • Myrrh • Ylang Ylang',
-            price: 9.59,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Egzotična senzualna esencija',
-            category: '3 Blend Roll On'
-        },
-        
-        // 4 Blend proizvodi
-        'jasmine-patchouli-ylang-cedarwood': {
-            id: 'jasmine-patchouli-ylang-cedarwood',
-            name: 'Jasmine • Patchouli • Ylang Ylang • Cedarwood',
-            price: 9.89,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Bogata egzotična harmonija',
-            category: '4 Blend Roll On'
-        },
         'pine-cedarwood-bergamot-vanilla': {
             id: 'pine-cedarwood-bergamot-vanilla',
             name: 'Pine • Cedarwood • Bergamot • Vanilla',
@@ -161,25 +49,34 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'Šumsko-slatka harmonija',
             category: '4 Blend Roll On'
         },
-        'jasmine-ylang-bergamot-cedarwood': {
-            id: 'jasmine-ylang-bergamot-cedarwood',
-            name: 'Jasmine • Ylang Ylang • Bergamot • Cedarwood',
-            price: 9.89,
-            image: 'images/EOtest.jpg',
-            volume: '10 ml',
-            description: 'Luksuzna cvjetno-drvenasta kompozicija',
-            category: '4 Blend Roll On'
-        },
         
-        // 5 Blend proizvod
-        'patchouli-frankincense-myrrh-sandalwood-vanilla': {
-            id: 'patchouli-frankincense-myrrh-sandalwood-vanilla',
-            name: 'Patchouli • Frankincense • Myrrh • Sandalwood • Vanilla',
-            price: 10.99,
+        // Special Blendovi
+        'planinska-koliba': {
+            id: 'planinska-koliba',
+            name: 'Planinska Koliba',
+            price: 11.99,
             image: 'images/EOtest.jpg',
             volume: '10 ml',
-            description: 'Luksuzni orijentalni parfem',
-            category: '5 Blend Roll On'
+            description: 'Prirodna harmonija borova i topline',
+            category: 'Special Blendovi'
+        },
+        'special-narandza': {
+            id: 'special-narandza',
+            name: 'Special narandža',
+            price: 11.99,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Nostalgična kombinacija čokolade i naranče',
+            category: 'Special Blendovi'
+        },
+        'cejf': {
+            id: 'cejf',
+            name: 'Ćejf',
+            price: 11.99,
+            image: 'images/EOtest.jpg',
+            volume: '10 ml',
+            description: 'Bosanska riječ koja opisuje najveći stepen zadovoljstva',
+            category: 'Special Blendovi'
         }
     };
     
