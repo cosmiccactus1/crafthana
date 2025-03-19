@@ -10,6 +10,23 @@
     <link rel="stylesheet" href="css/proizvodi.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Ukidanje boldiranih slova */
+        .product-description p, 
+        .usage-info p, 
+        .product-ingredients p,
+        .benefits-info li,
+        .product-tagline {
+            font-weight: 300;
+        }
+        
+        .benefits-info h3,
+        .usage-info h3,
+        .product-ingredients h3,
+        .price-display h3 {
+            font-weight: 400;
+        }
+    </style>
 </head>
 <body>
     <div class="discount-banner">
@@ -171,10 +188,9 @@
         </div>
     </footer>
     
-    <!-- Ključni dio: učitavanje skripti -->
-    <script src="js/shopeo.js"></script>
-       <script src="js/script.js"></script>
-    <script src="js/eo-product-data.js"></script> <!-- Podaci o svim proizvodima -->
-    <script src="js/eo-product-loader.js"></script> <!-- Skripta koja dinamički učitava proizvode -->
+    <!-- Učitavanje skripti u ispravnom redoslijedu -->
+    <script src="js/eo-product-data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/eo-product-loader.js"></script>
 </body>
 </html>
