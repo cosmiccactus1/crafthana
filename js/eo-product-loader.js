@@ -55,11 +55,13 @@ function loadProductBenefits(benefits) {
     
     benefits.forEach(benefit => {
         const benefitItem = document.createElement('li');
-        benefitItem.textContent = benefit;
+        // Umjesto običnog teksta, postavit ćemo HTML sadržaj s baklavom
+        benefitItem.innerHTML = '&#9674;&nbsp; ' + benefit;
+        // Postavimo tanki font
+        benefitItem.style.fontWeight = '200';
         benefitsList.appendChild(benefitItem);
     });
 }
-
 // Glavna funkcija za učitavanje proizvoda
 function loadProduct() {
     // Dohvati ID proizvoda iz URL-a
