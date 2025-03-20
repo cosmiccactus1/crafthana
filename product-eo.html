@@ -26,6 +26,20 @@
         .price-display h3 {
             font-weight: 400;
         }
+        
+        /* Stilovi za baklava simbole */
+        .benefits-info li {
+            font-weight: 200; /* Istanjeno */
+            list-style-type: none; /* Bez standardnih oznaka */
+            margin-bottom: 5px;
+            padding-left: 5px; /* Prostor nakon simbola */
+        }
+        
+        /* Usklađivanje debljine za cijenu i količinu */
+        .product-price,
+        #quantity {
+            font-weight: 300;
+        }
     </style>
 </head>
 <body>
@@ -117,16 +131,16 @@
                     <p class="product-price" id="product-price">7.99 KM</p>
                 </div>
                    
-<div class="benefits-info">
-    <h3>Prednosti:</h3>
-    <ul id="product-benefits">
-        <li>&#9674; 100% prirodna eterična ulja</li>
-        <li>&#9674; Proizvedeno u Bosni i Hercegovini</li>
-        <li>&#9674; Bez sintetičkih dodataka</li>
-        <li>&#9674; Pogodno za električne difuzere</li>
-        <li>&#9674; Idealno za aromaterapiju</li>
-    </ul>
-</div>
+                <div class="benefits-info">
+                    <h3>Prednosti:</h3>
+                    <ul id="product-benefits">
+                        <li>&#9674;&nbsp; 100% prirodna eterična ulja</li>
+                        <li>&#9674;&nbsp; Proizvedeno u Bosni i Hercegovini</li>
+                        <li>&#9674;&nbsp; Bez sintetičkih dodataka</li>
+                        <li>&#9674;&nbsp; Pogodno za električne difuzere</li>
+                        <li>&#9674;&nbsp; Idealno za aromaterapiju</li>
+                    </ul>
+                </div>
                 
                 <div class="product-actions">
                     <div class="product-actions-row">
@@ -147,41 +161,41 @@
             </div>
         </div>
     </main>
-<footer>
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>Kontakt</h3>
-            <p>Email: info@crafthana.store</p>
-            <p>Online narudžbe 24/7</p>
-            <p>Crafted with love in Bosnia and Herzegovina</p>
-        </div>
-        <div class="footer-section">
-            <h3>Brze poveznice</h3>
-            <ul>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="o-nama.html">O nama</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="uvjeti-koristenja.html">Uvjeti korištenja</a></li>
-                <li><a href="politika-privatnosti.html">Politika privatnosti</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Načini plaćanja</h3>
-            <div class="payment-icons">
-                <i class="fab fa-cc-visa" aria-label="Visa"></i>
-                <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
-                <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <p>Email: info@crafthana.store</p>
+                <p>Online narudžbe 24/7</p>
+                <p>Crafted with love in Bosnia and Herzegovina</p>
             </div>
-            <div class="footer-logo">
-                <img src="images/logojez.png" alt="crafthana logo" class="footer-nav-logo">
+            <div class="footer-section">
+                <h3>Brze poveznice</h3>
+                <ul>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="o-nama.html">O nama</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="uvjeti-koristenja.html">Uvjeti korištenja</a></li>
+                    <li><a href="politika-privatnosti.html">Politika privatnosti</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Načini plaćanja</h3>
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                    <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                    <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                </div>
+                <div class="footer-logo">
+                    <img src="images/logojez.png" alt="crafthana logo" class="footer-nav-logo">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 CRAFTHANA. Sva prava pridržana.</p>
-    </div>
-</footer>
-
+        <div class="footer-bottom">
+            <p>&copy; 2025 CRAFTHANA. Sva prava pridržana.</p>
+        </div>
+    </footer>
     
     <!-- Učitavanje skripti u ispravnom redoslijedu -->
     <script src="js/eo-product-data.js"></script>
