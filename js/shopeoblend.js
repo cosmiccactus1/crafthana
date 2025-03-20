@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'planinska-koliba',
             name: 'Planinska Koliba',
             price: 11.99,
-            image: 'images/EOtest.jpg',
+            image: 'images/planinska-koliba.png',
             volume: '10 ml',
             description: 'Prirodna harmonija borova i topline',
             category: 'Special Blendovi'
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'special-narandza',
             name: 'Special narandža',
             price: 11.99,
-            image: 'images/EOtest.jpg',
+            image: 'images/special-narandza.png',
             volume: '10 ml',
             description: 'Nostalgična kombinacija čokolade i naranče',
             category: 'Special Blendovi'
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'cejf',
             name: 'Ćejf',
             price: 11.99,
-            image: 'images/EOtest.jpg',
+            image: 'images/cejf.png',
             volume: '10 ml',
             description: 'Bosanska riječ koja opisuje najveći stepen zadovoljstva',
             category: 'Special Blendovi'
