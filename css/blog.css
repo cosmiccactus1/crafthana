@@ -498,11 +498,104 @@
 /* Osigurajmo da svaki članak ima dovoljno prostora */
 .article-content {
     margin-bottom: 60px;
-    scroll-margin-top: 100px;
+    scroll-margin-top: 100px; /* Ovo pomaže da kad skočite na članak putem linka, imate dovoljno prostora iznad */
 }
 
 /* Blog header font za tanje slova */
 .blog-header h1 {
     font-weight: 200;
     letter-spacing: 3px;
+}
+
+/* Stilovi za verziju product-feature bez slika */
+.product-feature.simple {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin: 30px 0;
+    border-left: 4px solid #e9d8b4;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-feature.simple:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.product-feature.simple .product-description {
+    width: 100%;
+}
+
+.product-feature.simple .product-description h3 {
+    font-size: 22px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 15px;
+    letter-spacing: 1.5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Poboljšani stilovi za gumb */
+.product-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 22px;
+    background-color: #e9d8b4;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.product-link:hover {
+    background-color: #d9c8a4;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Poboljšani stilovi za listu */
+.product-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+
+.product-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 25px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.product-list li:before {
+    content: '•';
+    color: #e9d8b4;
+    font-size: 22px;
+    position: absolute;
+    left: 0;
+    top: -4px;
+}
+
+/* Poboljšanje za mobilne uređaje */
+@media (max-width: 768px) {
+    .product-feature.simple {
+        padding: 20px 15px;
+    }
+    
+    .product-feature.simple .product-description h3 {
+        font-size: 20px;
+    }
+    
+    .blog-navigation ul {
+        flex-direction: column;
+        gap: 8px;
+    }
 }
