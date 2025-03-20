@@ -516,6 +516,7 @@
 @media (max-width: 768px) {
     .product-feature {
         flex-direction: column;
+        padding: 15px;
     }
     
     .product-image {
@@ -527,10 +528,145 @@
     .blog-navigation ul {
         flex-direction: column;
         gap: 8px;
+        align-items: center;
     }
     
     .article-header-content {
         max-width: 95%;
+        padding: 15px;
+    }
+    
+    .article-header {
+        height: 40vh; /* Manja visina na mobilnim uređajima */
+    }
+    
+    .article-header.higher-image {
+        height: 45vh;
+    }
+    
+    .page-title {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+    
+    .article-content h1 {
+        font-size: 24px;
+        letter-spacing: 1.5px;
+    }
+    
+    .article-content h2 {
+        font-size: 20px;
+        letter-spacing: 1.2px;
+    }
+    
+    .article-content p {
+        font-size: 15px;
+    }
+    
+    .article-content p.intro-text {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+    
+    .product-description h3 {
+        font-size: 18px;
+    }
+    
+    .newsletter-content h2 {
+        font-size: 22px;
+    }
+    
+    .discount-code {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    .form-wrapper {
+        flex-direction: column;
+    }
+    
+    #newsletterEmail {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .newsletter-btn {
+        width: 100%;
+        border-radius: 4px;
+        padding: 12px 15px;
+    }
+    
+    .product-feature.simple {
+        padding: 15px;
+    }
+}
+
+/* Dodatna optimizacija za manje mobilne uređaje */
+@media (max-width: 480px) {
+    .article-header {
+        height: 35vh;
+    }
+    
+    .article-header.higher-image {
+        height: 40vh;
+    }
+    
+    .article-tag {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+    
+    .article-content {
+        padding: 0 15px;
+    }
+    
+    .page-title {
+        font-size: 22px;
+    }
+    
+    .article-content h1 {
+        font-size: 20px;
+    }
+    
+    .article-content h2 {
+        font-size: 18px;
+    }
+    
+    .product-feature, .product-feature.simple {
+        margin: 20px 0;
+        padding: 12px;
+    }
+    
+    .blog-navigation {
+        padding: 10px;
+        margin: 15px auto 30px;
+    }
+    
+    .blog-navigation a {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+    
+    .product-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .section-container {
+        padding: 0 15px;
+    }
+    
+    .newsletter-section {
+        padding: 40px 0;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-section {
+        margin-bottom: 25px;
     }
 }
 
@@ -599,89 +735,72 @@
     letter-spacing: 3px;
 }
 
-/* Stilovi za dodatne elemente koji bi mogli biti potrebni u budućim blog postovima */
-blockquote {
-    border-left: 3px solid #e9d8b4;
-    padding: 15px 20px;
-    margin: 20px 0;
-    background-color: #f9f9f9;
-    font-style: italic;
-    color: #555;
+/* Touch optimizacije za mobilne uređaje */
+@media (max-width: 768px) {
+    /* Povećanje touch targeta za bolju pristupačnost */
+    .blog-navigation a,
+    .product-link,
+    .newsletter-btn,
+    .collection-link {
+        min-height: 44px; /* Minimum preporučen od Apple-a */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Povećanje razmaka između redova za lakše čitanje */
+    .article-content p,
+    .product-description p {
+        line-height: 1.7;
+    }
+    
+    /* Poboljšan kontrast za bolju čitljivost */
+    .article-content p {
+        color: #222;
+    }
+    
+    /* Uvećani font za mobilne uređaje */
+    html {
+        font-size: 16px; /* Bazni font */
+    }
+    
+    /* Poboljšano međuredovno razmakivanje za bolju čitljivost */
+    body {
+        line-height: 1.6;
+    }
 }
 
-figure {
-    margin: 30px 0;
-    text-align: center;
+/* Poboljšanje perfomansi na mobilnim uređajima */
+@media (max-width: 768px) {
+    /* Optimizacija animacija za mobilne uređaje */
+    .product-feature:hover,
+    .product-feature.simple:hover,
+    .product-link:hover {
+        transform: none; /* Uklanjanje hover animacija na mobilnim uređajima */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Dodavanje aktivnog stanja umjesto hover na mobilnim uređajima */
+    .product-link:active {
+        background-color: #d9c8a4;
+    }
 }
 
-figure img {
-    max-width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-figcaption {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #777;
-    font-style: italic;
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    margin: 30px 0;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 6px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 25px 0;
-}
-
-table th {
-    background-color: #f3f3f3;
-    font-weight: 400;
-    color: #333;
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 2px solid #e9d8b4;
-}
-
-table td {
-    padding: 10px 15px;
-    border-bottom: 1px solid #eee;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.emphasis-box {
-    background-color: #fff8e8;
-    border: 1px solid #e9d8b4;
-    border-radius: 6px;
-    padding: 20px;
-    margin: 25px 0;
-}
-
-.emphasis-box h3 {
-    margin-top: 0;
-    color: #444;
-    font-weight: 400;
-}
-
-.emphasis-box p:last-child {
-    margin-bottom: 0;
+/* Fix za iOS Safari specifične probleme */
+@supports (-webkit-overflow-scrolling: touch) {
+    /* Fix za iOS input polja */
+    input[type="text"],
+    input[type="email"],
+    input[type="search"],
+    input[type="submit"],
+    textarea {
+        -webkit-appearance: none;
+        border-radius: 4px;
+    }
+    
+    /* Fix za 100vh problem na iOS-u */
+    .article-header,
+    .article-header.higher-image {
+        height: 50vh; /* Prilagodba za iOS */
+    }
 }
