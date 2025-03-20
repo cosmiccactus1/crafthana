@@ -222,8 +222,6 @@ const allEOProducts = {
         categoryLink: "essential-oil.html",
         benefits: [
             "Stvara atmosferu potpunog zadovoljstva i opuštanja",
-            "Umiruje um i tijelo nakon stresnog dana",
-            "Pomaže kod opuštanja i meditacije",
             "100% prirodna eterična ulja",
         ],
         images: [
