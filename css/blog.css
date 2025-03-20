@@ -7,7 +7,7 @@
 
 .page-title {
     text-align: center;
-    font-weight: 300;
+    font-weight: 200;
     letter-spacing: 3px;
     margin-bottom: 40px;
     font-size: 32px;
@@ -58,7 +58,7 @@
     color: #333;
     padding: 5px 10px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 300;
     border-radius: 3px;
     letter-spacing: 1px;
 }
@@ -70,8 +70,9 @@
 .post-title {
     font-size: 20px;
     margin-bottom: 10px;
-    font-weight: 500;
+    font-weight: 300;
     line-height: 1.4;
+    letter-spacing: 0.5px;
 }
 
 .post-date {
@@ -83,14 +84,15 @@
 .post-excerpt {
     color: #555;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.8;
     margin-bottom: 20px;
+    letter-spacing: 0.3px;
 }
 
 .read-more {
     display: inline-block;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 300;
     letter-spacing: 1px;
     color: #333;
     text-decoration: none;
@@ -153,9 +155,9 @@
     color: #333;
     padding: 5px 15px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 300;
     margin-bottom: 15px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .article-content {
@@ -168,21 +170,25 @@
 .article-content h1 {
     font-size: 32px;
     margin-bottom: 20px;
-    font-weight: 300;
-    letter-spacing: 1px;
+    font-weight: 200;
+    letter-spacing: 2px;
 }
 
 .article-content h2 {
     font-size: 24px;
     margin: 30px 0 15px;
-    font-weight: 400;
+    font-weight: 300;
     color: #5a5a5a;
+    letter-spacing: 1.5px;
 }
 
 .article-content p {
     margin-bottom: 20px;
     font-size: 16px;
     color: #333;
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
 }
 
 .article-meta {
@@ -198,7 +204,7 @@
 }
 
 .article-author {
-    font-weight: 500;
+    font-weight: 300;
 }
 
 /* Newsletter Section Styles */
@@ -228,8 +234,8 @@
 
 .newsletter-content h2 {
     font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 2px;
+    font-weight: 200;
+    letter-spacing: 3px;
     margin-bottom: 15px;
     text-transform: uppercase;
 }
@@ -238,6 +244,8 @@
     font-size: 16px;
     color: #666;
     margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
 .newsletter-form {
@@ -260,6 +268,7 @@
     font-size: 14px;
     outline: none;
     font-family: 'Raleway', sans-serif;
+    font-weight: 300;
 }
 
 .newsletter-btn {
@@ -271,9 +280,10 @@
     cursor: pointer;
     font-family: 'Raleway', sans-serif;
     font-size: 14px;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     transition: background-color 0.3s ease;
+    font-weight: 300;
 }
 
 .newsletter-btn:hover {
@@ -318,7 +328,7 @@
     padding: 15px;
     margin: 15px 0;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 300;
     letter-spacing: 2px;
     border: 1px dashed #ddd;
 }
@@ -326,6 +336,8 @@
 .modal-info {
     font-size: 14px;
     color: #666;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
 /* Dodatni stilovi za blog s više članaka */
@@ -351,11 +363,12 @@
 .blog-navigation a {
     color: #333;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 300;
     padding: 8px 15px;
     border-radius: 4px;
     transition: all 0.3s ease;
     border: 1px solid transparent;
+    letter-spacing: 1px;
 }
 
 .blog-navigation a:hover {
@@ -370,7 +383,7 @@
     max-width: 600px;
 }
 
-/* Stilovi za Roll-on sekciju */
+/* Stilovi za proizvode */
 .product-feature {
     display: flex;
     align-items: center;
@@ -400,14 +413,16 @@
 .product-description h3 {
     margin-top: 0;
     font-size: 22px;
-    font-weight: 400;
+    font-weight: 300;
     color: #333;
     margin-bottom: 15px;
+    letter-spacing: 1.5px;
 }
 
 .product-description p {
     margin-bottom: 15px;
-    line-height: 1.6;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
 }
 
 .product-link {
@@ -418,8 +433,9 @@
     color: #333;
     text-decoration: none;
     border-radius: 4px;
-    font-weight: 500;
+    font-weight: 300;
     transition: all 0.3s ease;
+    letter-spacing: 1px;
 }
 
 .product-link:hover {
@@ -434,6 +450,9 @@
     margin: 20px 0;
     font-size: 14px;
     color: #555;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
 }
 
 .product-list {
@@ -446,6 +465,8 @@
     margin-bottom: 12px;
     position: relative;
     padding-left: 25px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
 .product-list li:before {
@@ -455,6 +476,10 @@
     position: absolute;
     left: 0;
     top: -4px;
+}
+
+.product-list li strong {
+    font-weight: 400;
 }
 
 /* Responzivnost za product-feature na mobilnim uređajima */
@@ -473,5 +498,11 @@
 /* Osigurajmo da svaki članak ima dovoljno prostora */
 .article-content {
     margin-bottom: 60px;
-    scroll-margin-top: 100px; /* Ovo pomaže da kad skočite na članak putem linka, imate dovoljno prostora iznad */
+    scroll-margin-top: 100px;
+}
+
+/* Blog header font za tanje slova */
+.blog-header h1 {
+    font-weight: 200;
+    letter-spacing: 3px;
 }
