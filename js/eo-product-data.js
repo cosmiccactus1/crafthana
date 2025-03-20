@@ -174,7 +174,6 @@ const allEOProducts = {
         categoryLink: "essential-oil.html",
         benefits: [
             "Stvara atmosferu planinske kolibe u vašem domu",
-            "Idealan zimski miris koji pobuđuje ugodne emocije",
             "Smanjuje stres i stvara osjećaj sigurnosti",
             "Pročišćava zrak i poboljšava raspoloženje"
         ],
