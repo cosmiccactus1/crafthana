@@ -166,9 +166,9 @@ const allEOProducts = {
         title: "Planinska Koliba",
         tagline: "Prirodna harmonija borova i topline",
         volume: "10 ml",
-        description: "Jedinstveni blend koji spaja svježinu planinskog zraka, miris borove šume i toplinu drvenog ognjišta. Ovaj kompleksni miris prenosi vas u ugodnu planinsku kolibu, okruženu snijegom i mirom prirode. Idealan za stvaranje zimske atmosfere i osjećaja topline i sigurnosti u vašem domu.",
-        usage: "Idealno za električne difuzere. Dodajte 5-10 kapi u vodu u difuzeru za aromaterapiju cijelog prostora. Posebno preporučeno za zimske dane i večeri.",
-        ingredients: "Pažljivo izbalansirana mješavina eteričnih ulja bora, kedrovine, smreke, cimeta i vanilije u 100% čistom obliku.",
+        description: "Jedinstveni blend koji spaja svježinu planinskog zraka, miris borove šume i toplinu drvenog ognjišta. Ovaj kompleksni miris prenosi vas u ugodnu planinsku kolibu, okruženu planinama i mirom prirode. Idealan za stvaranje osjećaja topline i sigurnosti u vašem domu.",
+        usage: "Idealno za električne difuzere. Dodajte 5-10 kapi u vodu u difuzeru za aromaterapiju cijelog prostora",
+        ingredients: "Pažljivo izbalansirana mješavina eteričnih ulja bora, kedrovine, sandalovine, myrrha i drugih mirisnih ulja.",
         category: "Essential Oil",
         categoryType: "Special Blendovi",
         categoryLink: "essential-oil.html",
@@ -176,11 +176,10 @@ const allEOProducts = {
             "Stvara atmosferu planinske kolibe u vašem domu",
             "Idealan zimski miris koji pobuđuje ugodne emocije",
             "Smanjuje stres i stvara osjećaj sigurnosti",
-            "100% prirodna eterična ulja",
             "Pročišćava zrak i poboljšava raspoloženje"
         ],
         images: [
-            { src: "images/EOtest.jpg", alt: "Planinska Koliba essential oil" },
+            { src: "images/planinska-koliba.png", alt: "Planinska Koliba essential oil" },
             { src: "images/EOtest.jpg", alt: "Planinska Koliba detail 1" },
             { src: "images/EOtest.jpg", alt: "Planinska Koliba detail 2" }
         ],
@@ -192,21 +191,18 @@ const allEOProducts = {
         title: "Special narandža",
         tagline: "Nostalgična kombinacija čokolade i naranče",
         volume: "10 ml",
-        description: "Sladak, nostalgičan miris koji savršeno kombinira osvježavajuće note naranče s bogatom aromom čokolade. MMM jede mi se jaffa! Ovaj posebni blend stvara toplu, ugodnu atmosferu koja budi najljepše uspomene. Idealan za kuhinju, dnevni boravak ili bilo koji prostor gdje želite stvoriti ugodnu, slatku atmosferu.",
-        usage: "Idealno za električne difuzere. Dodajte 5-10 kapi u vodu u difuzeru za aromaterapiju cijelog prostora. Posebno preporučeno za druženja i obiteljska okupljanja.",
-        ingredients: "Pažljivo kreirana mješavina eteričnih ulja naranče, kakaa, vanilije i drugih prirodnih sastojaka u 100% čistom obliku.",
+        description: "Sladak, nostalgičan miris koji savršeno kombinira osvježavajuće note naranče s bogatom aromom čokolade. Ovaj posebni blend stvara toplu, ugodnu atmosferu koja budi najljepše uspomene. Idealan za bilo koji prostor gdje želite stvoriti ugodnu atmosferu.",
+        usage: "Idealno za električne difuzere. Dodajte 5-10 kapi u vodu u difuzeru za aromaterapiju cijelog prostora.",
+        ingredients: "Pažljivo kreirana mješavina eteričnih ulja od više vrsta naranče, saće sa medom, bijeli musk i drugih mirisnih ulja.",
         category: "Essential Oil",
         categoryType: "Special Blendovi",
         categoryLink: "essential-oil.html",
         benefits: [
             "Stvara toplu i nostalgičnu atmosferu",
             "Podiže raspoloženje i budi lijepe uspomene",
-            "Savršen za obiteljska okupljanja",
-            "100% prirodna eterična ulja",
-            "Maskira neugodne mirise i stvara ugodnu atmosferu"
         ],
         images: [
-            { src: "images/EOtest.jpg", alt: "Special narandža essential oil" },
+            { src: "images/special-narandza.png", alt: "Special narandža essential oil" },
             { src: "images/EOtest.jpg", alt: "Special narandža detail 1" },
             { src: "images/EOtest.jpg", alt: "Special narandža detail 2" }
         ],
@@ -229,10 +225,9 @@ const allEOProducts = {
             "Umiruje um i tijelo nakon stresnog dana",
             "Pomaže kod opuštanja i meditacije",
             "100% prirodna eterična ulja",
-            "Idealan za večernje opuštanje i bolji san"
         ],
         images: [
-            { src: "images/EOtest.jpg", alt: "Ćejf essential oil" },
+            { src: "images/cejf.png", alt: "Ćejf essential oil" },
             { src: "images/EOtest.jpg", alt: "Ćejf detail 1" },
             { src: "images/EOtest.jpg", alt: "Ćejf detail 2" }
         ],
